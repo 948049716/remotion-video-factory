@@ -4,6 +4,8 @@ import { HelloWorld } from "./videos/HelloWorld/HelloWorld";
 import { Logo } from "./videos/HelloWorld/Logo";
 import { Title } from "./videos/HelloWorld/Title";
 import { Showreel } from "./videos/Showreel/Showreel";
+import { AiExplainer } from "./videos/AiExplainer/AiExplainer";
+import { DURATION_FRAMES as AI_EXPLAINER_FRAMES } from "./videos/AiExplainer/timeline";
 
 /**
  * Central Video Registry (RemotionRoot)
@@ -23,6 +25,15 @@ export const RemotionRoot: React.FC = () => {
           id="Showreel"
           component={Showreel}
           durationInFrames={1800}
+          fps={60}
+          width={1920}
+          height={1080}
+        />
+        {/* 11m10s AI concepts explainer, synced to narration.wav timetable (40197 frames @ 60fps) */}
+        <Composition
+          id="AiExplainer"
+          component={AiExplainer}
+          durationInFrames={AI_EXPLAINER_FRAMES}
           fps={60}
           width={1920}
           height={1080}
