@@ -1,0 +1,13 @@
+node_modules
+.DS_Store
+dist
+out
+build
+.remotion
+*.mp4
+*.webm
+*.wav
+preview-*.png
+v2-act*.png
+test.png
+*.log
