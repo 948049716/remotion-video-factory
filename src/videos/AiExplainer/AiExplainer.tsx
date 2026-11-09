@@ -282,8 +282,8 @@ export const AiExplainer: React.FC = () => {
         </Sequence>
       ))}
 
-      {/* Narration from frame 0 (public/ai-explainer/narration.wav, 669.94s). */}
-      <Audio src={staticFile("ai-explainer/narration.wav")} />
+      {/* Narration from frame 0 (public/ai-explainer/narration.mp3, 669.94s). */}
+      <Audio src={staticFile("ai-explainer/narration.mp3")} />
 
       <Captions />
       <Hud />

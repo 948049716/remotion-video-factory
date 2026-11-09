@@ -29,7 +29,7 @@ export const RemotionRoot: React.FC = () => {
           width={1920}
           height={1080}
         />
-        {/* 11m10s AI concepts explainer, synced to narration.wav timetable (40197 frames @ 60fps) */}
+        {/* 11m10s AI concepts explainer, synced to narration timetable (40197 frames @ 60fps) */}
         <Composition
           id="AiExplainer"
           component={AiExplainer}
