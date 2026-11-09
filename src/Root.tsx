@@ -3,6 +3,7 @@ import { Composition, Folder } from "remotion";
 import { HelloWorld } from "./videos/HelloWorld/HelloWorld";
 import { Logo } from "./videos/HelloWorld/Logo";
 import { Title } from "./videos/HelloWorld/Title";
+import { KepuAIDraft10 } from "./videos/KepuAI/KepuAIDraft10";
 import { Showreel } from "./videos/Showreel/Showreel";
 
 /**
@@ -26,6 +27,14 @@ export const RemotionRoot: React.FC = () => {
           fps={60}
           width={1920}
           height={1080}
+        />
+        <Composition
+          id="KepuAIDraft10"
+          component={KepuAIDraft10}
+          durationInFrames={600}
+          fps={60}
+          width={1080}
+          height={1920}
         />
       </Folder>
 

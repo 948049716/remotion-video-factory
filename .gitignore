@@ -7,6 +7,7 @@ build
 *.mp4
 *.webm
 *.wav
+!public/kepu-ai/koubo_10s.wav
 preview-*.png
 v2-act*.png
 test.png

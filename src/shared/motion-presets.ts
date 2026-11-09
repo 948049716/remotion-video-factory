@@ -50,4 +50,31 @@ export const PALETTES = {
     cyberCyan: "#00F0FF",
     neonMagenta: "#FF0055",
   },
+  /**
+   * 科普片「七个词讲清 AI」厨房宇宙色板。
+   * 七个关键词色全片锁定，场景组件只引用这里，不另写 HEX。
+   */
+  kepuKitchen: {
+    canvas: "#F7F4EF",
+    plateDark: "#121826",
+    plateLift: "#1B2636",
+    ink: "#1A2332",
+    inkMuted: "#5C6570",
+    card: "#E8E0D4",
+    captionHighlight: "#F4C430",
+    warning: "#D97706",
+    brake: "#D64545",
+    mist: "#E4E8EE",
+    timeline: "#8E99AA",
+    scrim: "#070B12",
+    keywords: {
+      ai: "#2B4C7E",
+      model: "#E07A3D",
+      token: "#2A9D8F",
+      agent: "#3D7EA6",
+      skill: "#6B8F3C",
+      mcp: "#6C5B7B",
+      harness: "#C9A227",
+    },
+  },
 } as const;
