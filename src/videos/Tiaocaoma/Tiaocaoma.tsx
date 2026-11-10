@@ -169,10 +169,11 @@ const HUD: React.FC<{ frame: number }> = ({ frame }) => {
 };
 
 /** 10-frame paper wipe at each cut. */
-const CutVeil: React.FC<{ local: number }> = ({ local }) => (
+const CutVeil: React.FC<{ local: number; muted: boolean }> = ({ local, muted }) => (
   <AbsoluteFill style={{ pointerEvents: "none", zIndex: 65,
     backgroundColor: COLORS.paperLight,
-    opacity: lerp(local, [0, 3, 11], [0.42, 0.2, 0]) }} />
+    opacity: lerp(local, [0, 3, 11],
+      [muted ? 0.10 : 0.22, muted ? 0.05 : 0.10, 0]) }} />
 );
 
 export const Tiaocaoma: React.FC = () => {
@@ -202,7 +203,7 @@ export const Tiaocaoma: React.FC = () => {
     <AbsoluteFill style={{ backgroundColor: COLORS.paper }}>
       {renderScene()}
       {!inGap ? <Caption track={current} local={local} shot={shot} /> : null}
-      <CutVeil local={local} />
+      <CutVeil local={local} muted={shot.fx.indexOf("flash") >= 0} />
       {card ? <ChapterCard frame={cardLocal} label={card.label} sub={card.sub} /> : null}
       <HUD frame={frame} />
 

@@ -13,13 +13,29 @@ const CUP = P("prop-wine-peanuts-03", 1080, 690, 130);
 const STICK = P("prop-stick-sword-arm-02", 1300, 600, 300, { rot: -18 });
 const SIGN = P("prop-sign-00", 280, 430, 300);
 
+/** Each speaking character gets their own backdrop, so 20+ close-ups do not read as the same shot. */
+const PORTRAIT_BG: Record<"scar" | "waiter" | "zhao" | "firstlord", string> = {
+  scar: "bg-street",
+  waiter: "bg-stable-day",
+  zhao: "bg-inn",
+  firstlord: "bg-stable-dusk",
+};
+
 const portrait = (who: "scar" | "waiter" | "zhao" | "firstlord", x: number, scale: number,
-                  expr: number, grade: Shot["grade"] = "day"): Shot =>
-  S("portrait", grade === "dramatic" ? "bg-stable-dusk" : "bg-stable-day",
+                  expr: number, grade: Shot["grade"] = "day"): Shot => {
+  const backdrop = grade === "dramatic" ? "bg-stable-dusk" : PORTRAIT_BG[who];
+  const shift = (scale % 5) * 3;
+  return S("portrait", backdrop,
     [A(who, x, 1120, scale, { expr, pose: "stand" })], [], ["spotlight"], {
       grade, headline: undefined,
-      camera: { from: 1.06, to: 1.13, panX: who === "scar" ? -18 : 18, panY: 0 },
+      camera: {
+        from: 1.04 + (scale % 4) * 0.01,
+        to: 1.12,
+        panX: who === "scar" ? -24 - shift : 18 + shift,
+        panY: who === "zhao" ? -10 : 0,
+      },
     });
+};
 
 /** 54 hand-directed shots. Keyed by voice-track id. */
 export const SHOTS: Record<number, Shot> = {
@@ -82,7 +98,7 @@ export const SHOTS: Record<number, Shot> = {
   17: portrait("waiter", 1020, 660, 0),
   18: S("stage", "bg-stable-day", [], [MANGER, FINE], ["dust"], {
     camera: { from: 1.14, to: 1.2, panX: -60, panY: 0 },
-    sequences: [Q(SEQS.chew, 960, 420, 380, { hold: 14, z: 26 })],
+    sequences: [Q(SEQS.chew, 1520, 360, 280, { hold: 14, z: 26, badge: true })],
   }, [H("white", 900, 900, 700, { headDown: false })]),
   // ── 叁 · 再犯官府 ──────────────────────────────────────────────
   19: S("montage", "bg-street", [], [SIGN],
@@ -119,7 +135,7 @@ export const SHOTS: Record<number, Shot> = {
   24: S("impact", "bg-stable-day", [],
     [], ["shake", "flash", "dust"], {
       grade: "dusk", headline: "扑通",
-      sequences: [Q(SEQS.kneel, 1000, 700, 420, { hold: 13, z: 24 })],
+      sequences: [Q(SEQS.kneel, 1000, 660, 520, { hold: 13, z: 24 })],
     }),
   25: portrait("waiter", 1000, 640, 0, "dusk"),
   26: portrait("firstlord", 980, 680, 1, "dusk"),
@@ -165,7 +181,7 @@ export const SHOTS: Record<number, Shot> = {
       caption: "bubble", grade: "inn",
       sequences: [Q([SUPP_PART.abacus], 1520, 720, 220)],
     }),
-  40: S("stage", "bg-stable-dusk", [], [MANGER, FINE, GREEN, DRY], ["sun", "wind", "clouds"], {
+  40: S("stage", "bg-stable-dusk", [], [MANGER, FINE, GREEN, DRY], ["wind", "clouds"], {
     grade: "dusk", beats: [0, 500, 1000],
     sequences: [
       Q(SEQS.headsUp, 700, 690, 230, { hold: 22 }),
@@ -237,7 +253,7 @@ export const SHOTS: Record<number, Shot> = {
       })],
     }),
   53: S("stage", "bg-stable-dusk", [A("scar", 1380, 960, 360, { flip: true })], [],
-    ["sun", "wind", "clouds"], {
+    ["wind", "clouds"], {
       grade: "dramatic", camera: { from: 1.08, to: 1.02, panX: 20, panY: 0 },
       sequences: [Q([SUPP_PART.profileHorseClosed], 820, 560, 250, { z: 24 })],
     },

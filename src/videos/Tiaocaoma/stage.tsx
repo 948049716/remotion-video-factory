@@ -121,7 +121,7 @@ const Tear: React.FC<{ frame: number; dur: number }> = ({ frame, dur }) => {
 const Flash: React.FC<{ frame: number; beats: number[] }> = ({ frame, beats }) => {
   const pulses = beats.length ? beats : [0];
   const alpha = Math.max(...pulses.map((b) =>
-    lerp(frame, [b - 2, b, b + 5, b + 18], [0, 0.82, 0.35, 0])));
+    lerp(frame, [b - 2, b, b + 4, b + 12], [0, 0.48, 0.16, 0])));
   return <AbsoluteFill style={{ pointerEvents: "none", zIndex: 70,
     backgroundColor: `rgba(255,246,222,${alpha})` }} />;
 };
@@ -207,8 +207,9 @@ export const Stage: React.FC<{
   const progress = dur > 0 ? frame / dur : 0;
   const scale = lerp(frame, [0, dur], [shot.camera.from, shot.camera.to]);
   const shake = shot.fx.indexOf("shake") >= 0;
-  const shakeX = shake ? Math.sin(frame * 1.7) * lerp(frame, [0, 120, dur], [12, 5, 2]) : 0;
-  const shakeY = shake ? Math.cos(frame * 2.3) * lerp(frame, [0, 120, dur], [8, 3, 1.5]) : 0;
+  const shakeDecay = Math.max(0.5, Math.min(120, dur * 0.5));
+  const shakeX = shake ? Math.sin(frame * 1.7) * lerp(frame, [0, shakeDecay, dur], [12, 5, 2]) : 0;
+  const shakeY = shake ? Math.cos(frame * 2.3) * lerp(frame, [0, shakeDecay, dur], [8, 3, 1.5]) : 0;
   const cam = `scale(${scale}) translate(${shot.camera.panX * progress + shakeX}px, ${shot.camera.panY * progress + shakeY}px)`;
 
   return (

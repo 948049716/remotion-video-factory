@@ -104,7 +104,7 @@ export const HORSE: Record<HorseKey, HorseRig> = {
     body: "char-horse-white-02",
     tail: "char-horse-white-01",
     legs: ["char-horse-white-03", "char-horse-white-04", "char-horse-white-05", "char-horse-white-06"],
-    bell: "char-horse-white-07",
+    bell: "supp-bell-00", // dedicated copper bell — no hollow cut-out in the rope loop
   },
   red: {
     head: "char-horse-red-00",

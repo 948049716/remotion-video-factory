@@ -142,7 +142,9 @@ export const PaperPuppet: React.FC<{
     ? lerp(frame, [0, actor.moveDur ?? 600], [actor.x, actor.moveTo]) - actor.x : 0;
   const armSwing = speaking ? wobble(frame + 13, 0.13, 13) : wobble(frame, 0.04, 3);
   const pointArm = actor.pose === "point" ? -52 : 0;
-  const fade = lerp(frame, [0, 14, dur - 12, dur], [0, 1, 1, 0]);
+  const fadeIn = Math.min(4, dur * 0.06);
+  const fadeOutAt = dur - Math.min(4, dur * 0.06);
+  const fade = lerp(frame, [0, fadeIn], [0, 1]) * lerp(frame, [fadeOutAt, dur], [1, 0]);
 
   const limb = (name: string, left: number, top: number, w: number, h: number,
                 rot: number, origin: string): React.ReactNode => (
@@ -197,7 +199,9 @@ export const PaperHorse: React.FC<{ horse: HorseActor; frame: number; dur: numbe
   horse, frame, dur,
 }) => {
   const rig = HORSE[horse.which as HorseKey];
-  const fade = lerp(frame, [0, 12, dur - 10, dur], [0, 1, 1, 0]);
+  const fadeIn = Math.min(4, dur * 0.06);
+  const fadeOutAt = dur - Math.min(4, dur * 0.06);
+  const fade = lerp(frame, [0, fadeIn], [0, 1]) * lerp(frame, [fadeOutAt, dur], [1, 0]);
   const moveX = horse.moveTo !== undefined
     ? lerp(frame, [0, horse.moveDur ?? 600], [horse.x, horse.moveTo]) - horse.x : 0;
   const limp = horse.gait ? Math.abs(wobble(frame, 0.16, 1)) : 0;
@@ -329,6 +333,13 @@ export const FrameSeqSprite: React.FC<{
       transform: `translate(-50%, -50%) scaleX(${seq.flip ? -1 : 1}) rotate(${spin}deg)`,
       opacity: (seq.opacity ?? 1) * fade, zIndex: seq.z ?? 22, filter: paperShadow(1.5),
     }}>
+      {seq.badge ? (
+        <div style={{
+          position: "absolute", left: "-10%", top: "-14%", width: "120%", height: "128%",
+          borderRadius: "46% 54% 48% 52%", backgroundColor: COLORS.paperLight,
+          border: "3px solid rgba(120,80,44,0.32)", zIndex: -1,
+        }} />
+      ) : null}
       <Img src={part(name)} style={{ width: seq.w, height: s.h }} />
     </div>
   );

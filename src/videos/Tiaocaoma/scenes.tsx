@@ -65,7 +65,7 @@ export const TitleScene: React.FC<SceneProps> = ({ shot, frame, dur }) => {
         opacity: lerp(frame, [70, 110, 230, 330], [0, 0.8, 0.8, 0]), zIndex: 46,
       }}>根据《故事会》同名故事改编 · 剪纸定格动画</div>
       <div style={{
-        position: "absolute", left: 260, top: 300, fontFamily: FONT.title,
+        position: "absolute", left: 1560, top: 220, fontFamily: FONT.title,
         fontSize: 62, writingMode: "vertical-rl", letterSpacing: 14,
         color: COLORS.ink, opacity: lerp(frame, [330, 390, 900, 980], [0, 0.85, 0.85, 0]),
         zIndex: 46, textShadow: "0 4px 0 rgba(255,246,222,0.8)",
@@ -227,10 +227,16 @@ export const MontageScene: React.FC<SceneProps> = ({ shot, track, frame, dur }) 
 };
 
 /** Battle flashback — now staged with the supplied 沙场 plates. */
-export const FlashbackScene: React.FC<SceneProps> = ({ shot, frame, dur }) => {
+export const FlashbackScene: React.FC<SceneProps> = ({ shot, track, frame, dur }) => {
   const phases = shot.beats.length ? shot.beats : [0];
   const idx = phases.reduce((acc, b, i) => (frame >= b ? i : acc), 0);
   const local = frame - (phases[idx] ?? 0);
+  // #49 centres the young general; #52 centres the 马王.
+  const kingShot = track.id === 52;
+  const horseW = kingShot ? 530 : 340;
+  const generalW = kingShot ? 300 : 410;
+  const rebels = kingShot ? SEQS.rebels.slice(0, 3) : SEQS.rebels;
+  const rebelStep = kingShot ? 520 : 352;
   return (
     <AbsoluteFill style={{ backgroundColor: "#7A3A22" }}>
       <Img src={bg(shot.bg)} style={{
@@ -238,10 +244,10 @@ export const FlashbackScene: React.FC<SceneProps> = ({ shot, frame, dur }) => {
         transform: `scale(${lerp(frame, [0, dur], [1.04, 1.13])})`,
       }} />
       <Grade grade={shot.grade} />
-      <FxLayer fx={["dust", "speedlines", "sun"]} frame={frame} dur={dur} beats={shot.beats} />
-      {SEQS.rebels.map((name, i) => (
+      <FxLayer fx={["dust", "speedlines"]} frame={frame} dur={dur} beats={shot.beats} />
+      {rebels.map((name, i) => (
         <div key={name} style={{
-          position: "absolute", left: 120 + i * 352, top: 462 + (i % 2) * 36,
+          position: "absolute", left: 120 + i * rebelStep, top: 462 + (i % 2) * 36,
           width: 236, opacity: 0.74,
           transform: `scaleX(${i % 2 ? -1 : 1}) translateY(${Math.sin(frame * 0.025 + i) * 9}px)`,
           filter: "brightness(0.88) drop-shadow(0 14px 18px rgba(50,20,8,0.45))", zIndex: 12,
@@ -260,9 +266,10 @@ export const FlashbackScene: React.FC<SceneProps> = ({ shot, frame, dur }) => {
         </div>
       ))}
       <Sequences items={shot.sequences} frame={frame} dur={dur} />
-      <PaperHorse horse={{ which: "king", x: 620, y: 880, w: 470, gait: 1 }} frame={frame} dur={dur} />
+      <PaperHorse horse={{ which: "king", x: kingShot ? 660 : 520, y: 880, w: horseW, gait: 1 }}
+        frame={frame} dur={dur} />
       <div style={{
-        position: "absolute", left: 1580, top: 720, width: 360,
+        position: "absolute", left: 1580, top: 720, width: generalW,
         transform: "translate(-50%, -50%)", zIndex: 18, filter: paperShadow(2),
         opacity: lerp(frame, [0, 30], [0, 1]),
       }}>

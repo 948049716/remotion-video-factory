@@ -81,6 +81,8 @@ export interface FrameSeq {
   life?: number;
   spin?: number;
   z?: number;
+  /** inset the flip-book inside a torn paper medallion (for close-up inserts) */
+  badge?: boolean;
 }
 
 export interface Shot {

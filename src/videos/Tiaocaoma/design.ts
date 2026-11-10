@@ -34,6 +34,19 @@ export const CURVE = {
   soft: Easing.bezier(0.4, 0, 0.2, 1),
 } as const;
 
+/**
+ * Guard against short clips: a hardcoded keyframe (e.g. 120) can exceed the
+ * clip duration and make Remotion's inputRange non-monotonic, which throws.
+ * Duplicate/decreasing values are pushed just above their predecessor.
+ */
+const strictlyIncreasing = (input: readonly number[]): number[] => {
+  const out: number[] = [];
+  for (let i = 0; i < input.length; i++) {
+    out.push(i === 0 ? input[i] : Math.max(input[i], out[i - 1] + 1e-4));
+  }
+  return out;
+};
+
 /** interpolate() with mandatory clamping — deterministic in headless Chromium. */
 export const lerp = (
   frame: number,
@@ -41,7 +54,7 @@ export const lerp = (
   output: readonly number[],
   easing?: (t: number) => number,
 ): number =>
-  interpolate(frame, input as number[], output as number[], {
+  interpolate(frame, strictlyIncreasing(input), output as number[], {
     ...CLAMP,
     ...(easing ? { easing } : {}),
   });
