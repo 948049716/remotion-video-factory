@@ -274,14 +274,18 @@ export const HighAltitude: React.FC = () => {
       ))}
 
       {/* outro, music only */}
-      <Sequence from={Math.round(NARRATION_SECONDS * FPS)} durationInFrames={OUTRO_FRAMES} name="Outro">
+      <Sequence
+        from={Math.round(NARRATION_SECONDS * FPS)}
+        durationInFrames={OUTRO_FRAMES}
+        name="Outro"
+      >
         <Outro dur={OUTRO_FRAMES} />
       </Sequence>
 
       {/* narration from frame 0 (public/high-altitude/narration.mp3, 382.92s) */}
       <Audio src={staticFile("high-altitude/narration.mp3")} volume={1} />
-      {/* quiet, narration-ducked ambient score (baked-in ducking) */}
-      <Audio src={staticFile("high-altitude/bgm.mp3")} volume={0.5} />
+      {/* light acoustic bed, ducked under narration; keep this low */}
+      <Audio src={staticFile("high-altitude/bgm.mp3")} volume={0.25} />
 
       <Captions />
       <Hud />
