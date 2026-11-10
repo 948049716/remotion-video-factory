@@ -8,6 +8,8 @@ import { NovaReel } from "./videos/NovaReel/NovaReel";
 import { ApexReel } from "./videos/ApexReel/ApexReel";
 import { AiExplainer } from "./videos/AiExplainer/AiExplainer";
 import { DURATION_FRAMES as AI_EXPLAINER_FRAMES } from "./videos/AiExplainer/timeline";
+import { HighAltitude } from "./videos/HighAltitude/HighAltitude";
+import { DURATION_FRAMES as HIGH_ALTITUDE_FRAMES } from "./videos/HighAltitude/timeline";
 
 /**
  * Central Video Registry (RemotionRoot)
@@ -50,6 +52,15 @@ export const RemotionRoot: React.FC = () => {
           height={1080}
         />
         {/* 11m10s AI concepts explainer, synced to narration timetable (40197 frames @ 60fps) */}
+        {/* 6m29s science explainer — why it gets colder the higher you climb (60fps) */}
+        <Composition
+          id="高处不胜寒"
+          component={HighAltitude}
+          durationInFrames={HIGH_ALTITUDE_FRAMES}
+          fps={60}
+          width={1920}
+          height={1080}
+        />
       </Folder>
 
       <Folder name="Templates">
