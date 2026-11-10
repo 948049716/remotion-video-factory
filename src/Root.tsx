@@ -4,6 +4,8 @@ import { HelloWorld } from "./videos/HelloWorld/HelloWorld";
 import { Logo } from "./videos/HelloWorld/Logo";
 import { Title } from "./videos/HelloWorld/Title";
 import { Showreel } from "./videos/Showreel/Showreel";
+import { NovaReel } from "./videos/NovaReel/NovaReel";
+import { ApexReel } from "./videos/ApexReel/ApexReel";
 import { AiExplainer } from "./videos/AiExplainer/AiExplainer";
 import { DURATION_FRAMES as AI_EXPLAINER_FRAMES } from "./videos/AiExplainer/timeline";
 
@@ -22,22 +24,32 @@ export const RemotionRoot: React.FC = () => {
       <Folder name="Productions">
         {/* 30-Second Motion Designer Resume Showreel (1800 frames @ 60fps) */}
         <Composition
-          id="Showreel"
+          id="gemini4argon"
           component={Showreel}
           durationInFrames={1800}
           fps={60}
           width={1920}
           height={1080}
         />
-        {/* 11m10s AI concepts explainer, synced to narration timetable (40197 frames @ 60fps) */}
+        {/* NovaReel — 30s editorial motion showreel / resume (1800 frames @ 60fps) */}
         <Composition
-          id="AiExplainer"
-          component={AiExplainer}
-          durationInFrames={AI_EXPLAINER_FRAMES}
+          id="deepseek"
+          component={NovaReel}
+          durationInFrames={1800}
           fps={60}
           width={1920}
           height={1080}
         />
+        {/* ApexReel — 30s High-Octane Motion Designer Résumé Showreel (1800 frames @ 60fps) */}
+        <Composition
+          id="gemini3-8演示"
+          component={ApexReel}
+          durationInFrames={1800}
+          fps={60}
+          width={1920}
+          height={1080}
+        />
+        {/* 11m10s AI concepts explainer, synced to narration timetable (40197 frames @ 60fps) */}
       </Folder>
 
       <Folder name="Templates">
