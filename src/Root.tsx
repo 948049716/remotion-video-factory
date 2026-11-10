@@ -6,10 +6,21 @@ import { Title } from "./videos/HelloWorld/Title";
 import { Showreel } from "./videos/Showreel/Showreel";
 import { NovaReel } from "./videos/NovaReel/NovaReel";
 import { ApexReel } from "./videos/ApexReel/ApexReel";
-import { AiExplainer } from "./videos/AiExplainer/AiExplainer";
-import { DURATION_FRAMES as AI_EXPLAINER_FRAMES } from "./videos/AiExplainer/timeline";
 import { HighAltitude } from "./videos/HighAltitude/HighAltitude";
 import { DURATION_FRAMES as HIGH_ALTITUDE_FRAMES } from "./videos/HighAltitude/timeline";
+import { Tiaocaoma } from "./videos/Tiaocaoma/Tiaocaoma";
+import { DURATION_FRAMES as TIAOCAOMA_FRAMES } from "./videos/Tiaocaoma/data/timeline";
+import { NawaIdent } from "./videos/NawaIdent/NawaIdent";
+import {
+  DEMO_DURATION_IN_FRAMES,
+  DEMO_FPS,
+  DEMO_HEIGHT,
+  DEMO_WIDTH,
+} from "./videos/NawaIdent/config";
+import {
+  DEFAULT_BRAND,
+  channelIntroPropsSchema,
+} from "./shared/ChannelIntro";
 
 /**
  * Central Video Registry (RemotionRoot)
@@ -24,6 +35,36 @@ export const RemotionRoot: React.FC = () => {
   return (
     <>
       <Folder name="Productions">
+        {/* NAWA 科普 — reusable channel ident demo (7s @ 60fps).
+            Editable in Studio: brand name, variant (prism / pulse), accent, timing.
+            Any other video opts in with a single <ChannelIntro /> at its root. */}
+        <Composition
+          id="NawaIdent"
+          component={NawaIdent}
+          durationInFrames={DEMO_DURATION_IN_FRAMES}
+          fps={DEMO_FPS}
+          width={DEMO_WIDTH}
+          height={DEMO_HEIGHT}
+          schema={channelIntroPropsSchema}
+          defaultProps={{
+            displayName: DEFAULT_BRAND.displayName,
+            variant: "prism",
+          }}
+        />
+        {/* Same episode with the replaceable 72f PULSE variant, for A/B preview. */}
+        <Composition
+          id="NawaIdentPulse"
+          component={NawaIdent}
+          durationInFrames={DEMO_DURATION_IN_FRAMES}
+          fps={DEMO_FPS}
+          width={DEMO_WIDTH}
+          height={DEMO_HEIGHT}
+          schema={channelIntroPropsSchema}
+          defaultProps={{
+            displayName: DEFAULT_BRAND.displayName,
+            variant: "pulse",
+          }}
+        />
         {/* 30-Second Motion Designer Resume Showreel (1800 frames @ 60fps) */}
         <Composition
           id="gemini4argon"
@@ -57,6 +98,15 @@ export const RemotionRoot: React.FC = () => {
           id="高处不胜寒"
           component={HighAltitude}
           durationInFrames={HIGH_ALTITUDE_FRAMES}
+          fps={60}
+          width={1920}
+          height={1080}
+        />
+        {/* 跳槽马 — 11m45s 2D paper-cut story, 54 voice clips, waveform-accurate lip sync */}
+        <Composition
+          id="跳槽马"
+          component={Tiaocaoma}
+          durationInFrames={TIAOCAOMA_FRAMES}
           fps={60}
           width={1920}
           height={1080}
