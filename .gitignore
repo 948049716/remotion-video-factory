@@ -7,7 +7,6 @@ build
 *.mp4
 *.webm
 *.wav
-!public/tiaocaoma/sfx/*.wav
 preview-*.png
 v2-act*.png
 test.png

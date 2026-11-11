@@ -8,8 +8,6 @@ import { NovaReel } from "./videos/NovaReel/NovaReel";
 import { ApexReel } from "./videos/ApexReel/ApexReel";
 import { HighAltitude } from "./videos/HighAltitude/HighAltitude";
 import { DURATION_FRAMES as HIGH_ALTITUDE_FRAMES } from "./videos/HighAltitude/timeline";
-import { Tiaocaoma } from "./videos/Tiaocaoma/Tiaocaoma";
-import { DURATION_FRAMES as TIAOCAOMA_FRAMES } from "./videos/Tiaocaoma/data/timeline";
 import { NawaIdent } from "./videos/NawaIdent/NawaIdent";
 import {
   DEMO_DURATION_IN_FRAMES,
@@ -98,15 +96,6 @@ export const RemotionRoot: React.FC = () => {
           id="高处不胜寒"
           component={HighAltitude}
           durationInFrames={HIGH_ALTITUDE_FRAMES}
-          fps={60}
-          width={1920}
-          height={1080}
-        />
-        {/* 跳槽马 — 11m45s 2D paper-cut story, 54 voice clips, waveform-accurate lip sync */}
-        <Composition
-          id="跳槽马"
-          component={Tiaocaoma}
-          durationInFrames={TIAOCAOMA_FRAMES}
           fps={60}
           width={1920}
           height={1080}
