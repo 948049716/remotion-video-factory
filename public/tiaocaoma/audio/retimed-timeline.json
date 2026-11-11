@@ -1,0 +1,1430 @@
+{
+  "generatedAt": "2026-11-11T05:46:21.771Z",
+  "fps": 24,
+  "totalFrames": 12960,
+  "bufferSeconds": 0.15,
+  "minSlackSeconds": 0.08,
+  "overflowBefore": 11,
+  "overflowAfter": 0,
+  "shots": [
+    {
+      "id": "rules-01",
+      "actId": "rules",
+      "oldStartFrame": 0,
+      "oldEndFrame": 144,
+      "startFrame": 0,
+      "endFrame": 144,
+      "durationFrames": 144,
+      "targetSeconds": 6,
+      "actualSeconds": 3.48,
+      "deltaSeconds": 0,
+      "voiceEndFrame": 84,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "rules-01-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/rules-01-narr.mp3",
+          "text": "话说京城城西，新开了一家饭馆。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 0,
+          "durationInFrames": 84
+        }
+      ]
+    },
+    {
+      "id": "rules-02",
+      "actId": "rules",
+      "oldStartFrame": 144,
+      "oldEndFrame": 432,
+      "startFrame": 144,
+      "endFrame": 432,
+      "durationFrames": 288,
+      "targetSeconds": 12,
+      "actualSeconds": 11.6,
+      "deltaSeconds": 0,
+      "voiceEndFrame": 279,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "rules-02-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/rules-02-narr.mp3",
+          "text": "开张才一个月，生意就火得不得了。豆瓣鱼、龙脆骨、驴打滚，一道道民间家常菜，把京城的达官显贵都引来了。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 144,
+          "durationInFrames": 279
+        }
+      ]
+    },
+    {
+      "id": "rules-03",
+      "actId": "rules",
+      "oldStartFrame": 432,
+      "oldEndFrame": 696,
+      "startFrame": 432,
+      "endFrame": 696,
+      "durationFrames": 264,
+      "targetSeconds": 11,
+      "actualSeconds": 8.63,
+      "deltaSeconds": 0,
+      "voiceEndFrame": 208,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "rules-03-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/rules-03-narr.mp3",
+          "text": "这些有身份的人，怕出入小馆子有失体面，常常轻车简从，有的只带一个随从，悄悄来吃。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 432,
+          "durationInFrames": 208
+        }
+      ]
+    },
+    {
+      "id": "rules-04",
+      "actId": "rules",
+      "oldStartFrame": 696,
+      "oldEndFrame": 960,
+      "startFrame": 696,
+      "endFrame": 960,
+      "durationFrames": 264,
+      "targetSeconds": 11,
+      "actualSeconds": 9.1,
+      "deltaSeconds": 0,
+      "voiceEndFrame": 219,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "rules-04-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/rules-04-narr.mp3",
+          "text": "他们的坐骑，就拴在后院马棚里，由店小二加草添料。别看是畜生，待遇一点不比人差。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 696,
+          "durationInFrames": 219
+        }
+      ]
+    },
+    {
+      "id": "rules-05",
+      "actId": "rules",
+      "oldStartFrame": 960,
+      "oldEndFrame": 1200,
+      "startFrame": 960,
+      "endFrame": 1200,
+      "durationFrames": 240,
+      "targetSeconds": 10,
+      "actualSeconds": 8.8,
+      "deltaSeconds": 0,
+      "voiceEndFrame": 212,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "rules-05-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/rules-05-narr.mp3",
+          "text": "马匹一多，怎么排顺序、怎么添草料，就大有学问了。店小二鬼精着呢，您猜怎么着？",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 960,
+          "durationInFrames": 212
+        }
+      ]
+    },
+    {
+      "id": "rules-06",
+      "actId": "rules",
+      "oldStartFrame": 1200,
+      "oldEndFrame": 1536,
+      "startFrame": 1200,
+      "endFrame": 1536,
+      "durationFrames": 336,
+      "targetSeconds": 14,
+      "actualSeconds": 13.18,
+      "deltaSeconds": 0,
+      "voiceEndFrame": 317,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "rules-06-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/rules-06-narr.mp3",
+          "text": "饭馆在城西，食客用完饭大多骑马向东，因此东边为贵。官越大，马排得越靠东，出行越方便。这讲究，比朝堂还清楚。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 1200,
+          "durationInFrames": 317
+        }
+      ]
+    },
+    {
+      "id": "rules-07",
+      "actId": "rules",
+      "oldStartFrame": 1536,
+      "oldEndFrame": 1848,
+      "startFrame": 1536,
+      "endFrame": 1848,
+      "durationFrames": 312,
+      "targetSeconds": 13,
+      "actualSeconds": 11.87,
+      "deltaSeconds": 0,
+      "voiceEndFrame": 285,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "rules-07-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/rules-07-narr.mp3",
+          "text": "草料也分三等：一品二品，吃刚割来的嫩草细粮；三品到五品，只有青草；五品以下，寻常枯草。半点乱不得。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 1536,
+          "durationInFrames": 285
+        }
+      ]
+    },
+    {
+      "id": "rules-08",
+      "actId": "rules",
+      "oldStartFrame": 1848,
+      "oldEndFrame": 2112,
+      "startFrame": 1848,
+      "endFrame": 2112,
+      "durationFrames": 264,
+      "targetSeconds": 11,
+      "actualSeconds": 9.92,
+      "deltaSeconds": 0,
+      "voiceEndFrame": 239,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "rules-08-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/rules-08-narr.mp3",
+          "text": "店小二还打造了一条长长的马槽，隔成几十个小槽，一马一格，互不干涉。槽沿上钉着品级木牌。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 1848,
+          "durationInFrames": 239
+        }
+      ]
+    },
+    {
+      "id": "rules-09",
+      "actId": "rules",
+      "oldStartFrame": 2112,
+      "oldEndFrame": 2448,
+      "startFrame": 2112,
+      "endFrame": 2448,
+      "durationFrames": 336,
+      "targetSeconds": 14,
+      "actualSeconds": 13.21,
+      "deltaSeconds": 0,
+      "voiceEndFrame": 317,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "rules-09-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/rules-09-narr.mp3",
+          "text": "可马哪懂人间的论资排辈？这一槽草，吃得跟打仗一样。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 2112,
+          "durationInFrames": 141
+        },
+        {
+          "id": "rules-09-dlg-01",
+          "speaker": "店小二",
+          "staticPath": "tiaocaoma/audio/voice/rules-09-dlg-01.mp3",
+          "text": "哎哎，三品马，怎么把嘴伸到二品槽里了？五品马，放着青草不吃，干吗吃枯草？",
+          "relativeStartFrame": 149,
+          "absoluteStartFrame": 2261,
+          "durationInFrames": 168
+        }
+      ]
+    },
+    {
+      "id": "rules-10",
+      "actId": "rules",
+      "oldStartFrame": 2448,
+      "oldEndFrame": 2760,
+      "startFrame": 2448,
+      "endFrame": 2760,
+      "durationFrames": 312,
+      "targetSeconds": 13,
+      "actualSeconds": 12.14,
+      "deltaSeconds": 0,
+      "voiceEndFrame": 292,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "rules-10-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/rules-10-narr.mp3",
+          "text": "日子一长，马匹都被训练得规规矩矩，各吃各槽，少有越礼。达官显贵看在眼里，会心一笑。这碗饭算是端稳了。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 2448,
+          "durationInFrames": 292
+        }
+      ]
+    },
+    {
+      "id": "exception-01",
+      "actId": "exception",
+      "oldStartFrame": 2760,
+      "oldEndFrame": 3072,
+      "startFrame": 2760,
+      "endFrame": 3072,
+      "durationFrames": 312,
+      "targetSeconds": 13,
+      "actualSeconds": 12.3,
+      "deltaSeconds": 0,
+      "voiceEndFrame": 296,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "exception-01-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/exception-01-narr.mp3",
+          "text": "这天，一个刀疤脸中年人，骑着一匹瘸腿白马来了。黑脸上一道长刀疤。马脖子挂着铃铛，一走一歪，叮当乱响。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 2760,
+          "durationInFrames": 296
+        }
+      ]
+    },
+    {
+      "id": "exception-02",
+      "actId": "exception",
+      "oldStartFrame": 3072,
+      "oldEndFrame": 3288,
+      "startFrame": 3072,
+      "endFrame": 3288,
+      "durationFrames": 216,
+      "targetSeconds": 9,
+      "actualSeconds": 6.81,
+      "deltaSeconds": 0,
+      "voiceEndFrame": 164,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "exception-02-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/exception-02-narr.mp3",
+          "text": "店小二搭眼一看：贩夫走卒，没什么背景。穿得寒酸，马也瘸。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 3072,
+          "durationInFrames": 164
+        }
+      ]
+    },
+    {
+      "id": "exception-03",
+      "actId": "exception",
+      "oldStartFrame": 3288,
+      "oldEndFrame": 3480,
+      "startFrame": 3288,
+      "endFrame": 3480,
+      "durationFrames": 192,
+      "targetSeconds": 8,
+      "actualSeconds": 5.45,
+      "deltaSeconds": 0,
+      "voiceEndFrame": 131,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "exception-03-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/exception-03-narr.mp3",
+          "text": "他脸上堆笑，心里却冷。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 3288,
+          "durationInFrames": 61
+        },
+        {
+          "id": "exception-03-dlg-01",
+          "speaker": "店小二",
+          "staticPath": "tiaocaoma/audio/voice/exception-03-dlg-01.mp3",
+          "text": "客官里面请，我给马添些草料。",
+          "relativeStartFrame": 69,
+          "absoluteStartFrame": 3357,
+          "durationInFrames": 62
+        }
+      ]
+    },
+    {
+      "id": "exception-04",
+      "actId": "exception",
+      "oldStartFrame": 3480,
+      "oldEndFrame": 3744,
+      "startFrame": 3480,
+      "endFrame": 3744,
+      "durationFrames": 264,
+      "targetSeconds": 11,
+      "actualSeconds": 8.05,
+      "deltaSeconds": 0,
+      "voiceEndFrame": 194,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "exception-04-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/exception-04-narr.mp3",
+          "text": "店小二接过缰绳，答应得痛快。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 3480,
+          "durationInFrames": 83
+        },
+        {
+          "id": "exception-04-dlg-01",
+          "speaker": "刀疤脸",
+          "staticPath": "tiaocaoma/audio/voice/exception-04-dlg-01.mp3",
+          "text": "好好伺候，可别欺负它啊！",
+          "relativeStartFrame": 89,
+          "absoluteStartFrame": 3569,
+          "durationInFrames": 65
+        },
+        {
+          "id": "exception-04-dlg-02",
+          "speaker": "店小二",
+          "staticPath": "tiaocaoma/audio/voice/exception-04-dlg-02.mp3",
+          "text": "客官说笑了。",
+          "relativeStartFrame": 161,
+          "absoluteStartFrame": 3641,
+          "durationInFrames": 33
+        }
+      ]
+    },
+    {
+      "id": "exception-05",
+      "actId": "exception",
+      "oldStartFrame": 3744,
+      "oldEndFrame": 4008,
+      "startFrame": 3744,
+      "endFrame": 4008,
+      "durationFrames": 264,
+      "targetSeconds": 11,
+      "actualSeconds": 9.88,
+      "deltaSeconds": 0,
+      "voiceEndFrame": 238,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "exception-05-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/exception-05-narr.mp3",
+          "text": "这话油滑，刀疤脸却没笑。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 3744,
+          "durationInFrames": 77
+        },
+        {
+          "id": "exception-05-dlg-01",
+          "speaker": "店小二",
+          "staticPath": "tiaocaoma/audio/voice/exception-05-dlg-01.mp3",
+          "text": "我两条腿的，怎敢欺负四条腿的？它要发起怒来，踢我一脚，我怎么追得上？",
+          "relativeStartFrame": 85,
+          "absoluteStartFrame": 3829,
+          "durationInFrames": 153
+        }
+      ]
+    },
+    {
+      "id": "exception-06",
+      "actId": "exception",
+      "oldStartFrame": 4008,
+      "oldEndFrame": 4248,
+      "startFrame": 4008,
+      "endFrame": 4248,
+      "durationFrames": 240,
+      "targetSeconds": 10,
+      "actualSeconds": 8.33,
+      "deltaSeconds": 0,
+      "voiceEndFrame": 200,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "exception-06-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/exception-06-narr.mp3",
+          "text": "店小二把瘸马牵到最靠西的槽子，扔下一把枯草，就进店去了。那槽子又偏又冷。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 4008,
+          "durationInFrames": 200
+        }
+      ]
+    },
+    {
+      "id": "exception-07",
+      "actId": "exception",
+      "oldStartFrame": 4248,
+      "oldEndFrame": 4464,
+      "startFrame": 4248,
+      "endFrame": 4464,
+      "durationFrames": 216,
+      "targetSeconds": 9,
+      "actualSeconds": 8.96,
+      "deltaSeconds": 0,
+      "voiceEndFrame": 216,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "exception-07-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/exception-07-narr.mp3",
+          "text": "一个时辰过去，二品大员赵大人酒足饭饱，起身回府。这位赵大人，最讲排场。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 4248,
+          "durationInFrames": 216
+        }
+      ]
+    },
+    {
+      "id": "exception-08",
+      "actId": "exception",
+      "oldStartFrame": 4464,
+      "oldEndFrame": 4704,
+      "startFrame": 4464,
+      "endFrame": 4704,
+      "durationFrames": 240,
+      "targetSeconds": 10,
+      "actualSeconds": 8.75,
+      "deltaSeconds": 0,
+      "voiceEndFrame": 210,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "exception-08-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/exception-08-narr.mp3",
+          "text": "店小二送到马槽前，眼睛直了：那匹瘸腿马，正凑在最靠东的槽子里，大嚼细粮嫩草！",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 4464,
+          "durationInFrames": 210
+        }
+      ]
+    },
+    {
+      "id": "exception-09",
+      "actId": "exception",
+      "oldStartFrame": 4704,
+      "oldEndFrame": 4944,
+      "startFrame": 4704,
+      "endFrame": 4944,
+      "durationFrames": 240,
+      "targetSeconds": 10,
+      "actualSeconds": 9.44,
+      "deltaSeconds": 0,
+      "voiceEndFrame": 227,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "exception-09-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/exception-09-narr.mp3",
+          "text": "话里带着刺。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 4704,
+          "durationInFrames": 38
+        },
+        {
+          "id": "exception-09-dlg-01",
+          "speaker": "赵大人",
+          "staticPath": "tiaocaoma/audio/voice/exception-09-dlg-01.mp3",
+          "text": "不知这瘸马是哪位大人的宝驹？难道今日店里还有一品大员，我竟没瞧见？",
+          "relativeStartFrame": 46,
+          "absoluteStartFrame": 4750,
+          "durationInFrames": 181
+        }
+      ]
+    },
+    {
+      "id": "exception-10",
+      "actId": "exception",
+      "oldStartFrame": 4944,
+      "oldEndFrame": 5208,
+      "startFrame": 4944,
+      "endFrame": 5208,
+      "durationFrames": 264,
+      "targetSeconds": 11,
+      "actualSeconds": 10.53,
+      "deltaSeconds": 0,
+      "voiceEndFrame": 253,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "exception-10-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/exception-10-narr.mp3",
+          "text": "店小二腰弯得像虾米。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 4944,
+          "durationInFrames": 60
+        },
+        {
+          "id": "exception-10-dlg-01",
+          "speaker": "店小二",
+          "staticPath": "tiaocaoma/audio/voice/exception-10-dlg-01.mp3",
+          "text": "大人别误会，是小人疏忽，忘了拴好这倒霉马。它是个畜生，不懂人事，大人莫怪。",
+          "relativeStartFrame": 67,
+          "absoluteStartFrame": 5011,
+          "durationInFrames": 186
+        }
+      ]
+    },
+    {
+      "id": "exception-11",
+      "actId": "exception",
+      "oldStartFrame": 5208,
+      "oldEndFrame": 5400,
+      "startFrame": 5208,
+      "endFrame": 5400,
+      "durationFrames": 192,
+      "targetSeconds": 8,
+      "actualSeconds": 6.32,
+      "deltaSeconds": 0,
+      "voiceEndFrame": 152,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "exception-11-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/exception-11-narr.mp3",
+          "text": "赵大人只说了句“下不为例”，拂袖而去。店小二擦了一把冷汗。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 5208,
+          "durationInFrames": 152
+        }
+      ]
+    },
+    {
+      "id": "contest-01",
+      "actId": "contest",
+      "oldStartFrame": 5400,
+      "oldEndFrame": 5664,
+      "startFrame": 5400,
+      "endFrame": 5671,
+      "durationFrames": 271,
+      "targetSeconds": 11,
+      "actualSeconds": 11.16,
+      "deltaSeconds": 0.29,
+      "voiceEndFrame": 268,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "contest-01-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/contest-01-narr.mp3",
+          "text": "一连几天，刀疤脸总骑着瘸腿马来吃饭。店小二看他颠来颠去，心里直乐：这是图啥呢？真是花钱买罪受。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 5400,
+          "durationInFrames": 268
+        }
+      ]
+    },
+    {
+      "id": "contest-02",
+      "actId": "contest",
+      "oldStartFrame": 5664,
+      "oldEndFrame": 5928,
+      "startFrame": 5671,
+      "endFrame": 5935,
+      "durationFrames": 264,
+      "targetSeconds": 11,
+      "actualSeconds": 10.07,
+      "deltaSeconds": 0,
+      "voiceEndFrame": 242,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "contest-02-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/contest-02-narr.mp3",
+          "text": "更气人的是，别人来总点几样招牌菜，他倒好，只点一碟花生米、一壶小酒，一颗一颗数着吃，惬意得很。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 5671,
+          "durationInFrames": 242
+        }
+      ]
+    },
+    {
+      "id": "contest-03",
+      "actId": "contest",
+      "oldStartFrame": 5928,
+      "oldEndFrame": 6096,
+      "startFrame": 5935,
+      "endFrame": 6103,
+      "durationFrames": 168,
+      "targetSeconds": 7,
+      "actualSeconds": 6.27,
+      "deltaSeconds": 0,
+      "voiceEndFrame": 151,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "contest-03-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/contest-03-narr.mp3",
+          "text": "店小二看得直咬牙，擦桌子的手都重了三分。他越看越来气。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 5935,
+          "durationInFrames": 151
+        }
+      ]
+    },
+    {
+      "id": "contest-04",
+      "actId": "contest",
+      "oldStartFrame": 6096,
+      "oldEndFrame": 6360,
+      "startFrame": 6103,
+      "endFrame": 6367,
+      "durationFrames": 264,
+      "targetSeconds": 11,
+      "actualSeconds": 9.84,
+      "deltaSeconds": 0,
+      "voiceEndFrame": 237,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "contest-04-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/contest-04-narr.mp3",
+          "text": "这天刀疤脸又来了。店小二把缰绳在木桩上系了个死扣：这回看你往哪跑！他使出了吃奶的劲。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 6103,
+          "durationInFrames": 237
+        }
+      ]
+    },
+    {
+      "id": "contest-05",
+      "actId": "contest",
+      "oldStartFrame": 6360,
+      "oldEndFrame": 6528,
+      "startFrame": 6367,
+      "endFrame": 6493,
+      "durationFrames": 126,
+      "targetSeconds": 7,
+      "actualSeconds": 5.18,
+      "deltaSeconds": -1.75,
+      "voiceEndFrame": 125,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "contest-05-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/contest-05-narr.mp3",
+          "text": "不巧，今天店里来了一位一品大员。真正的大人物。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 6367,
+          "durationInFrames": 125
+        }
+      ]
+    },
+    {
+      "id": "contest-06",
+      "actId": "contest",
+      "oldStartFrame": 6528,
+      "oldEndFrame": 6816,
+      "startFrame": 6493,
+      "endFrame": 6781,
+      "durationFrames": 288,
+      "targetSeconds": 12,
+      "actualSeconds": 11.6,
+      "deltaSeconds": 0,
+      "voiceEndFrame": 279,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "contest-06-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/contest-06-narr.mp3",
+          "text": "一品大员饭后到后院，脸色骤变：那匹瘸马，又蹭到最靠东的槽子，吃起了细粮嫩草！他简直不敢相信自己的眼睛。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 6493,
+          "durationInFrames": 279
+        }
+      ]
+    },
+    {
+      "id": "contest-07",
+      "actId": "contest",
+      "oldStartFrame": 6816,
+      "oldEndFrame": 7080,
+      "startFrame": 6781,
+      "endFrame": 7045,
+      "durationFrames": 264,
+      "targetSeconds": 11,
+      "actualSeconds": 10.35,
+      "deltaSeconds": 0,
+      "voiceEndFrame": 249,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "contest-07-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/contest-07-narr.mp3",
+          "text": "店小二跑到木桩前一看，娘啊，木桩被蹭掉一层，缰绳也有磨损——这破马会用嘴解扣！心都凉了半截。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 6781,
+          "durationInFrames": 249
+        }
+      ]
+    },
+    {
+      "id": "contest-08",
+      "actId": "contest",
+      "oldStartFrame": 7080,
+      "oldEndFrame": 7344,
+      "startFrame": 7045,
+      "endFrame": 7309,
+      "durationFrames": 264,
+      "targetSeconds": 11,
+      "actualSeconds": 10.84,
+      "deltaSeconds": 0,
+      "voiceEndFrame": 260,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "contest-08-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/contest-08-narr.mp3",
+          "text": "一品大员的脸，黑得能滴出水来。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 7045,
+          "durationInFrames": 80
+        },
+        {
+          "id": "contest-08-dlg-01",
+          "speaker": "一品大员",
+          "staticPath": "tiaocaoma/audio/voice/contest-08-dlg-01.mp3",
+          "text": "怎么？难道当今圣上今日不在宫中用膳，跑来你这饭馆寻乐？",
+          "relativeStartFrame": 88,
+          "absoluteStartFrame": 7133,
+          "durationInFrames": 172
+        }
+      ]
+    },
+    {
+      "id": "contest-09",
+      "actId": "contest",
+      "oldStartFrame": 7344,
+      "oldEndFrame": 7656,
+      "startFrame": 7309,
+      "endFrame": 7657,
+      "durationFrames": 348,
+      "targetSeconds": 13,
+      "actualSeconds": 14.32,
+      "deltaSeconds": 1.5,
+      "voiceEndFrame": 344,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "contest-09-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/contest-09-narr.mp3",
+          "text": "店小二扑通跪倒，磕头如鸡啄米。一品大员一甩袖子，走了。店小二的魂都吓飞了。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 7309,
+          "durationInFrames": 226
+        },
+        {
+          "id": "contest-09-dlg-01",
+          "speaker": "一品大员",
+          "staticPath": "tiaocaoma/audio/voice/contest-09-dlg-01.mp3",
+          "text": "下次再看到这破马扫本大人的兴……",
+          "relativeStartFrame": 228,
+          "absoluteStartFrame": 7537,
+          "durationInFrames": 116
+        }
+      ]
+    },
+    {
+      "id": "contest-10",
+      "actId": "contest",
+      "oldStartFrame": 7656,
+      "oldEndFrame": 7920,
+      "startFrame": 7657,
+      "endFrame": 7920,
+      "durationFrames": 263,
+      "targetSeconds": 11,
+      "actualSeconds": 9.62,
+      "deltaSeconds": -0.04,
+      "voiceEndFrame": 231,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "contest-10-dlg-01",
+          "speaker": "店小二",
+          "staticPath": "tiaocaoma/audio/voice/contest-10-dlg-01.mp3",
+          "text": "客官，您那良驹太不安分，能不能别带它来？",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 7657,
+          "durationInFrames": 95
+        },
+        {
+          "id": "contest-10-dlg-02",
+          "speaker": "刀疤脸",
+          "staticPath": "tiaocaoma/audio/voice/contest-10-dlg-02.mp3",
+          "text": "一派胡言！我与赛赤兔感情深厚，人在马在！",
+          "relativeStartFrame": 99,
+          "absoluteStartFrame": 7756,
+          "durationInFrames": 132
+        }
+      ]
+    },
+    {
+      "id": "hunger-01",
+      "actId": "hunger",
+      "oldStartFrame": 7920,
+      "oldEndFrame": 8184,
+      "startFrame": 7920,
+      "endFrame": 8207,
+      "durationFrames": 287,
+      "targetSeconds": 11,
+      "actualSeconds": 11.79,
+      "deltaSeconds": 0.96,
+      "voiceEndFrame": 283,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "hunger-01-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/hunger-01-narr.mp3",
+          "text": "这回，店小二在马头上多加一根粗绳，桩上系死扣，还派小童死死盯着。看你还怎么解！这回是双保险。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 7920,
+          "durationInFrames": 283
+        }
+      ]
+    },
+    {
+      "id": "hunger-02",
+      "actId": "hunger",
+      "oldStartFrame": 8184,
+      "oldEndFrame": 8400,
+      "startFrame": 8207,
+      "endFrame": 8416,
+      "durationFrames": 209,
+      "targetSeconds": 9,
+      "actualSeconds": 8.43,
+      "deltaSeconds": -0.29,
+      "voiceEndFrame": 203,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "hunger-02-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/hunger-02-narr.mp3",
+          "text": "瘸马挣不脱，脾气却上来了，梗着脖子，半点草料不吃。它宁可饿着，也不低头。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 8207,
+          "durationInFrames": 203
+        }
+      ]
+    },
+    {
+      "id": "hunger-03",
+      "actId": "hunger",
+      "oldStartFrame": 8400,
+      "oldEndFrame": 8640,
+      "startFrame": 8416,
+      "endFrame": 8662,
+      "durationFrames": 246,
+      "targetSeconds": 10,
+      "actualSeconds": 10.09,
+      "deltaSeconds": 0.25,
+      "voiceEndFrame": 243,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "hunger-03-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/hunger-03-narr.mp3",
+          "text": "店小二心里痛快：“不吃才好呢！你主人一碟花生米，还不够你吃草的钱！”小算盘打得噼啪响。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 8416,
+          "durationInFrames": 243
+        }
+      ]
+    },
+    {
+      "id": "hunger-04",
+      "actId": "hunger",
+      "oldStartFrame": 8640,
+      "oldEndFrame": 8928,
+      "startFrame": 8662,
+      "endFrame": 8949,
+      "durationFrames": 287,
+      "targetSeconds": 12,
+      "actualSeconds": 11.46,
+      "deltaSeconds": -0.04,
+      "voiceEndFrame": 276,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "hunger-04-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/hunger-04-narr.mp3",
+          "text": "可没美几天，怪事来了：那些达官显贵的马，见瘸马不进食，竟都立在一边乖乖候着，谁也不敢低头。这叫什么事儿？",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 8662,
+          "durationInFrames": 276
+        }
+      ]
+    },
+    {
+      "id": "hunger-05",
+      "actId": "hunger",
+      "oldStartFrame": 8928,
+      "oldEndFrame": 9216,
+      "startFrame": 8949,
+      "endFrame": 9261,
+      "durationFrames": 312,
+      "targetSeconds": 12,
+      "actualSeconds": 12.85,
+      "deltaSeconds": 1,
+      "voiceEndFrame": 309,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "hunger-05-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/hunger-05-narr.mp3",
+          "text": "店小二敲着槽沿：“吃啊！你们家主人多厉害，别让这破瘸马唬住了！”可众马还是胆战心惊，不敢动草。嗓子都喊哑了。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 8949,
+          "durationInFrames": 309
+        }
+      ]
+    },
+    {
+      "id": "hunger-06",
+      "actId": "hunger",
+      "oldStartFrame": 9216,
+      "oldEndFrame": 9456,
+      "startFrame": 9261,
+      "endFrame": 9501,
+      "durationFrames": 240,
+      "targetSeconds": 10,
+      "actualSeconds": 9.72,
+      "deltaSeconds": 0,
+      "voiceEndFrame": 234,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "hunger-06-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/hunger-06-narr.mp3",
+          "text": "日子一长，马匹白天不敢吃，回府再猛补，一饿一撑，全都瘦了下去。马瘦毛长，瞒不住了。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 9261,
+          "durationInFrames": 234
+        }
+      ]
+    },
+    {
+      "id": "hunger-07",
+      "actId": "hunger",
+      "oldStartFrame": 9456,
+      "oldEndFrame": 9672,
+      "startFrame": 9501,
+      "endFrame": 9688,
+      "durationFrames": 187,
+      "targetSeconds": 9,
+      "actualSeconds": 7.7,
+      "deltaSeconds": -1.21,
+      "voiceEndFrame": 185,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "hunger-07-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/hunger-07-narr.mp3",
+          "text": "达官显贵察觉了，纷纷质问店小二：是不是照看马匹不周？一个个找上门来。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 9501,
+          "durationInFrames": 185
+        }
+      ]
+    },
+    {
+      "id": "hunger-08",
+      "actId": "hunger",
+      "oldStartFrame": 9672,
+      "oldEndFrame": 9936,
+      "startFrame": 9688,
+      "endFrame": 9952,
+      "durationFrames": 264,
+      "targetSeconds": 11,
+      "actualSeconds": 10.87,
+      "deltaSeconds": 0,
+      "voiceEndFrame": 261,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "hunger-08-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/hunger-08-narr.mp3",
+          "text": "店小二不敢再瞒，把那瘸腿马的事，一五一十全说了。赵大人和几位官员一听，勃然大怒。纸包不住火。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 9688,
+          "durationInFrames": 261
+        }
+      ]
+    },
+    {
+      "id": "hunger-09",
+      "actId": "hunger",
+      "oldStartFrame": 9936,
+      "oldEndFrame": 10200,
+      "startFrame": 9952,
+      "endFrame": 10200,
+      "durationFrames": 248,
+      "targetSeconds": 11,
+      "actualSeconds": 10.27,
+      "deltaSeconds": -0.67,
+      "voiceEndFrame": 247,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "hunger-09-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/hunger-09-narr.mp3",
+          "text": "堂鼓一响，众人到齐。他们把刀疤脸叫到跟前。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 9952,
+          "durationInFrames": 124
+        },
+        {
+          "id": "hunger-09-dlg-01",
+          "speaker": "赵大人",
+          "staticPath": "tiaocaoma/audio/voice/hunger-09-dlg-01.mp3",
+          "text": "你好大的胆子，竟敢拿一匹瘸马吓唬本大人的坐骑！",
+          "relativeStartFrame": 132,
+          "absoluteStartFrame": 10084,
+          "durationInFrames": 115
+        }
+      ]
+    },
+    {
+      "id": "truth-01",
+      "actId": "truth",
+      "oldStartFrame": 10200,
+      "oldEndFrame": 10512,
+      "startFrame": 10200,
+      "endFrame": 10516,
+      "durationFrames": 316,
+      "targetSeconds": 13,
+      "actualSeconds": 13.02,
+      "deltaSeconds": 0.17,
+      "voiceEndFrame": 313,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "truth-01-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/truth-01-narr.mp3",
+          "text": "刀疤脸被带到堂前，赵大人拍案而起：“你好大的胆子，竟敢拿一匹瘸腿马来吓唬本大人的坐骑！你该当何罪？”堂上鸦雀无声。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 10200,
+          "durationInFrames": 313
+        }
+      ]
+    },
+    {
+      "id": "truth-02",
+      "actId": "truth",
+      "oldStartFrame": 10512,
+      "oldEndFrame": 10704,
+      "startFrame": 10516,
+      "endFrame": 10725,
+      "durationFrames": 209,
+      "targetSeconds": 8,
+      "actualSeconds": 8.54,
+      "deltaSeconds": 0.71,
+      "voiceEndFrame": 205,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "truth-02-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/truth-02-narr.mp3",
+          "text": "刀疤脸不慌不忙。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 10516,
+          "durationInFrames": 46
+        },
+        {
+          "id": "truth-02-dlg-01",
+          "speaker": "刀疤脸",
+          "staticPath": "tiaocaoma/audio/voice/truth-02-dlg-01.mp3",
+          "text": "大人明鉴，在下只是骑马来吃饭。马不吃草，这有何罪？",
+          "relativeStartFrame": 48,
+          "absoluteStartFrame": 10564,
+          "durationInFrames": 157
+        }
+      ]
+    },
+    {
+      "id": "truth-03",
+      "actId": "truth",
+      "oldStartFrame": 10704,
+      "oldEndFrame": 10920,
+      "startFrame": 10725,
+      "endFrame": 10953,
+      "durationFrames": 228,
+      "targetSeconds": 9,
+      "actualSeconds": 9.37,
+      "deltaSeconds": 0.5,
+      "voiceEndFrame": 225,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "truth-03-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/truth-03-narr.mp3",
+          "text": "赵大人气得抽出长剑，挥向刀疤脸的右臂。刀疤脸抬手去挡——“喀嚓”一声！剑风一闪。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 10725,
+          "durationInFrames": 225
+        }
+      ]
+    },
+    {
+      "id": "truth-04",
+      "actId": "truth",
+      "oldStartFrame": 10920,
+      "oldEndFrame": 11160,
+      "startFrame": 10953,
+      "endFrame": 11200,
+      "durationFrames": 247,
+      "targetSeconds": 10,
+      "actualSeconds": 10.15,
+      "deltaSeconds": 0.29,
+      "voiceEndFrame": 244,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "truth-04-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/truth-04-narr.mp3",
+          "text": "右臂应声而断，却不见半点鲜血。众人仔细一看：那竟是一条木头做的假肢！众人都愣住了。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 10953,
+          "durationInFrames": 244
+        }
+      ]
+    },
+    {
+      "id": "truth-05",
+      "actId": "truth",
+      "oldStartFrame": 11160,
+      "oldEndFrame": 11328,
+      "startFrame": 11200,
+      "endFrame": 11359,
+      "durationFrames": 159,
+      "targetSeconds": 7,
+      "actualSeconds": 6.04,
+      "deltaSeconds": -0.38,
+      "voiceEndFrame": 145,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "truth-05-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/truth-05-narr.mp3",
+          "text": "店小二吓得结巴。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 11200,
+          "durationInFrames": 45
+        },
+        {
+          "id": "truth-05-dlg-01",
+          "speaker": "店小二",
+          "staticPath": "tiaocaoma/audio/voice/truth-05-dlg-01.mp3",
+          "text": "没……没胳膊啊……断臂人骑瘸腿马，倒是般配。",
+          "relativeStartFrame": 53,
+          "absoluteStartFrame": 11253,
+          "durationInFrames": 92
+        }
+      ]
+    },
+    {
+      "id": "truth-06",
+      "actId": "truth",
+      "oldStartFrame": 11328,
+      "oldEndFrame": 11616,
+      "startFrame": 11359,
+      "endFrame": 11599,
+      "durationFrames": 240,
+      "targetSeconds": 12,
+      "actualSeconds": 9.94,
+      "deltaSeconds": -2,
+      "voiceEndFrame": 239,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "truth-06-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/truth-06-narr.mp3",
+          "text": "刀疤脸仰天长啸，笑声震得堂上众人面面相觑。这一问，问出了十几年的旧账。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 11359,
+          "durationInFrames": 198
+        },
+        {
+          "id": "truth-06-dlg-01",
+          "speaker": "赵大人",
+          "staticPath": "tiaocaoma/audio/voice/truth-06-dlg-01.mp3",
+          "text": "你到底是谁？",
+          "relativeStartFrame": 206,
+          "absoluteStartFrame": 11565,
+          "durationInFrames": 33
+        }
+      ]
+    },
+    {
+      "id": "truth-07",
+      "actId": "truth",
+      "oldStartFrame": 11616,
+      "oldEndFrame": 11904,
+      "startFrame": 11599,
+      "endFrame": 11887,
+      "durationFrames": 288,
+      "targetSeconds": 12,
+      "actualSeconds": 11.96,
+      "deltaSeconds": 0,
+      "voiceEndFrame": 288,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "truth-07-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/truth-07-narr.mp3",
+          "text": "十几年前，我为朝廷横戈跃马，把叛军杀得丢盔卸甲，生擒贼首。可一次激战，我中了毒箭，郎中只能砍去我的右臂。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 11599,
+          "durationInFrames": 288
+        }
+      ]
+    },
+    {
+      "id": "truth-08",
+      "actId": "truth",
+      "oldStartFrame": 11904,
+      "oldEndFrame": 12168,
+      "startFrame": 11887,
+      "endFrame": 12167,
+      "durationFrames": 280,
+      "targetSeconds": 11,
+      "actualSeconds": 11.53,
+      "deltaSeconds": 0.67,
+      "voiceEndFrame": 277,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "truth-08-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/truth-08-narr.mp3",
+          "text": "朝廷见我不能再上马，兔死狗烹，把我抛弃了。我的战马也中了地钩刀，从此瘸了。一将功成，万骨枯。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 11887,
+          "durationInFrames": 277
+        }
+      ]
+    },
+    {
+      "id": "truth-09",
+      "actId": "truth",
+      "oldStartFrame": 12168,
+      "oldEndFrame": 12456,
+      "startFrame": 12167,
+      "endFrame": 12455,
+      "durationFrames": 288,
+      "targetSeconds": 12,
+      "actualSeconds": 11.59,
+      "deltaSeconds": 0,
+      "voiceEndFrame": 278,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "truth-09-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/truth-09-narr.mp3",
+          "text": "赵大人明白了七八分。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 12167,
+          "durationInFrames": 52
+        },
+        {
+          "id": "truth-09-dlg-01",
+          "speaker": "赵大人",
+          "staticPath": "tiaocaoma/audio/voice/truth-09-dlg-01.mp3",
+          "text": "你……十几年前朝廷封过一位常胜将军，可就是你？",
+          "relativeStartFrame": 58,
+          "absoluteStartFrame": 12225,
+          "durationInFrames": 112
+        },
+        {
+          "id": "truth-09-dlg-02",
+          "speaker": "刀疤脸",
+          "staticPath": "tiaocaoma/audio/voice/truth-09-dlg-02.mp3",
+          "text": "朝廷忘了我，我也不记得自己姓甚名谁。",
+          "relativeStartFrame": 176,
+          "absoluteStartFrame": 12343,
+          "durationInFrames": 102
+        }
+      ]
+    },
+    {
+      "id": "truth-10",
+      "actId": "truth",
+      "oldStartFrame": 12456,
+      "oldEndFrame": 12792,
+      "startFrame": 12455,
+      "endFrame": 12819,
+      "durationFrames": 364,
+      "targetSeconds": 14,
+      "actualSeconds": 14.98,
+      "deltaSeconds": 1.17,
+      "voiceEndFrame": 360,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "truth-10-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/truth-10-narr.mp3",
+          "text": "奇的是，人会遗忘，畜生却不会。赛赤兔当年日行千里，人称马王。如今腿瘸了，威风犹在，凡马仍然怕它，这就是别的马不敢吃草的缘故。",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 12455,
+          "durationInFrames": 360
+        }
+      ]
+    },
+    {
+      "id": "truth-11",
+      "actId": "truth",
+      "oldStartFrame": 12792,
+      "oldEndFrame": 12960,
+      "startFrame": 12819,
+      "endFrame": 12960,
+      "durationFrames": 141,
+      "targetSeconds": 7,
+      "actualSeconds": 5.78,
+      "deltaSeconds": -1.13,
+      "voiceEndFrame": 139,
+      "voiceFits": true,
+      "segments": [
+        {
+          "id": "truth-11-narr",
+          "speaker": "旁白",
+          "staticPath": "tiaocaoma/audio/voice/truth-11-narr.mp3",
+          "text": "刀疤脸抚着马背，连声叹道：“人不如马，人不如马啊！”",
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 12819,
+          "durationInFrames": 139
+        }
+      ]
+    }
+  ]
+}

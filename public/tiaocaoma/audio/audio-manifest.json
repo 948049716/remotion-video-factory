@@ -1,0 +1,289 @@
+{
+  "generatedAt": "2026-11-11T05:46:41.112Z",
+  "sourceOfTruth": "src/videos/TiaocaoMa/audio-direction.ts",
+  "voiceCast": {
+    "旁白": {
+      "speaker": "旁白",
+      "voice": "zh-CN-YunjianNeural",
+      "rate": "-8%",
+      "pitch": "-5Hz",
+      "volume": "0%",
+      "characterNote": "说书人：更慢、更低，关键句留白；旁观者，不煽情。"
+    },
+    "店小二": {
+      "speaker": "店小二",
+      "voice": "zh-CN-YunxiNeural",
+      "rate": "+9%",
+      "pitch": "+6Hz",
+      "volume": "+5%",
+      "characterNote": "二十出头，更快更高、更油滑；嘴上赔笑，挨训时立刻发虚。"
+    },
+    "刀疤脸": {
+      "speaker": "刀疤脸",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-20%",
+      "pitch": "-12Hz",
+      "volume": "-12%",
+      "characterNote": "四十多岁独臂老兵，极慢、极低、轻声；像压着旧伤说话，不怒吼。"
+    },
+    "赵大人": {
+      "speaker": "赵大人",
+      "voice": "zh-CN-YunjianNeural",
+      "rate": "+2%",
+      "pitch": "+2Hz",
+      "volume": "+5%",
+      "characterNote": "五十岁圆脸官员，略高略快、阴阳怪气；端架子，句尾下沉。"
+    },
+    "一品大员": {
+      "speaker": "一品大员",
+      "voice": "zh-CN-YunjianNeural",
+      "rate": "-18%",
+      "pitch": "-10Hz",
+      "volume": "-6%",
+      "characterNote": "六十岁高瘦权臣，极慢极低、轻声但压场；停顿就是威压。"
+    }
+  },
+  "voiceSummary": {
+    "totalShots": 51,
+    "totalSegments": 67,
+    "speakerCounts": {
+      "旁白": 50,
+      "店小二": 7,
+      "刀疤脸": 4,
+      "赵大人": 4,
+      "一品大员": 2
+    },
+    "totalTargetSeconds": 540,
+    "totalActualSeconds": 502.08,
+    "rawOverflowCount": 11,
+    "errorCount": 0,
+    "manifest": "tiaocaoma/audio/voice-manifest.json"
+  },
+  "retimedSummary": {
+    "totalFrames": 12960,
+    "fps": 24,
+    "totalSeconds": 540,
+    "overflowBefore": 11,
+    "overflowAfter": 0,
+    "timeline": "tiaocaoma/audio/retimed-timeline.json",
+    "module": "src/videos/TiaocaoMa/retimed-timeline.ts"
+  },
+  "musicCues": [
+    {
+      "id": "music.act1",
+      "actId": "rules",
+      "startFrame": 0,
+      "endFrame": 2760,
+      "title": "规矩",
+      "tempoBpm": 96,
+      "key": "D 小调五声",
+      "mood": "市井、精明、轻微讽刺；热闹但不喜庆",
+      "instrumentation": [
+        "琵琶拨弦",
+        "小木鱼",
+        "低音鼓",
+        "纸声",
+        "远处街市"
+      ],
+      "motif": "店小二三音动机 D-F-A；马槽等级用下行五声",
+      "duckUnderVoice": true,
+      "file": "tiaocaoma/audio/music/act1-rules.wav",
+      "exists": true,
+      "bytes": 5071544,
+      "durationSeconds": 115
+    },
+    {
+      "id": "music.act2",
+      "actId": "exception",
+      "startFrame": 2760,
+      "endFrame": 5400,
+      "title": "破例",
+      "tempoBpm": 72,
+      "key": "D 小调",
+      "mood": "好奇、暗流、轻微不安；瘸马登场后变薄",
+      "instrumentation": [
+        "低音持续音",
+        "旧铜铃",
+        "低音拨弦",
+        "稀疏木鱼",
+        "纸风声"
+      ],
+      "motif": "刀疤脸四音下行 D-C-Bb-A；瘸马三拍铃铛",
+      "duckUnderVoice": true,
+      "file": "tiaocaoma/audio/music/act2-exception.wav",
+      "exists": true,
+      "bytes": 4851044,
+      "durationSeconds": 110
+    },
+    {
+      "id": "music.act3",
+      "actId": "contest",
+      "startFrame": 5400,
+      "endFrame": 7920,
+      "title": "较劲",
+      "tempoBpm": 108,
+      "key": "D 小调",
+      "mood": "对峙、咄咄逼人；一品大员出场后压低、变冷",
+      "instrumentation": [
+        "堂鼓",
+        "低音拨弦",
+        "大锣",
+        "铜铃",
+        "紧绷弦音"
+      ],
+      "motif": "赵大人两步动机 F-D；一品大员单音大锣",
+      "duckUnderVoice": true,
+      "file": "tiaocaoma/audio/music/act3-contest.wav",
+      "exists": true,
+      "bytes": 4630544,
+      "durationSeconds": 105
+    },
+    {
+      "id": "music.act4",
+      "actId": "hunger",
+      "startFrame": 7920,
+      "endFrame": 10200,
+      "title": "绝食",
+      "tempoBpm": 48,
+      "key": "D 小调挂四度",
+      "mood": "冷、空、饿；几乎安静，只剩铃铛和呼吸",
+      "instrumentation": [
+        "高音弱弦",
+        "旧铜铃",
+        "纸风",
+        "极低持续音",
+        "远处马嚼"
+      ],
+      "motif": "瘸马三拍铃铛放慢；刀疤脸动机只剩两个音",
+      "duckUnderVoice": true,
+      "file": "tiaocaoma/audio/music/act4-hunger.wav",
+      "exists": true,
+      "bytes": 4189544,
+      "durationSeconds": 95
+    },
+    {
+      "id": "music.act5",
+      "actId": "truth",
+      "startFrame": 10200,
+      "endFrame": 12960,
+      "title": "真相",
+      "tempoBpm": 60,
+      "key": "D 小调转 D 大调回忆",
+      "mood": "悲、克制、金色回忆后转冷；结尾不煽情",
+      "instrumentation": [
+        "温暖拨弦",
+        "铜铃",
+        "低音弦",
+        "堂鼓",
+        "大锣",
+        "雨声"
+      ],
+      "motif": "马王上行琶音 D-F#-A-D；公堂回到单音 D；结尾只留低音",
+      "duckUnderVoice": true,
+      "file": "tiaocaoma/audio/music/act5-truth.wav",
+      "exists": true,
+      "bytes": 5071544,
+      "durationSeconds": 115
+    }
+  ],
+  "sfxFiles": [
+    {
+      "family": "paper",
+      "file": "tiaocaoma/audio/sfx/paper.wav",
+      "exists": true,
+      "bytes": 39734,
+      "durationSeconds": 0.9
+    },
+    {
+      "family": "abacus",
+      "file": "tiaocaoma/audio/sfx/abacus.wav",
+      "exists": true,
+      "bytes": 35324,
+      "durationSeconds": 0.8
+    },
+    {
+      "family": "sword",
+      "file": "tiaocaoma/audio/sfx/sword.wav",
+      "exists": true,
+      "bytes": 39734,
+      "durationSeconds": 0.9
+    },
+    {
+      "family": "bell",
+      "file": "tiaocaoma/audio/sfx/bell.wav",
+      "exists": true,
+      "bytes": 123522,
+      "durationSeconds": 2.8
+    },
+    {
+      "family": "horse",
+      "file": "tiaocaoma/audio/sfx/horse.wav",
+      "exists": true,
+      "bytes": 97064,
+      "durationSeconds": 2.2
+    },
+    {
+      "family": "gong",
+      "file": "tiaocaoma/audio/sfx/gong.wav",
+      "exists": true,
+      "bytes": 176444,
+      "durationSeconds": 4
+    },
+    {
+      "family": "door",
+      "file": "tiaocaoma/audio/sfx/door.wav",
+      "exists": true,
+      "bytes": 70604,
+      "durationSeconds": 1.6
+    },
+    {
+      "family": "stamp",
+      "file": "tiaocaoma/audio/sfx/stamp.wav",
+      "exists": true,
+      "bytes": 26504,
+      "durationSeconds": 0.6
+    },
+    {
+      "family": "weather",
+      "file": "tiaocaoma/audio/sfx/weather.wav",
+      "exists": true,
+      "bytes": 352844,
+      "durationSeconds": 8
+    },
+    {
+      "family": "wood",
+      "file": "tiaocaoma/audio/sfx/wood.wav",
+      "exists": true,
+      "bytes": 22094,
+      "durationSeconds": 0.5
+    },
+    {
+      "family": "metal",
+      "file": "tiaocaoma/audio/sfx/metal.wav",
+      "exists": true,
+      "bytes": 30912,
+      "durationSeconds": 0.7
+    },
+    {
+      "family": "cloth",
+      "file": "tiaocaoma/audio/sfx/cloth.wav",
+      "exists": true,
+      "bytes": 35324,
+      "durationSeconds": 0.8
+    },
+    {
+      "family": "body",
+      "file": "tiaocaoma/audio/sfx/body.wav",
+      "exists": true,
+      "bytes": 30912,
+      "durationSeconds": 0.7
+    },
+    {
+      "family": "crowd",
+      "file": "tiaocaoma/audio/sfx/crowd.wav",
+      "exists": true,
+      "bytes": 352844,
+      "durationSeconds": 8
+    }
+  ]
+}

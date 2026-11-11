@@ -8,6 +8,8 @@ import { NovaReel } from "./videos/NovaReel/NovaReel";
 import { ApexReel } from "./videos/ApexReel/ApexReel";
 import { HighAltitude } from "./videos/HighAltitude/HighAltitude";
 import { DURATION_FRAMES as HIGH_ALTITUDE_FRAMES } from "./videos/HighAltitude/timeline";
+import { TiaocaoMa } from "./videos/TiaocaoMa/TiaocaoMa";
+import { RETIMED_SHOTS } from "./videos/TiaocaoMa/retimed-timeline";
 import { NawaIdent } from "./videos/NawaIdent/NawaIdent";
 import {
   DEMO_DURATION_IN_FRAMES,
@@ -19,6 +21,9 @@ import {
   DEFAULT_BRAND,
   channelIntroPropsSchema,
 } from "./shared/ChannelIntro";
+
+const TIAOCAO_MA_DURATION =
+  RETIMED_SHOTS[RETIMED_SHOTS.length - 1]?.endFrame ?? 12960;
 
 /**
  * Central Video Registry (RemotionRoot)
@@ -97,6 +102,15 @@ export const RemotionRoot: React.FC = () => {
           component={HighAltitude}
           durationInFrames={HIGH_ALTITUDE_FRAMES}
           fps={60}
+          width={1920}
+          height={1080}
+        />
+        {/* 9m paper-cut folk tale, 12960 frames @ 24fps */}
+        <Composition
+          id="跳槽马"
+          component={TiaocaoMa}
+          durationInFrames={TIAOCAO_MA_DURATION}
+          fps={24}
           width={1920}
           height={1080}
         />

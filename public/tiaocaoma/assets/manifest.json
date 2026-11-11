@@ -1,0 +1,74 @@
+﻿[
+    {
+        "id":  "bg.stable",
+        "file":  "public/tiaocaoma/assets/bg-stable.png",
+        "width":  1920,
+        "height":  1080,
+        "mode":  "background",
+        "views":  [
+
+                  ],
+        "status":  "cutout"
+    },
+    {
+        "id":  "bg.trough.panorama",
+        "file":  "public/tiaocaoma/assets/bg-trough-panorama.png",
+        "width":  3840,
+        "height":  1080,
+        "mode":  "background",
+        "views":  [
+
+                  ],
+        "status":  "cutout"
+    },
+    {
+        "id":  "char.er",
+        "file":  "public/tiaocaoma/assets/char-er.png",
+        "width":  2080,
+        "height":  1502,
+        "mode":  "chroma",
+        "views":  [
+                      "public/tiaocaoma/assets/char-er-v1.png",
+                      "public/tiaocaoma/assets/char-er-v2.png",
+                      "public/tiaocaoma/assets/char-er-v3.png"
+                  ],
+        "status":  "cutout"
+    },
+    {
+        "id":  "char.scarface",
+        "file":  "public/tiaocaoma/assets/char-scarface.png",
+        "width":  2095,
+        "height":  1487,
+        "mode":  "chroma",
+        "views":  [
+                      "public/tiaocaoma/assets/char-scarface-v1.png",
+                      "public/tiaocaoma/assets/char-scarface-v2.png",
+                      "public/tiaocaoma/assets/char-scarface-v3.png"
+                  ],
+        "status":  "cutout"
+    },
+    {
+        "id":  "char.horse.lame",
+        "file":  "public/tiaocaoma/assets/char-horse-lame.png",
+        "width":  2076,
+        "height":  992,
+        "mode":  "chroma",
+        "views":  [
+                      "public/tiaocaoma/assets/char-horse-lame-v1.png",
+                      "public/tiaocaoma/assets/char-horse-lame-v2.png",
+                      "public/tiaocaoma/assets/char-horse-lame-v3.png"
+                  ],
+        "status":  "cutout"
+    },
+    {
+        "id":  "prop.hay",
+        "file":  "public/tiaocaoma/assets/prop-hay.png",
+        "width":  2400,
+        "height":  624,
+        "mode":  "chroma",
+        "views":  [
+
+                  ],
+        "status":  "cutout"
+    }
+]

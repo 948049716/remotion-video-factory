@@ -1,0 +1,3365 @@
+{
+  "generatedAt": "2026-11-11T05:45:10.834Z",
+  "format": "audio-24khz-96kbitrate-mono-mp3",
+  "tailSeconds": 0.25,
+  "minGapSeconds": 0.12,
+  "totalTargetSeconds": 540,
+  "totalActualSeconds": 502.08,
+  "overflowCount": 11,
+  "errorCount": 0,
+  "overflowShots": [
+    {
+      "index": 22,
+      "shotId": "contest-01",
+      "startFrame": 5400,
+      "endFrame": 5664,
+      "targetSeconds": 11,
+      "segments": [
+        {
+          "id": "contest-01-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "一连几天，刀疤脸总骑着瘸腿马来吃饭。店小二看他颠来颠去，心里直乐：这是图啥呢？真是花钱买罪受。",
+          "ttsText": "一连几天，刀疤脸总骑着瘸腿马来吃饭。店小二看他颠来颠去，心里直乐：这是图啥呢？真是花钱买罪受。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/contest-01-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/contest-01-narr.mp3",
+          "actualSeconds": 11.16,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 5400,
+          "durationInFrames": 268
+        }
+      ],
+      "sfx": [
+        {
+          "name": "铃铛",
+          "family": "bell",
+          "file": "tiaocaoma/audio/sfx/bell.wav"
+        },
+        {
+          "name": "马蹄",
+          "family": "horse",
+          "file": "tiaocaoma/audio/sfx/horse.wav"
+        },
+        {
+          "name": "翻纸",
+          "family": "paper",
+          "file": "tiaocaoma/audio/sfx/paper.wav"
+        }
+      ],
+      "actualSeconds": 11.16,
+      "slackSeconds": -0.16,
+      "overflow": true,
+      "compressedGaps": false
+    },
+    {
+      "index": 30,
+      "shotId": "contest-09",
+      "startFrame": 7344,
+      "endFrame": 7656,
+      "targetSeconds": 13,
+      "segments": [
+        {
+          "id": "contest-09-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "店小二扑通跪倒，磕头如鸡啄米。一品大员一甩袖子，走了。店小二的魂都吓飞了。",
+          "ttsText": "店小二扑通跪倒，磕头如鸡啄米。一品大员一甩袖子，走了。店小二的魂都吓飞了。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0.35,
+          "audio": "public/tiaocaoma/audio/voice/contest-09-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/contest-09-narr.mp3",
+          "actualSeconds": 9.39,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 7344,
+          "durationInFrames": 226
+        },
+        {
+          "id": "contest-09-dlg-01",
+          "kind": "dialogue",
+          "speaker": "一品大员",
+          "text": "下次再看到这破马扫本大人的兴……",
+          "ttsText": "下次……再看到这破马……扫本大人的兴。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-18%",
+          "pitch": "-10Hz",
+          "volume": "-6%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/contest-09-dlg-01.mp3",
+          "staticPath": "tiaocaoma/audio/voice/contest-09-dlg-01.mp3",
+          "actualSeconds": 4.81,
+          "error": null,
+          "startSeconds": 9.51,
+          "relativeStartFrame": 228,
+          "absoluteStartFrame": 7572,
+          "durationInFrames": 116
+        }
+      ],
+      "sfx": [
+        {
+          "name": "磕头",
+          "family": "body",
+          "file": "tiaocaoma/audio/sfx/body.wav"
+        },
+        {
+          "name": "甩袖",
+          "family": "cloth",
+          "file": "tiaocaoma/audio/sfx/cloth.wav"
+        },
+        {
+          "name": "脚步",
+          "family": "crowd",
+          "file": "tiaocaoma/audio/sfx/crowd.wav"
+        }
+      ],
+      "actualSeconds": 14.32,
+      "slackSeconds": -1.32,
+      "overflow": true,
+      "compressedGaps": true
+    },
+    {
+      "index": 32,
+      "shotId": "hunger-01",
+      "startFrame": 7920,
+      "endFrame": 8184,
+      "targetSeconds": 11,
+      "segments": [
+        {
+          "id": "hunger-01-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "这回，店小二在马头上多加一根粗绳，桩上系死扣，还派小童死死盯着。看你还怎么解！这回是双保险。",
+          "ttsText": "这回，店小二在马头上多加一根粗绳，桩上系死扣，还派小童死死盯着。看你还怎么解！这回是双保险。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/hunger-01-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/hunger-01-narr.mp3",
+          "actualSeconds": 11.79,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 7920,
+          "durationInFrames": 283
+        }
+      ],
+      "sfx": [
+        {
+          "name": "粗绳摩擦",
+          "family": "cloth",
+          "file": "tiaocaoma/audio/sfx/cloth.wav"
+        },
+        {
+          "name": "木凳落地",
+          "family": "wood",
+          "file": "tiaocaoma/audio/sfx/wood.wav"
+        },
+        {
+          "name": "小童脚步",
+          "family": "crowd",
+          "file": "tiaocaoma/audio/sfx/crowd.wav"
+        }
+      ],
+      "actualSeconds": 11.79,
+      "slackSeconds": -0.79,
+      "overflow": true,
+      "compressedGaps": false
+    },
+    {
+      "index": 34,
+      "shotId": "hunger-03",
+      "startFrame": 8400,
+      "endFrame": 8640,
+      "targetSeconds": 10,
+      "segments": [
+        {
+          "id": "hunger-03-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "店小二心里痛快：“不吃才好呢！你主人一碟花生米，还不够你吃草的钱！”小算盘打得噼啪响。",
+          "ttsText": "店小二心里痛快：“不吃才好呢！你主人一碟花生米，还不够你吃草的钱！”小算盘打得噼啪响。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/hunger-03-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/hunger-03-narr.mp3",
+          "actualSeconds": 10.09,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 8400,
+          "durationInFrames": 243
+        }
+      ],
+      "sfx": [
+        {
+          "name": "算盘声",
+          "family": "abacus",
+          "file": "tiaocaoma/audio/sfx/abacus.wav"
+        },
+        {
+          "name": "哼小曲",
+          "family": "wood",
+          "file": "tiaocaoma/audio/sfx/wood.wav"
+        }
+      ],
+      "actualSeconds": 10.09,
+      "slackSeconds": -0.09,
+      "overflow": true,
+      "compressedGaps": false
+    },
+    {
+      "index": 36,
+      "shotId": "hunger-05",
+      "startFrame": 8928,
+      "endFrame": 9216,
+      "targetSeconds": 12,
+      "segments": [
+        {
+          "id": "hunger-05-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "店小二敲着槽沿：“吃啊！你们家主人多厉害，别让这破瘸马唬住了！”可众马还是胆战心惊，不敢动草。嗓子都喊哑了。",
+          "ttsText": "店小二敲着槽沿：“吃啊！你们家主人多厉害，别让这破瘸马唬住了！”可众马还是胆战心惊，不敢动草。嗓子都喊哑了。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/hunger-05-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/hunger-05-narr.mp3",
+          "actualSeconds": 12.85,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 8928,
+          "durationInFrames": 309
+        }
+      ],
+      "sfx": [
+        {
+          "name": "急促敲槽",
+          "family": "wood",
+          "file": "tiaocaoma/audio/sfx/wood.wav"
+        },
+        {
+          "name": "马退",
+          "family": "horse",
+          "file": "tiaocaoma/audio/sfx/horse.wav"
+        },
+        {
+          "name": "纸屑落地",
+          "family": "paper",
+          "file": "tiaocaoma/audio/sfx/paper.wav"
+        }
+      ],
+      "actualSeconds": 12.85,
+      "slackSeconds": -0.85,
+      "overflow": true,
+      "compressedGaps": false
+    },
+    {
+      "index": 41,
+      "shotId": "truth-01",
+      "startFrame": 10200,
+      "endFrame": 10512,
+      "targetSeconds": 13,
+      "segments": [
+        {
+          "id": "truth-01-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "刀疤脸被带到堂前，赵大人拍案而起：“你好大的胆子，竟敢拿一匹瘸腿马来吓唬本大人的坐骑！你该当何罪？”堂上鸦雀无声。",
+          "ttsText": "刀疤脸被带到堂前，赵大人拍案而起：“你好大的胆子，竟敢拿一匹瘸腿马来吓唬本大人的坐骑！你该当何罪？”堂上鸦雀无声。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/truth-01-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/truth-01-narr.mp3",
+          "actualSeconds": 13.02,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 10200,
+          "durationInFrames": 313
+        }
+      ],
+      "sfx": [
+        {
+          "name": "拍案",
+          "family": "wood",
+          "file": "tiaocaoma/audio/sfx/wood.wav"
+        },
+        {
+          "name": "茶杯跳",
+          "family": "metal",
+          "file": "tiaocaoma/audio/sfx/metal.wav"
+        },
+        {
+          "name": "堂威",
+          "family": "gong",
+          "file": "tiaocaoma/audio/sfx/gong.wav"
+        }
+      ],
+      "actualSeconds": 13.02,
+      "slackSeconds": -0.02,
+      "overflow": true,
+      "compressedGaps": false
+    },
+    {
+      "index": 42,
+      "shotId": "truth-02",
+      "startFrame": 10512,
+      "endFrame": 10704,
+      "targetSeconds": 8,
+      "segments": [
+        {
+          "id": "truth-02-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "刀疤脸不慌不忙。",
+          "ttsText": "刀疤脸不慌不忙。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0.35,
+          "audio": "public/tiaocaoma/audio/voice/truth-02-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/truth-02-narr.mp3",
+          "actualSeconds": 1.9,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 10512,
+          "durationInFrames": 46
+        },
+        {
+          "id": "truth-02-dlg-01",
+          "kind": "dialogue",
+          "speaker": "刀疤脸",
+          "text": "大人明鉴，在下只是骑马来吃饭。马不吃草，这有何罪？",
+          "ttsText": "大人明鉴……在下只是骑马来吃饭。马不吃草，这有何罪？",
+          "voice": "zh-CN-YunyangNeural",
+          "rate": "-20%",
+          "pitch": "-12Hz",
+          "volume": "-12%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/truth-02-dlg-01.mp3",
+          "staticPath": "tiaocaoma/audio/voice/truth-02-dlg-01.mp3",
+          "actualSeconds": 6.52,
+          "error": null,
+          "startSeconds": 2.02,
+          "relativeStartFrame": 48,
+          "absoluteStartFrame": 10560,
+          "durationInFrames": 157
+        }
+      ],
+      "sfx": [
+        {
+          "name": "堂上安静",
+          "family": "silence",
+          "file": null
+        },
+        {
+          "name": "衣袍轻响",
+          "family": "cloth",
+          "file": "tiaocaoma/audio/sfx/cloth.wav"
+        }
+      ],
+      "actualSeconds": 8.54,
+      "slackSeconds": -0.54,
+      "overflow": true,
+      "compressedGaps": true
+    },
+    {
+      "index": 43,
+      "shotId": "truth-03",
+      "startFrame": 10704,
+      "endFrame": 10920,
+      "targetSeconds": 9,
+      "segments": [
+        {
+          "id": "truth-03-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "赵大人气得抽出长剑，挥向刀疤脸的右臂。刀疤脸抬手去挡——“喀嚓”一声！剑风一闪。",
+          "ttsText": "赵大人气得抽出长剑，挥向刀疤脸的右臂。刀疤脸抬手去挡——“喀嚓”一声！剑风一闪。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/truth-03-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/truth-03-narr.mp3",
+          "actualSeconds": 9.37,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 10704,
+          "durationInFrames": 225
+        }
+      ],
+      "sfx": [
+        {
+          "name": "拔剑",
+          "family": "sword",
+          "file": "tiaocaoma/audio/sfx/sword.wav"
+        },
+        {
+          "name": "破风",
+          "family": "sword",
+          "file": "tiaocaoma/audio/sfx/sword.wav"
+        },
+        {
+          "name": "纸幕撕裂",
+          "family": "paper",
+          "file": "tiaocaoma/audio/sfx/paper.wav"
+        }
+      ],
+      "actualSeconds": 9.37,
+      "slackSeconds": -0.37,
+      "overflow": true,
+      "compressedGaps": false
+    },
+    {
+      "index": 44,
+      "shotId": "truth-04",
+      "startFrame": 10920,
+      "endFrame": 11160,
+      "targetSeconds": 10,
+      "segments": [
+        {
+          "id": "truth-04-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "右臂应声而断，却不见半点鲜血。众人仔细一看：那竟是一条木头做的假肢！众人都愣住了。",
+          "ttsText": "右臂应声而断，却不见半点鲜血。众人仔细一看：那竟是一条木头做的假肢！众人都愣住了。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/truth-04-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/truth-04-narr.mp3",
+          "actualSeconds": 10.15,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 10920,
+          "durationInFrames": 244
+        }
+      ],
+      "sfx": [
+        {
+          "name": "木头滚地",
+          "family": "wood",
+          "file": "tiaocaoma/audio/sfx/wood.wav"
+        },
+        {
+          "name": "全场静默",
+          "family": "silence",
+          "file": null
+        }
+      ],
+      "actualSeconds": 10.15,
+      "slackSeconds": -0.15,
+      "overflow": true,
+      "compressedGaps": false
+    },
+    {
+      "index": 48,
+      "shotId": "truth-08",
+      "startFrame": 11904,
+      "endFrame": 12168,
+      "targetSeconds": 11,
+      "segments": [
+        {
+          "id": "truth-08-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "朝廷见我不能再上马，兔死狗烹，把我抛弃了。我的战马也中了地钩刀，从此瘸了。一将功成，万骨枯。",
+          "ttsText": "朝廷见我不能再上马，兔死狗烹，把我抛弃了。我的战马也中了地钩刀，从此瘸了。一将功成，万骨枯。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/truth-08-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/truth-08-narr.mp3",
+          "actualSeconds": 11.53,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 11904,
+          "durationInFrames": 277
+        }
+      ],
+      "sfx": [
+        {
+          "name": "宫门闷响",
+          "family": "door",
+          "file": "tiaocaoma/audio/sfx/door.wav"
+        },
+        {
+          "name": "马哀鸣",
+          "family": "horse",
+          "file": "tiaocaoma/audio/sfx/horse.wav"
+        },
+        {
+          "name": "雨声",
+          "family": "weather",
+          "file": "tiaocaoma/audio/sfx/weather.wav"
+        }
+      ],
+      "actualSeconds": 11.53,
+      "slackSeconds": -0.53,
+      "overflow": true,
+      "compressedGaps": false
+    },
+    {
+      "index": 50,
+      "shotId": "truth-10",
+      "startFrame": 12456,
+      "endFrame": 12792,
+      "targetSeconds": 14,
+      "segments": [
+        {
+          "id": "truth-10-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "奇的是，人会遗忘，畜生却不会。赛赤兔当年日行千里，人称马王。如今腿瘸了，威风犹在，凡马仍然怕它，这就是别的马不敢吃草的缘故。",
+          "ttsText": "奇的是，人会遗忘，畜生却不会。赛赤兔当年日行千里，人称马王。如今腿瘸了，威风犹在，凡马仍然怕它，这就是别的马不敢吃草的缘故。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/truth-10-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/truth-10-narr.mp3",
+          "actualSeconds": 14.98,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 12456,
+          "durationInFrames": 360
+        }
+      ],
+      "sfx": [
+        {
+          "name": "铃铛",
+          "family": "bell",
+          "file": "tiaocaoma/audio/sfx/bell.wav"
+        },
+        {
+          "name": "马群低鸣",
+          "family": "horse",
+          "file": "tiaocaoma/audio/sfx/horse.wav"
+        },
+        {
+          "name": "音乐起",
+          "family": "gong",
+          "file": "tiaocaoma/audio/sfx/gong.wav"
+        }
+      ],
+      "actualSeconds": 14.98,
+      "slackSeconds": -0.98,
+      "overflow": true,
+      "compressedGaps": false
+    }
+  ],
+  "errorSegments": [],
+  "shots": [
+    {
+      "index": 1,
+      "shotId": "rules-01",
+      "startFrame": 0,
+      "endFrame": 144,
+      "targetSeconds": 6,
+      "segments": [
+        {
+          "id": "rules-01-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "话说京城城西，新开了一家饭馆。",
+          "ttsText": "话说京城城西，新开了一家饭馆。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/rules-01-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/rules-01-narr.mp3",
+          "actualSeconds": 3.48,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 0,
+          "durationInFrames": 84
+        }
+      ],
+      "sfx": [
+        {
+          "name": "撕纸",
+          "family": "paper",
+          "file": "tiaocaoma/audio/sfx/paper.wav"
+        },
+        {
+          "name": "纸屑落地",
+          "family": "paper",
+          "file": "tiaocaoma/audio/sfx/paper.wav"
+        }
+      ],
+      "actualSeconds": 3.48,
+      "slackSeconds": 2.52,
+      "overflow": false,
+      "compressedGaps": false
+    },
+    {
+      "index": 2,
+      "shotId": "rules-02",
+      "startFrame": 144,
+      "endFrame": 432,
+      "targetSeconds": 12,
+      "segments": [
+        {
+          "id": "rules-02-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "开张才一个月，生意就火得不得了。豆瓣鱼、龙脆骨、驴打滚，一道道民间家常菜，把京城的达官显贵都引来了。",
+          "ttsText": "开张才一个月，生意就火得不得了。豆瓣鱼、龙脆骨、驴打滚，一道道民间家常菜，把京城的达官显贵都引来了。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/rules-02-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/rules-02-narr.mp3",
+          "actualSeconds": 11.6,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 144,
+          "durationInFrames": 279
+        }
+      ],
+      "sfx": [
+        {
+          "name": "街市嘈杂",
+          "family": "crowd",
+          "file": "tiaocaoma/audio/sfx/crowd.wav"
+        },
+        {
+          "name": "店小二招呼",
+          "family": "crowd",
+          "file": "tiaocaoma/audio/sfx/crowd.wav"
+        },
+        {
+          "name": "灯笼轻响",
+          "family": "bell",
+          "file": "tiaocaoma/audio/sfx/bell.wav"
+        }
+      ],
+      "actualSeconds": 11.6,
+      "slackSeconds": 0.4,
+      "overflow": false,
+      "compressedGaps": false
+    },
+    {
+      "index": 3,
+      "shotId": "rules-03",
+      "startFrame": 432,
+      "endFrame": 696,
+      "targetSeconds": 11,
+      "segments": [
+        {
+          "id": "rules-03-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "这些有身份的人，怕出入小馆子有失体面，常常轻车简从，有的只带一个随从，悄悄来吃。",
+          "ttsText": "这些有身份的人，怕出入小馆子有失体面，常常轻车简从，有的只带一个随从，悄悄来吃。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/rules-03-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/rules-03-narr.mp3",
+          "actualSeconds": 8.63,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 432,
+          "durationInFrames": 208
+        }
+      ],
+      "sfx": [
+        {
+          "name": "杯盏碰撞",
+          "family": "metal",
+          "file": "tiaocaoma/audio/sfx/metal.wav"
+        },
+        {
+          "name": "筷子落碟",
+          "family": "metal",
+          "file": "tiaocaoma/audio/sfx/metal.wav"
+        },
+        {
+          "name": "低声交谈",
+          "family": "crowd",
+          "file": "tiaocaoma/audio/sfx/crowd.wav"
+        }
+      ],
+      "actualSeconds": 8.63,
+      "slackSeconds": 2.37,
+      "overflow": false,
+      "compressedGaps": false
+    },
+    {
+      "index": 4,
+      "shotId": "rules-04",
+      "startFrame": 696,
+      "endFrame": 960,
+      "targetSeconds": 11,
+      "segments": [
+        {
+          "id": "rules-04-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "他们的坐骑，就拴在后院马棚里，由店小二加草添料。别看是畜生，待遇一点不比人差。",
+          "ttsText": "他们的坐骑，就拴在后院马棚里，由店小二加草添料。别看是畜生，待遇一点不比人差。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/rules-04-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/rules-04-narr.mp3",
+          "actualSeconds": 9.1,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 696,
+          "durationInFrames": 219
+        }
+      ],
+      "sfx": [
+        {
+          "name": "马嘶",
+          "family": "horse",
+          "file": "tiaocaoma/audio/sfx/horse.wav"
+        },
+        {
+          "name": "草料摩擦",
+          "family": "wood",
+          "file": "tiaocaoma/audio/sfx/wood.wav"
+        },
+        {
+          "name": "木棚轻响",
+          "family": "wood",
+          "file": "tiaocaoma/audio/sfx/wood.wav"
+        }
+      ],
+      "actualSeconds": 9.1,
+      "slackSeconds": 1.9,
+      "overflow": false,
+      "compressedGaps": false
+    },
+    {
+      "index": 5,
+      "shotId": "rules-05",
+      "startFrame": 960,
+      "endFrame": 1200,
+      "targetSeconds": 10,
+      "segments": [
+        {
+          "id": "rules-05-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "马匹一多，怎么排顺序、怎么添草料，就大有学问了。店小二鬼精着呢，您猜怎么着？",
+          "ttsText": "马匹一多，怎么排顺序、怎么添草料，就大有学问了。店小二鬼精着呢，您猜怎么着？",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/rules-05-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/rules-05-narr.mp3",
+          "actualSeconds": 8.8,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 960,
+          "durationInFrames": 212
+        }
+      ],
+      "sfx": [
+        {
+          "name": "纸张翻动",
+          "family": "paper",
+          "file": "tiaocaoma/audio/sfx/paper.wav"
+        },
+        {
+          "name": "木牌落桌",
+          "family": "stamp",
+          "file": "tiaocaoma/audio/sfx/stamp.wav"
+        }
+      ],
+      "actualSeconds": 8.8,
+      "slackSeconds": 1.2,
+      "overflow": false,
+      "compressedGaps": false
+    },
+    {
+      "index": 6,
+      "shotId": "rules-06",
+      "startFrame": 1200,
+      "endFrame": 1536,
+      "targetSeconds": 14,
+      "segments": [
+        {
+          "id": "rules-06-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "饭馆在城西，食客用完饭大多骑马向东，因此东边为贵。官越大，马排得越靠东，出行越方便。这讲究，比朝堂还清楚。",
+          "ttsText": "饭馆在城西，食客用完饭大多骑马向东，因此东边为贵。官越大，马排得越靠东，出行越方便。这讲究，比朝堂还清楚。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/rules-06-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/rules-06-narr.mp3",
+          "actualSeconds": 13.18,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 1200,
+          "durationInFrames": 317
+        }
+      ],
+      "sfx": [
+        {
+          "name": "马蹄远去",
+          "family": "horse",
+          "file": "tiaocaoma/audio/sfx/horse.wav"
+        },
+        {
+          "name": "纸片滑移",
+          "family": "paper",
+          "file": "tiaocaoma/audio/sfx/paper.wav"
+        }
+      ],
+      "actualSeconds": 13.18,
+      "slackSeconds": 0.82,
+      "overflow": false,
+      "compressedGaps": false
+    },
+    {
+      "index": 7,
+      "shotId": "rules-07",
+      "startFrame": 1536,
+      "endFrame": 1848,
+      "targetSeconds": 13,
+      "segments": [
+        {
+          "id": "rules-07-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "草料也分三等：一品二品，吃刚割来的嫩草细粮；三品到五品，只有青草；五品以下，寻常枯草。半点乱不得。",
+          "ttsText": "草料也分三等：一品二品，吃刚割来的嫩草细粮；三品到五品，只有青草；五品以下，寻常枯草。半点乱不得。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/rules-07-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/rules-07-narr.mp3",
+          "actualSeconds": 11.87,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 1536,
+          "durationInFrames": 285
+        }
+      ],
+      "sfx": [
+        {
+          "name": "草料落槽",
+          "family": "wood",
+          "file": "tiaocaoma/audio/sfx/wood.wav"
+        },
+        {
+          "name": "木牌压下",
+          "family": "stamp",
+          "file": "tiaocaoma/audio/sfx/stamp.wav"
+        }
+      ],
+      "actualSeconds": 11.87,
+      "slackSeconds": 1.13,
+      "overflow": false,
+      "compressedGaps": false
+    },
+    {
+      "index": 8,
+      "shotId": "rules-08",
+      "startFrame": 1848,
+      "endFrame": 2112,
+      "targetSeconds": 11,
+      "segments": [
+        {
+          "id": "rules-08-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "店小二还打造了一条长长的马槽，隔成几十个小槽，一马一格，互不干涉。槽沿上钉着品级木牌。",
+          "ttsText": "店小二还打造了一条长长的马槽，隔成几十个小槽，一马一格，互不干涉。槽沿上钉着品级木牌。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/rules-08-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/rules-08-narr.mp3",
+          "actualSeconds": 9.92,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 1848,
+          "durationInFrames": 239
+        }
+      ],
+      "sfx": [
+        {
+          "name": "木槽轻响",
+          "family": "wood",
+          "file": "tiaocaoma/audio/sfx/wood.wav"
+        },
+        {
+          "name": "马蹄挪动",
+          "family": "horse",
+          "file": "tiaocaoma/audio/sfx/horse.wav"
+        }
+      ],
+      "actualSeconds": 9.92,
+      "slackSeconds": 1.08,
+      "overflow": false,
+      "compressedGaps": false
+    },
+    {
+      "index": 9,
+      "shotId": "rules-09",
+      "startFrame": 2112,
+      "endFrame": 2448,
+      "targetSeconds": 14,
+      "segments": [
+        {
+          "id": "rules-09-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "可马哪懂人间的论资排辈？这一槽草，吃得跟打仗一样。",
+          "ttsText": "可马哪懂人间的论资排辈？这一槽草，吃得跟打仗一样。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0.35,
+          "audio": "public/tiaocaoma/audio/voice/rules-09-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/rules-09-narr.mp3",
+          "actualSeconds": 5.86,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 2112,
+          "durationInFrames": 141
+        },
+        {
+          "id": "rules-09-dlg-01",
+          "kind": "dialogue",
+          "speaker": "店小二",
+          "text": "哎哎，三品马，怎么把嘴伸到二品槽里了？五品马，放着青草不吃，干吗吃枯草？",
+          "ttsText": "哎哎——三品马，怎么把嘴伸到二品槽里了？五品马，放着青草不吃，干吗吃枯草？",
+          "voice": "zh-CN-YunxiNeural",
+          "rate": "+9%",
+          "pitch": "+6Hz",
+          "volume": "+5%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/rules-09-dlg-01.mp3",
+          "staticPath": "tiaocaoma/audio/voice/rules-09-dlg-01.mp3",
+          "actualSeconds": 7,
+          "error": null,
+          "startSeconds": 6.21,
+          "relativeStartFrame": 149,
+          "absoluteStartFrame": 2261,
+          "durationInFrames": 168
+        }
+      ],
+      "sfx": [
+        {
+          "name": "木棍敲槽",
+          "family": "wood",
+          "file": "tiaocaoma/audio/sfx/wood.wav"
+        },
+        {
+          "name": "马嚼",
+          "family": "horse",
+          "file": "tiaocaoma/audio/sfx/horse.wav"
+        },
+        {
+          "name": "纸片颤动",
+          "family": "paper",
+          "file": "tiaocaoma/audio/sfx/paper.wav"
+        }
+      ],
+      "actualSeconds": 13.21,
+      "slackSeconds": 0.79,
+      "overflow": false,
+      "compressedGaps": false
+    },
+    {
+      "index": 10,
+      "shotId": "rules-10",
+      "startFrame": 2448,
+      "endFrame": 2760,
+      "targetSeconds": 13,
+      "segments": [
+        {
+          "id": "rules-10-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "日子一长，马匹都被训练得规规矩矩，各吃各槽，少有越礼。达官显贵看在眼里，会心一笑。这碗饭算是端稳了。",
+          "ttsText": "日子一长，马匹都被训练得规规矩矩，各吃各槽，少有越礼。达官显贵看在眼里，会心一笑。这碗饭算是端稳了。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/rules-10-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/rules-10-narr.mp3",
+          "actualSeconds": 12.14,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 2448,
+          "durationInFrames": 292
+        }
+      ],
+      "sfx": [
+        {
+          "name": "咀嚼",
+          "family": "horse",
+          "file": "tiaocaoma/audio/sfx/horse.wav"
+        },
+        {
+          "name": "轻笑",
+          "family": "crowd",
+          "file": "tiaocaoma/audio/sfx/crowd.wav"
+        }
+      ],
+      "actualSeconds": 12.14,
+      "slackSeconds": 0.86,
+      "overflow": false,
+      "compressedGaps": false
+    },
+    {
+      "index": 11,
+      "shotId": "exception-01",
+      "startFrame": 2760,
+      "endFrame": 3072,
+      "targetSeconds": 13,
+      "segments": [
+        {
+          "id": "exception-01-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "这天，一个刀疤脸中年人，骑着一匹瘸腿白马来了。黑脸上一道长刀疤。马脖子挂着铃铛，一走一歪，叮当乱响。",
+          "ttsText": "这天，一个刀疤脸中年人，骑着一匹瘸腿白马来了。黑脸上一道长刀疤。马脖子挂着铃铛，一走一歪，叮当乱响。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/exception-01-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/exception-01-narr.mp3",
+          "actualSeconds": 12.3,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 2760,
+          "durationInFrames": 296
+        }
+      ],
+      "sfx": [
+        {
+          "name": "铃铛乱响",
+          "family": "bell",
+          "file": "tiaocaoma/audio/sfx/bell.wav"
+        },
+        {
+          "name": "不齐的马蹄",
+          "family": "horse",
+          "file": "tiaocaoma/audio/sfx/horse.wav"
+        }
+      ],
+      "actualSeconds": 12.3,
+      "slackSeconds": 0.7,
+      "overflow": false,
+      "compressedGaps": false
+    },
+    {
+      "index": 12,
+      "shotId": "exception-02",
+      "startFrame": 3072,
+      "endFrame": 3288,
+      "targetSeconds": 9,
+      "segments": [
+        {
+          "id": "exception-02-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "店小二搭眼一看：贩夫走卒，没什么背景。穿得寒酸，马也瘸。",
+          "ttsText": "店小二搭眼一看：贩夫走卒，没什么背景。穿得寒酸，马也瘸。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/exception-02-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/exception-02-narr.mp3",
+          "actualSeconds": 6.81,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 3072,
+          "durationInFrames": 164
+        }
+      ],
+      "sfx": [
+        {
+          "name": "算盘一响",
+          "family": "abacus",
+          "file": "tiaocaoma/audio/sfx/abacus.wav"
+        }
+      ],
+      "actualSeconds": 6.81,
+      "slackSeconds": 2.19,
+      "overflow": false,
+      "compressedGaps": false
+    },
+    {
+      "index": 13,
+      "shotId": "exception-03",
+      "startFrame": 3288,
+      "endFrame": 3480,
+      "targetSeconds": 8,
+      "segments": [
+        {
+          "id": "exception-03-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "他脸上堆笑，心里却冷。",
+          "ttsText": "他脸上堆笑，心里却冷。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0.35,
+          "audio": "public/tiaocaoma/audio/voice/exception-03-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/exception-03-narr.mp3",
+          "actualSeconds": 2.54,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 3288,
+          "durationInFrames": 61
+        },
+        {
+          "id": "exception-03-dlg-01",
+          "kind": "dialogue",
+          "speaker": "店小二",
+          "text": "客官里面请，我给马添些草料。",
+          "ttsText": "客官里面请——我给马添些草料！",
+          "voice": "zh-CN-YunxiNeural",
+          "rate": "+9%",
+          "pitch": "+6Hz",
+          "volume": "+5%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/exception-03-dlg-01.mp3",
+          "staticPath": "tiaocaoma/audio/voice/exception-03-dlg-01.mp3",
+          "actualSeconds": 2.56,
+          "error": null,
+          "startSeconds": 2.89,
+          "relativeStartFrame": 69,
+          "absoluteStartFrame": 3357,
+          "durationInFrames": 62
+        }
+      ],
+      "sfx": [
+        {
+          "name": "门帘响",
+          "family": "door",
+          "file": "tiaocaoma/audio/sfx/door.wav"
+        },
+        {
+          "name": "假笑",
+          "family": "crowd",
+          "file": "tiaocaoma/audio/sfx/crowd.wav"
+        }
+      ],
+      "actualSeconds": 5.45,
+      "slackSeconds": 2.55,
+      "overflow": false,
+      "compressedGaps": false
+    },
+    {
+      "index": 14,
+      "shotId": "exception-04",
+      "startFrame": 3480,
+      "endFrame": 3744,
+      "targetSeconds": 11,
+      "segments": [
+        {
+          "id": "exception-04-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "店小二接过缰绳，答应得痛快。",
+          "ttsText": "店小二接过缰绳，答应得痛快。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0.35,
+          "audio": "public/tiaocaoma/audio/voice/exception-04-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/exception-04-narr.mp3",
+          "actualSeconds": 3.45,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 3480,
+          "durationInFrames": 83
+        },
+        {
+          "id": "exception-04-dlg-01",
+          "kind": "dialogue",
+          "speaker": "刀疤脸",
+          "text": "好好伺候，可别欺负它啊！",
+          "ttsText": "好好伺候……可别欺负它啊。",
+          "voice": "zh-CN-YunyangNeural",
+          "rate": "-20%",
+          "pitch": "-12Hz",
+          "volume": "-12%",
+          "gapAfterSeconds": 0.2,
+          "audio": "public/tiaocaoma/audio/voice/exception-04-dlg-01.mp3",
+          "staticPath": "tiaocaoma/audio/voice/exception-04-dlg-01.mp3",
+          "actualSeconds": 2.69,
+          "error": null,
+          "startSeconds": 3.725,
+          "relativeStartFrame": 89,
+          "absoluteStartFrame": 3569,
+          "durationInFrames": 65
+        },
+        {
+          "id": "exception-04-dlg-02",
+          "kind": "dialogue",
+          "speaker": "店小二",
+          "text": "客官说笑了。",
+          "ttsText": "客官说笑了。",
+          "voice": "zh-CN-YunxiNeural",
+          "rate": "+9%",
+          "pitch": "+6Hz",
+          "volume": "+5%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/exception-04-dlg-02.mp3",
+          "staticPath": "tiaocaoma/audio/voice/exception-04-dlg-02.mp3",
+          "actualSeconds": 1.36,
+          "error": null,
+          "startSeconds": 6.69,
+          "relativeStartFrame": 161,
+          "absoluteStartFrame": 3641,
+          "durationInFrames": 33
+        }
+      ],
+      "sfx": [
+        {
+          "name": "缰绳摩擦",
+          "family": "cloth",
+          "file": "tiaocaoma/audio/sfx/cloth.wav"
+        },
+        {
+          "name": "憋笑",
+          "family": "crowd",
+          "file": "tiaocaoma/audio/sfx/crowd.wav"
+        },
+        {
+          "name": "铃铛",
+          "family": "bell",
+          "file": "tiaocaoma/audio/sfx/bell.wav"
+        }
+      ],
+      "actualSeconds": 8.05,
+      "slackSeconds": 2.95,
+      "overflow": false,
+      "compressedGaps": false
+    },
+    {
+      "index": 15,
+      "shotId": "exception-05",
+      "startFrame": 3744,
+      "endFrame": 4008,
+      "targetSeconds": 11,
+      "segments": [
+        {
+          "id": "exception-05-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "这话油滑，刀疤脸却没笑。",
+          "ttsText": "这话油滑，刀疤脸却没笑。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0.35,
+          "audio": "public/tiaocaoma/audio/voice/exception-05-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/exception-05-narr.mp3",
+          "actualSeconds": 3.18,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 3744,
+          "durationInFrames": 77
+        },
+        {
+          "id": "exception-05-dlg-01",
+          "kind": "dialogue",
+          "speaker": "店小二",
+          "text": "我两条腿的，怎敢欺负四条腿的？它要发起怒来，踢我一脚，我怎么追得上？",
+          "ttsText": "我两条腿的，怎敢欺负四条腿的？它要发起怒来，踢我一脚，我怎么追得上？",
+          "voice": "zh-CN-YunxiNeural",
+          "rate": "+9%",
+          "pitch": "+6Hz",
+          "volume": "+5%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/exception-05-dlg-01.mp3",
+          "staticPath": "tiaocaoma/audio/voice/exception-05-dlg-01.mp3",
+          "actualSeconds": 6.35,
+          "error": null,
+          "startSeconds": 3.53,
+          "relativeStartFrame": 85,
+          "absoluteStartFrame": 3829,
+          "durationInFrames": 153
+        }
+      ],
+      "sfx": [
+        {
+          "name": "手指点空",
+          "family": "body",
+          "file": "tiaocaoma/audio/sfx/body.wav"
+        },
+        {
+          "name": "轻笑",
+          "family": "crowd",
+          "file": "tiaocaoma/audio/sfx/crowd.wav"
+        },
+        {
+          "name": "马腿刨地",
+          "family": "horse",
+          "file": "tiaocaoma/audio/sfx/horse.wav"
+        }
+      ],
+      "actualSeconds": 9.88,
+      "slackSeconds": 1.12,
+      "overflow": false,
+      "compressedGaps": false
+    },
+    {
+      "index": 16,
+      "shotId": "exception-06",
+      "startFrame": 4008,
+      "endFrame": 4248,
+      "targetSeconds": 10,
+      "segments": [
+        {
+          "id": "exception-06-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "店小二把瘸马牵到最靠西的槽子，扔下一把枯草，就进店去了。那槽子又偏又冷。",
+          "ttsText": "店小二把瘸马牵到最靠西的槽子，扔下一把枯草，就进店去了。那槽子又偏又冷。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/exception-06-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/exception-06-narr.mp3",
+          "actualSeconds": 8.33,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 4008,
+          "durationInFrames": 200
+        }
+      ],
+      "sfx": [
+        {
+          "name": "枯草落地",
+          "family": "wood",
+          "file": "tiaocaoma/audio/sfx/wood.wav"
+        },
+        {
+          "name": "脚步",
+          "family": "crowd",
+          "file": "tiaocaoma/audio/sfx/crowd.wav"
+        },
+        {
+          "name": "铃铛",
+          "family": "bell",
+          "file": "tiaocaoma/audio/sfx/bell.wav"
+        }
+      ],
+      "actualSeconds": 8.33,
+      "slackSeconds": 1.67,
+      "overflow": false,
+      "compressedGaps": false
+    },
+    {
+      "index": 17,
+      "shotId": "exception-07",
+      "startFrame": 4248,
+      "endFrame": 4464,
+      "targetSeconds": 9,
+      "segments": [
+        {
+          "id": "exception-07-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "一个时辰过去，二品大员赵大人酒足饭饱，起身回府。这位赵大人，最讲排场。",
+          "ttsText": "一个时辰过去，二品大员赵大人酒足饭饱，起身回府。这位赵大人，最讲排场。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/exception-07-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/exception-07-narr.mp3",
+          "actualSeconds": 8.96,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 4248,
+          "durationInFrames": 216
+        }
+      ],
+      "sfx": [
+        {
+          "name": "酒杯落桌",
+          "family": "wood",
+          "file": "tiaocaoma/audio/sfx/wood.wav"
+        },
+        {
+          "name": "衣袍摩擦",
+          "family": "cloth",
+          "file": "tiaocaoma/audio/sfx/cloth.wav"
+        },
+        {
+          "name": "椅子轻响",
+          "family": "wood",
+          "file": "tiaocaoma/audio/sfx/wood.wav"
+        }
+      ],
+      "actualSeconds": 8.96,
+      "slackSeconds": 0.04,
+      "overflow": false,
+      "compressedGaps": false
+    },
+    {
+      "index": 18,
+      "shotId": "exception-08",
+      "startFrame": 4464,
+      "endFrame": 4704,
+      "targetSeconds": 10,
+      "segments": [
+        {
+          "id": "exception-08-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "店小二送到马槽前，眼睛直了：那匹瘸腿马，正凑在最靠东的槽子里，大嚼细粮嫩草！",
+          "ttsText": "店小二送到马槽前，眼睛直了：那匹瘸腿马，正凑在最靠东的槽子里，大嚼细粮嫩草！",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/exception-08-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/exception-08-narr.mp3",
+          "actualSeconds": 8.75,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 4464,
+          "durationInFrames": 210
+        }
+      ],
+      "sfx": [
+        {
+          "name": "咀嚼",
+          "family": "horse",
+          "file": "tiaocaoma/audio/sfx/horse.wav"
+        },
+        {
+          "name": "铃铛轻响",
+          "family": "bell",
+          "file": "tiaocaoma/audio/sfx/bell.wav"
+        },
+        {
+          "name": "音乐骤停",
+          "family": "gong",
+          "file": "tiaocaoma/audio/sfx/gong.wav"
+        }
+      ],
+      "actualSeconds": 8.75,
+      "slackSeconds": 1.25,
+      "overflow": false,
+      "compressedGaps": false
+    },
+    {
+      "index": 19,
+      "shotId": "exception-09",
+      "startFrame": 4704,
+      "endFrame": 4944,
+      "targetSeconds": 10,
+      "segments": [
+        {
+          "id": "exception-09-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "话里带着刺。",
+          "ttsText": "话里带着刺。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0.35,
+          "audio": "public/tiaocaoma/audio/voice/exception-09-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/exception-09-narr.mp3",
+          "actualSeconds": 1.56,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 4704,
+          "durationInFrames": 38
+        },
+        {
+          "id": "exception-09-dlg-01",
+          "kind": "dialogue",
+          "speaker": "赵大人",
+          "text": "不知这瘸马是哪位大人的宝驹？难道今日店里还有一品大员，我竟没瞧见？",
+          "ttsText": "不知这瘸马，是哪位大人的宝驹？难道今日店里，还有一品大员，我竟没瞧见？",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "+2%",
+          "pitch": "+2Hz",
+          "volume": "+5%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/exception-09-dlg-01.mp3",
+          "staticPath": "tiaocaoma/audio/voice/exception-09-dlg-01.mp3",
+          "actualSeconds": 7.53,
+          "error": null,
+          "startSeconds": 1.91,
+          "relativeStartFrame": 46,
+          "absoluteStartFrame": 4750,
+          "durationInFrames": 181
+        }
+      ],
+      "sfx": [
+        {
+          "name": "衣袖一甩",
+          "family": "cloth",
+          "file": "tiaocaoma/audio/sfx/cloth.wav"
+        },
+        {
+          "name": "冷声",
+          "family": "crowd",
+          "file": "tiaocaoma/audio/sfx/crowd.wav"
+        }
+      ],
+      "actualSeconds": 9.44,
+      "slackSeconds": 0.56,
+      "overflow": false,
+      "compressedGaps": false
+    },
+    {
+      "index": 20,
+      "shotId": "exception-10",
+      "startFrame": 4944,
+      "endFrame": 5208,
+      "targetSeconds": 11,
+      "segments": [
+        {
+          "id": "exception-10-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "店小二腰弯得像虾米。",
+          "ttsText": "店小二腰弯得像虾米。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0.35,
+          "audio": "public/tiaocaoma/audio/voice/exception-10-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/exception-10-narr.mp3",
+          "actualSeconds": 2.46,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 4944,
+          "durationInFrames": 60
+        },
+        {
+          "id": "exception-10-dlg-01",
+          "kind": "dialogue",
+          "speaker": "店小二",
+          "text": "大人别误会，是小人疏忽，忘了拴好这倒霉马。它是个畜生，不懂人事，大人莫怪。",
+          "ttsText": "大人别误会，是小人疏忽，忘了拴好这倒霉马。它是个畜生，不懂人事，大人莫怪。",
+          "voice": "zh-CN-YunxiNeural",
+          "rate": "+9%",
+          "pitch": "+6Hz",
+          "volume": "+5%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/exception-10-dlg-01.mp3",
+          "staticPath": "tiaocaoma/audio/voice/exception-10-dlg-01.mp3",
+          "actualSeconds": 7.72,
+          "error": null,
+          "startSeconds": 2.81,
+          "relativeStartFrame": 67,
+          "absoluteStartFrame": 5011,
+          "durationInFrames": 186
+        }
+      ],
+      "sfx": [
+        {
+          "name": "赔笑",
+          "family": "crowd",
+          "file": "tiaocaoma/audio/sfx/crowd.wav"
+        },
+        {
+          "name": "马嚼",
+          "family": "horse",
+          "file": "tiaocaoma/audio/sfx/horse.wav"
+        }
+      ],
+      "actualSeconds": 10.53,
+      "slackSeconds": 0.47,
+      "overflow": false,
+      "compressedGaps": false
+    },
+    {
+      "index": 21,
+      "shotId": "exception-11",
+      "startFrame": 5208,
+      "endFrame": 5400,
+      "targetSeconds": 8,
+      "segments": [
+        {
+          "id": "exception-11-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "赵大人只说了句“下不为例”，拂袖而去。店小二擦了一把冷汗。",
+          "ttsText": "赵大人只说了句“下不为例”，拂袖而去。店小二擦了一把冷汗。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/exception-11-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/exception-11-narr.mp3",
+          "actualSeconds": 6.32,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 5208,
+          "durationInFrames": 152
+        }
+      ],
+      "sfx": [
+        {
+          "name": "脚步远去",
+          "family": "crowd",
+          "file": "tiaocaoma/audio/sfx/crowd.wav"
+        },
+        {
+          "name": "擦汗",
+          "family": "cloth",
+          "file": "tiaocaoma/audio/sfx/cloth.wav"
+        },
+        {
+          "name": "马铃",
+          "family": "bell",
+          "file": "tiaocaoma/audio/sfx/bell.wav"
+        }
+      ],
+      "actualSeconds": 6.32,
+      "slackSeconds": 1.68,
+      "overflow": false,
+      "compressedGaps": false
+    },
+    {
+      "index": 22,
+      "shotId": "contest-01",
+      "startFrame": 5400,
+      "endFrame": 5664,
+      "targetSeconds": 11,
+      "segments": [
+        {
+          "id": "contest-01-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "一连几天，刀疤脸总骑着瘸腿马来吃饭。店小二看他颠来颠去，心里直乐：这是图啥呢？真是花钱买罪受。",
+          "ttsText": "一连几天，刀疤脸总骑着瘸腿马来吃饭。店小二看他颠来颠去，心里直乐：这是图啥呢？真是花钱买罪受。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/contest-01-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/contest-01-narr.mp3",
+          "actualSeconds": 11.16,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 5400,
+          "durationInFrames": 268
+        }
+      ],
+      "sfx": [
+        {
+          "name": "铃铛",
+          "family": "bell",
+          "file": "tiaocaoma/audio/sfx/bell.wav"
+        },
+        {
+          "name": "马蹄",
+          "family": "horse",
+          "file": "tiaocaoma/audio/sfx/horse.wav"
+        },
+        {
+          "name": "翻纸",
+          "family": "paper",
+          "file": "tiaocaoma/audio/sfx/paper.wav"
+        }
+      ],
+      "actualSeconds": 11.16,
+      "slackSeconds": -0.16,
+      "overflow": true,
+      "compressedGaps": false
+    },
+    {
+      "index": 23,
+      "shotId": "contest-02",
+      "startFrame": 5664,
+      "endFrame": 5928,
+      "targetSeconds": 11,
+      "segments": [
+        {
+          "id": "contest-02-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "更气人的是，别人来总点几样招牌菜，他倒好，只点一碟花生米、一壶小酒，一颗一颗数着吃，惬意得很。",
+          "ttsText": "更气人的是，别人来总点几样招牌菜，他倒好，只点一碟花生米、一壶小酒，一颗一颗数着吃，惬意得很。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/contest-02-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/contest-02-narr.mp3",
+          "actualSeconds": 10.07,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 5664,
+          "durationInFrames": 242
+        }
+      ],
+      "sfx": [
+        {
+          "name": "花生落碟",
+          "family": "wood",
+          "file": "tiaocaoma/audio/sfx/wood.wav"
+        },
+        {
+          "name": "酒入杯",
+          "family": "metal",
+          "file": "tiaocaoma/audio/sfx/metal.wav"
+        },
+        {
+          "name": "筷子轻碰",
+          "family": "metal",
+          "file": "tiaocaoma/audio/sfx/metal.wav"
+        }
+      ],
+      "actualSeconds": 10.07,
+      "slackSeconds": 0.93,
+      "overflow": false,
+      "compressedGaps": false
+    },
+    {
+      "index": 24,
+      "shotId": "contest-03",
+      "startFrame": 5928,
+      "endFrame": 6096,
+      "targetSeconds": 7,
+      "segments": [
+        {
+          "id": "contest-03-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "店小二看得直咬牙，擦桌子的手都重了三分。他越看越来气。",
+          "ttsText": "店小二看得直咬牙，擦桌子的手都重了三分。他越看越来气。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/contest-03-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/contest-03-narr.mp3",
+          "actualSeconds": 6.27,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 5928,
+          "durationInFrames": 151
+        }
+      ],
+      "sfx": [
+        {
+          "name": "抹布摩擦",
+          "family": "cloth",
+          "file": "tiaocaoma/audio/sfx/cloth.wav"
+        },
+        {
+          "name": "咬牙",
+          "family": "body",
+          "file": "tiaocaoma/audio/sfx/body.wav"
+        },
+        {
+          "name": "算盘轻响",
+          "family": "abacus",
+          "file": "tiaocaoma/audio/sfx/abacus.wav"
+        }
+      ],
+      "actualSeconds": 6.27,
+      "slackSeconds": 0.73,
+      "overflow": false,
+      "compressedGaps": false
+    },
+    {
+      "index": 25,
+      "shotId": "contest-04",
+      "startFrame": 6096,
+      "endFrame": 6360,
+      "targetSeconds": 11,
+      "segments": [
+        {
+          "id": "contest-04-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "这天刀疤脸又来了。店小二把缰绳在木桩上系了个死扣：这回看你往哪跑！他使出了吃奶的劲。",
+          "ttsText": "这天刀疤脸又来了。店小二把缰绳在木桩上系了个死扣：这回看你往哪跑！他使出了吃奶的劲。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/contest-04-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/contest-04-narr.mp3",
+          "actualSeconds": 9.84,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 6096,
+          "durationInFrames": 237
+        }
+      ],
+      "sfx": [
+        {
+          "name": "绳子勒紧",
+          "family": "cloth",
+          "file": "tiaocaoma/audio/sfx/cloth.wav"
+        },
+        {
+          "name": "木桩闷响",
+          "family": "wood",
+          "file": "tiaocaoma/audio/sfx/wood.wav"
+        },
+        {
+          "name": "马鼻息",
+          "family": "horse",
+          "file": "tiaocaoma/audio/sfx/horse.wav"
+        }
+      ],
+      "actualSeconds": 9.84,
+      "slackSeconds": 1.16,
+      "overflow": false,
+      "compressedGaps": false
+    },
+    {
+      "index": 26,
+      "shotId": "contest-05",
+      "startFrame": 6360,
+      "endFrame": 6528,
+      "targetSeconds": 7,
+      "segments": [
+        {
+          "id": "contest-05-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "不巧，今天店里来了一位一品大员。真正的大人物。",
+          "ttsText": "不巧，今天店里来了一位一品大员。真正的大人物。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/contest-05-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/contest-05-narr.mp3",
+          "actualSeconds": 5.18,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 6360,
+          "durationInFrames": 125
+        }
+      ],
+      "sfx": [
+        {
+          "name": "锣声一响",
+          "family": "gong",
+          "file": "tiaocaoma/audio/sfx/gong.wav"
+        },
+        {
+          "name": "整齐脚步",
+          "family": "crowd",
+          "file": "tiaocaoma/audio/sfx/crowd.wav"
+        },
+        {
+          "name": "马铃",
+          "family": "bell",
+          "file": "tiaocaoma/audio/sfx/bell.wav"
+        }
+      ],
+      "actualSeconds": 5.18,
+      "slackSeconds": 1.82,
+      "overflow": false,
+      "compressedGaps": false
+    },
+    {
+      "index": 27,
+      "shotId": "contest-06",
+      "startFrame": 6528,
+      "endFrame": 6816,
+      "targetSeconds": 12,
+      "segments": [
+        {
+          "id": "contest-06-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "一品大员饭后到后院，脸色骤变：那匹瘸马，又蹭到最靠东的槽子，吃起了细粮嫩草！他简直不敢相信自己的眼睛。",
+          "ttsText": "一品大员饭后到后院，脸色骤变：那匹瘸马，又蹭到最靠东的槽子，吃起了细粮嫩草！他简直不敢相信自己的眼睛。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/contest-06-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/contest-06-narr.mp3",
+          "actualSeconds": 11.6,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 6528,
+          "durationInFrames": 279
+        }
+      ],
+      "sfx": [
+        {
+          "name": "铃铛",
+          "family": "bell",
+          "file": "tiaocaoma/audio/sfx/bell.wav"
+        },
+        {
+          "name": "音乐重音",
+          "family": "gong",
+          "file": "tiaocaoma/audio/sfx/gong.wav"
+        },
+        {
+          "name": "倒吸气",
+          "family": "body",
+          "file": "tiaocaoma/audio/sfx/body.wav"
+        }
+      ],
+      "actualSeconds": 11.6,
+      "slackSeconds": 0.4,
+      "overflow": false,
+      "compressedGaps": false
+    },
+    {
+      "index": 28,
+      "shotId": "contest-07",
+      "startFrame": 6816,
+      "endFrame": 7080,
+      "targetSeconds": 11,
+      "segments": [
+        {
+          "id": "contest-07-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "店小二跑到木桩前一看，娘啊，木桩被蹭掉一层，缰绳也有磨损——这破马会用嘴解扣！心都凉了半截。",
+          "ttsText": "店小二跑到木桩前一看，娘啊，木桩被蹭掉一层，缰绳也有磨损——这破马会用嘴解扣！心都凉了半截。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/contest-07-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/contest-07-narr.mp3",
+          "actualSeconds": 10.35,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 6816,
+          "durationInFrames": 249
+        }
+      ],
+      "sfx": [
+        {
+          "name": "木头摩擦",
+          "family": "wood",
+          "file": "tiaocaoma/audio/sfx/wood.wav"
+        },
+        {
+          "name": "倒吸气",
+          "family": "body",
+          "file": "tiaocaoma/audio/sfx/body.wav"
+        },
+        {
+          "name": "木屑落地",
+          "family": "paper",
+          "file": "tiaocaoma/audio/sfx/paper.wav"
+        }
+      ],
+      "actualSeconds": 10.35,
+      "slackSeconds": 0.65,
+      "overflow": false,
+      "compressedGaps": false
+    },
+    {
+      "index": 29,
+      "shotId": "contest-08",
+      "startFrame": 7080,
+      "endFrame": 7344,
+      "targetSeconds": 11,
+      "segments": [
+        {
+          "id": "contest-08-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "一品大员的脸，黑得能滴出水来。",
+          "ttsText": "一品大员的脸，黑得能滴出水来。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0.35,
+          "audio": "public/tiaocaoma/audio/voice/contest-08-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/contest-08-narr.mp3",
+          "actualSeconds": 3.33,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 7080,
+          "durationInFrames": 80
+        },
+        {
+          "id": "contest-08-dlg-01",
+          "kind": "dialogue",
+          "speaker": "一品大员",
+          "text": "怎么？难道当今圣上今日不在宫中用膳，跑来你这饭馆寻乐？",
+          "ttsText": "怎么？……难道当今圣上，今日不在宫中用膳，……跑来你这饭馆寻乐？",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-18%",
+          "pitch": "-10Hz",
+          "volume": "-6%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/contest-08-dlg-01.mp3",
+          "staticPath": "tiaocaoma/audio/voice/contest-08-dlg-01.mp3",
+          "actualSeconds": 7.16,
+          "error": null,
+          "startSeconds": 3.68,
+          "relativeStartFrame": 88,
+          "absoluteStartFrame": 7168,
+          "durationInFrames": 172
+        }
+      ],
+      "sfx": [
+        {
+          "name": "冷风",
+          "family": "weather",
+          "file": "tiaocaoma/audio/sfx/weather.wav"
+        },
+        {
+          "name": "衣袍",
+          "family": "cloth",
+          "file": "tiaocaoma/audio/sfx/cloth.wav"
+        },
+        {
+          "name": "堂威低鸣",
+          "family": "gong",
+          "file": "tiaocaoma/audio/sfx/gong.wav"
+        }
+      ],
+      "actualSeconds": 10.84,
+      "slackSeconds": 0.16,
+      "overflow": false,
+      "compressedGaps": false
+    },
+    {
+      "index": 30,
+      "shotId": "contest-09",
+      "startFrame": 7344,
+      "endFrame": 7656,
+      "targetSeconds": 13,
+      "segments": [
+        {
+          "id": "contest-09-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "店小二扑通跪倒，磕头如鸡啄米。一品大员一甩袖子，走了。店小二的魂都吓飞了。",
+          "ttsText": "店小二扑通跪倒，磕头如鸡啄米。一品大员一甩袖子，走了。店小二的魂都吓飞了。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0.35,
+          "audio": "public/tiaocaoma/audio/voice/contest-09-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/contest-09-narr.mp3",
+          "actualSeconds": 9.39,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 7344,
+          "durationInFrames": 226
+        },
+        {
+          "id": "contest-09-dlg-01",
+          "kind": "dialogue",
+          "speaker": "一品大员",
+          "text": "下次再看到这破马扫本大人的兴……",
+          "ttsText": "下次……再看到这破马……扫本大人的兴。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-18%",
+          "pitch": "-10Hz",
+          "volume": "-6%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/contest-09-dlg-01.mp3",
+          "staticPath": "tiaocaoma/audio/voice/contest-09-dlg-01.mp3",
+          "actualSeconds": 4.81,
+          "error": null,
+          "startSeconds": 9.51,
+          "relativeStartFrame": 228,
+          "absoluteStartFrame": 7572,
+          "durationInFrames": 116
+        }
+      ],
+      "sfx": [
+        {
+          "name": "磕头",
+          "family": "body",
+          "file": "tiaocaoma/audio/sfx/body.wav"
+        },
+        {
+          "name": "甩袖",
+          "family": "cloth",
+          "file": "tiaocaoma/audio/sfx/cloth.wav"
+        },
+        {
+          "name": "脚步",
+          "family": "crowd",
+          "file": "tiaocaoma/audio/sfx/crowd.wav"
+        }
+      ],
+      "actualSeconds": 14.32,
+      "slackSeconds": -1.32,
+      "overflow": true,
+      "compressedGaps": true
+    },
+    {
+      "index": 31,
+      "shotId": "contest-10",
+      "startFrame": 7656,
+      "endFrame": 7920,
+      "targetSeconds": 11,
+      "segments": [
+        {
+          "id": "contest-10-dlg-01",
+          "kind": "dialogue",
+          "speaker": "店小二",
+          "text": "客官，您那良驹太不安分，能不能别带它来？",
+          "ttsText": "客官，您那良驹太不安分，能不能别带它来？",
+          "voice": "zh-CN-YunxiNeural",
+          "rate": "+9%",
+          "pitch": "+6Hz",
+          "volume": "+5%",
+          "gapAfterSeconds": 0.2,
+          "audio": "public/tiaocaoma/audio/voice/contest-10-dlg-01.mp3",
+          "staticPath": "tiaocaoma/audio/voice/contest-10-dlg-01.mp3",
+          "actualSeconds": 3.92,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 7656,
+          "durationInFrames": 95
+        },
+        {
+          "id": "contest-10-dlg-02",
+          "kind": "dialogue",
+          "speaker": "刀疤脸",
+          "text": "一派胡言！我与赛赤兔感情深厚，人在马在！",
+          "ttsText": "一派胡言！……我与赛赤兔感情深厚，人在马在！",
+          "voice": "zh-CN-YunyangNeural",
+          "rate": "-20%",
+          "pitch": "-12Hz",
+          "volume": "-12%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/contest-10-dlg-02.mp3",
+          "staticPath": "tiaocaoma/audio/voice/contest-10-dlg-02.mp3",
+          "actualSeconds": 5.5,
+          "error": null,
+          "startSeconds": 4.12,
+          "relativeStartFrame": 99,
+          "absoluteStartFrame": 7755,
+          "durationInFrames": 132
+        }
+      ],
+      "sfx": [
+        {
+          "name": "酒盅顿桌",
+          "family": "wood",
+          "file": "tiaocaoma/audio/sfx/wood.wav"
+        },
+        {
+          "name": "马铃",
+          "family": "bell",
+          "file": "tiaocaoma/audio/sfx/bell.wav"
+        },
+        {
+          "name": "椅子挪动",
+          "family": "wood",
+          "file": "tiaocaoma/audio/sfx/wood.wav"
+        }
+      ],
+      "actualSeconds": 9.62,
+      "slackSeconds": 1.38,
+      "overflow": false,
+      "compressedGaps": false
+    },
+    {
+      "index": 32,
+      "shotId": "hunger-01",
+      "startFrame": 7920,
+      "endFrame": 8184,
+      "targetSeconds": 11,
+      "segments": [
+        {
+          "id": "hunger-01-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "这回，店小二在马头上多加一根粗绳，桩上系死扣，还派小童死死盯着。看你还怎么解！这回是双保险。",
+          "ttsText": "这回，店小二在马头上多加一根粗绳，桩上系死扣，还派小童死死盯着。看你还怎么解！这回是双保险。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/hunger-01-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/hunger-01-narr.mp3",
+          "actualSeconds": 11.79,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 7920,
+          "durationInFrames": 283
+        }
+      ],
+      "sfx": [
+        {
+          "name": "粗绳摩擦",
+          "family": "cloth",
+          "file": "tiaocaoma/audio/sfx/cloth.wav"
+        },
+        {
+          "name": "木凳落地",
+          "family": "wood",
+          "file": "tiaocaoma/audio/sfx/wood.wav"
+        },
+        {
+          "name": "小童脚步",
+          "family": "crowd",
+          "file": "tiaocaoma/audio/sfx/crowd.wav"
+        }
+      ],
+      "actualSeconds": 11.79,
+      "slackSeconds": -0.79,
+      "overflow": true,
+      "compressedGaps": false
+    },
+    {
+      "index": 33,
+      "shotId": "hunger-02",
+      "startFrame": 8184,
+      "endFrame": 8400,
+      "targetSeconds": 9,
+      "segments": [
+        {
+          "id": "hunger-02-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "瘸马挣不脱，脾气却上来了，梗着脖子，半点草料不吃。它宁可饿着，也不低头。",
+          "ttsText": "瘸马挣不脱，脾气却上来了，梗着脖子，半点草料不吃。它宁可饿着，也不低头。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/hunger-02-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/hunger-02-narr.mp3",
+          "actualSeconds": 8.43,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 8184,
+          "durationInFrames": 203
+        }
+      ],
+      "sfx": [
+        {
+          "name": "马鼻息",
+          "family": "horse",
+          "file": "tiaocaoma/audio/sfx/horse.wav"
+        },
+        {
+          "name": "绳子绷紧",
+          "family": "cloth",
+          "file": "tiaocaoma/audio/sfx/cloth.wav"
+        }
+      ],
+      "actualSeconds": 8.43,
+      "slackSeconds": 0.57,
+      "overflow": false,
+      "compressedGaps": false
+    },
+    {
+      "index": 34,
+      "shotId": "hunger-03",
+      "startFrame": 8400,
+      "endFrame": 8640,
+      "targetSeconds": 10,
+      "segments": [
+        {
+          "id": "hunger-03-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "店小二心里痛快：“不吃才好呢！你主人一碟花生米，还不够你吃草的钱！”小算盘打得噼啪响。",
+          "ttsText": "店小二心里痛快：“不吃才好呢！你主人一碟花生米，还不够你吃草的钱！”小算盘打得噼啪响。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/hunger-03-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/hunger-03-narr.mp3",
+          "actualSeconds": 10.09,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 8400,
+          "durationInFrames": 243
+        }
+      ],
+      "sfx": [
+        {
+          "name": "算盘声",
+          "family": "abacus",
+          "file": "tiaocaoma/audio/sfx/abacus.wav"
+        },
+        {
+          "name": "哼小曲",
+          "family": "wood",
+          "file": "tiaocaoma/audio/sfx/wood.wav"
+        }
+      ],
+      "actualSeconds": 10.09,
+      "slackSeconds": -0.09,
+      "overflow": true,
+      "compressedGaps": false
+    },
+    {
+      "index": 35,
+      "shotId": "hunger-04",
+      "startFrame": 8640,
+      "endFrame": 8928,
+      "targetSeconds": 12,
+      "segments": [
+        {
+          "id": "hunger-04-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "可没美几天，怪事来了：那些达官显贵的马，见瘸马不进食，竟都立在一边乖乖候着，谁也不敢低头。这叫什么事儿？",
+          "ttsText": "可没美几天，怪事来了：那些达官显贵的马，见瘸马不进食，竟都立在一边乖乖候着，谁也不敢低头。这叫什么事儿？",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/hunger-04-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/hunger-04-narr.mp3",
+          "actualSeconds": 11.46,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 8640,
+          "durationInFrames": 276
+        }
+      ],
+      "sfx": [
+        {
+          "name": "马群骚动后安静",
+          "family": "silence",
+          "file": null
+        },
+        {
+          "name": "铃铛轻响",
+          "family": "bell",
+          "file": "tiaocaoma/audio/sfx/bell.wav"
+        }
+      ],
+      "actualSeconds": 11.46,
+      "slackSeconds": 0.54,
+      "overflow": false,
+      "compressedGaps": false
+    },
+    {
+      "index": 36,
+      "shotId": "hunger-05",
+      "startFrame": 8928,
+      "endFrame": 9216,
+      "targetSeconds": 12,
+      "segments": [
+        {
+          "id": "hunger-05-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "店小二敲着槽沿：“吃啊！你们家主人多厉害，别让这破瘸马唬住了！”可众马还是胆战心惊，不敢动草。嗓子都喊哑了。",
+          "ttsText": "店小二敲着槽沿：“吃啊！你们家主人多厉害，别让这破瘸马唬住了！”可众马还是胆战心惊，不敢动草。嗓子都喊哑了。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/hunger-05-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/hunger-05-narr.mp3",
+          "actualSeconds": 12.85,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 8928,
+          "durationInFrames": 309
+        }
+      ],
+      "sfx": [
+        {
+          "name": "急促敲槽",
+          "family": "wood",
+          "file": "tiaocaoma/audio/sfx/wood.wav"
+        },
+        {
+          "name": "马退",
+          "family": "horse",
+          "file": "tiaocaoma/audio/sfx/horse.wav"
+        },
+        {
+          "name": "纸屑落地",
+          "family": "paper",
+          "file": "tiaocaoma/audio/sfx/paper.wav"
+        }
+      ],
+      "actualSeconds": 12.85,
+      "slackSeconds": -0.85,
+      "overflow": true,
+      "compressedGaps": false
+    },
+    {
+      "index": 37,
+      "shotId": "hunger-06",
+      "startFrame": 9216,
+      "endFrame": 9456,
+      "targetSeconds": 10,
+      "segments": [
+        {
+          "id": "hunger-06-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "日子一长，马匹白天不敢吃，回府再猛补，一饿一撑，全都瘦了下去。马瘦毛长，瞒不住了。",
+          "ttsText": "日子一长，马匹白天不敢吃，回府再猛补，一饿一撑，全都瘦了下去。马瘦毛长，瞒不住了。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/hunger-06-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/hunger-06-narr.mp3",
+          "actualSeconds": 9.72,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 9216,
+          "durationInFrames": 234
+        }
+      ],
+      "sfx": [
+        {
+          "name": "夜风",
+          "family": "weather",
+          "file": "tiaocaoma/audio/sfx/weather.wav"
+        },
+        {
+          "name": "远处马嚼",
+          "family": "horse",
+          "file": "tiaocaoma/audio/sfx/horse.wav"
+        },
+        {
+          "name": "更鼓",
+          "family": "gong",
+          "file": "tiaocaoma/audio/sfx/gong.wav"
+        }
+      ],
+      "actualSeconds": 9.72,
+      "slackSeconds": 0.28,
+      "overflow": false,
+      "compressedGaps": false
+    },
+    {
+      "index": 38,
+      "shotId": "hunger-07",
+      "startFrame": 9456,
+      "endFrame": 9672,
+      "targetSeconds": 9,
+      "segments": [
+        {
+          "id": "hunger-07-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "达官显贵察觉了，纷纷质问店小二：是不是照看马匹不周？一个个找上门来。",
+          "ttsText": "达官显贵察觉了，纷纷质问店小二：是不是照看马匹不周？一个个找上门来。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/hunger-07-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/hunger-07-narr.mp3",
+          "actualSeconds": 7.7,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 9456,
+          "durationInFrames": 185
+        }
+      ],
+      "sfx": [
+        {
+          "name": "马鞍晃动",
+          "family": "horse",
+          "file": "tiaocaoma/audio/sfx/horse.wav"
+        },
+        {
+          "name": "质问声",
+          "family": "crowd",
+          "file": "tiaocaoma/audio/sfx/crowd.wav"
+        },
+        {
+          "name": "衣袍摩擦",
+          "family": "cloth",
+          "file": "tiaocaoma/audio/sfx/cloth.wav"
+        }
+      ],
+      "actualSeconds": 7.7,
+      "slackSeconds": 1.3,
+      "overflow": false,
+      "compressedGaps": false
+    },
+    {
+      "index": 39,
+      "shotId": "hunger-08",
+      "startFrame": 9672,
+      "endFrame": 9936,
+      "targetSeconds": 11,
+      "segments": [
+        {
+          "id": "hunger-08-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "店小二不敢再瞒，把那瘸腿马的事，一五一十全说了。赵大人和几位官员一听，勃然大怒。纸包不住火。",
+          "ttsText": "店小二不敢再瞒，把那瘸腿马的事，一五一十全说了。赵大人和几位官员一听，勃然大怒。纸包不住火。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/hunger-08-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/hunger-08-narr.mp3",
+          "actualSeconds": 10.87,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 9672,
+          "durationInFrames": 261
+        }
+      ],
+      "sfx": [
+        {
+          "name": "倒吸气",
+          "family": "body",
+          "file": "tiaocaoma/audio/sfx/body.wav"
+        },
+        {
+          "name": "拍案",
+          "family": "wood",
+          "file": "tiaocaoma/audio/sfx/wood.wav"
+        },
+        {
+          "name": "纸片窸窣",
+          "family": "paper",
+          "file": "tiaocaoma/audio/sfx/paper.wav"
+        }
+      ],
+      "actualSeconds": 10.87,
+      "slackSeconds": 0.13,
+      "overflow": false,
+      "compressedGaps": false
+    },
+    {
+      "index": 40,
+      "shotId": "hunger-09",
+      "startFrame": 9936,
+      "endFrame": 10200,
+      "targetSeconds": 11,
+      "segments": [
+        {
+          "id": "hunger-09-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "堂鼓一响，众人到齐。他们把刀疤脸叫到跟前。",
+          "ttsText": "堂鼓一响，众人到齐。他们把刀疤脸叫到跟前。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0.35,
+          "audio": "public/tiaocaoma/audio/voice/hunger-09-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/hunger-09-narr.mp3",
+          "actualSeconds": 5.15,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 9936,
+          "durationInFrames": 124
+        },
+        {
+          "id": "hunger-09-dlg-01",
+          "kind": "dialogue",
+          "speaker": "赵大人",
+          "text": "你好大的胆子，竟敢拿一匹瘸马吓唬本大人的坐骑！",
+          "ttsText": "你好大的胆子，竟敢拿一匹瘸马吓唬本大人的坐骑！",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "+2%",
+          "pitch": "+2Hz",
+          "volume": "+5%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/hunger-09-dlg-01.mp3",
+          "staticPath": "tiaocaoma/audio/voice/hunger-09-dlg-01.mp3",
+          "actualSeconds": 4.77,
+          "error": null,
+          "startSeconds": 5.5,
+          "relativeStartFrame": 132,
+          "absoluteStartFrame": 10068,
+          "durationInFrames": 115
+        }
+      ],
+      "sfx": [
+        {
+          "name": "堂鼓一响",
+          "family": "gong",
+          "file": "tiaocaoma/audio/sfx/gong.wav"
+        },
+        {
+          "name": "脚步",
+          "family": "crowd",
+          "file": "tiaocaoma/audio/sfx/crowd.wav"
+        },
+        {
+          "name": "灯焰抖动",
+          "family": "weather",
+          "file": "tiaocaoma/audio/sfx/weather.wav"
+        }
+      ],
+      "actualSeconds": 10.27,
+      "slackSeconds": 0.73,
+      "overflow": false,
+      "compressedGaps": false
+    },
+    {
+      "index": 41,
+      "shotId": "truth-01",
+      "startFrame": 10200,
+      "endFrame": 10512,
+      "targetSeconds": 13,
+      "segments": [
+        {
+          "id": "truth-01-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "刀疤脸被带到堂前，赵大人拍案而起：“你好大的胆子，竟敢拿一匹瘸腿马来吓唬本大人的坐骑！你该当何罪？”堂上鸦雀无声。",
+          "ttsText": "刀疤脸被带到堂前，赵大人拍案而起：“你好大的胆子，竟敢拿一匹瘸腿马来吓唬本大人的坐骑！你该当何罪？”堂上鸦雀无声。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/truth-01-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/truth-01-narr.mp3",
+          "actualSeconds": 13.02,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 10200,
+          "durationInFrames": 313
+        }
+      ],
+      "sfx": [
+        {
+          "name": "拍案",
+          "family": "wood",
+          "file": "tiaocaoma/audio/sfx/wood.wav"
+        },
+        {
+          "name": "茶杯跳",
+          "family": "metal",
+          "file": "tiaocaoma/audio/sfx/metal.wav"
+        },
+        {
+          "name": "堂威",
+          "family": "gong",
+          "file": "tiaocaoma/audio/sfx/gong.wav"
+        }
+      ],
+      "actualSeconds": 13.02,
+      "slackSeconds": -0.02,
+      "overflow": true,
+      "compressedGaps": false
+    },
+    {
+      "index": 42,
+      "shotId": "truth-02",
+      "startFrame": 10512,
+      "endFrame": 10704,
+      "targetSeconds": 8,
+      "segments": [
+        {
+          "id": "truth-02-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "刀疤脸不慌不忙。",
+          "ttsText": "刀疤脸不慌不忙。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0.35,
+          "audio": "public/tiaocaoma/audio/voice/truth-02-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/truth-02-narr.mp3",
+          "actualSeconds": 1.9,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 10512,
+          "durationInFrames": 46
+        },
+        {
+          "id": "truth-02-dlg-01",
+          "kind": "dialogue",
+          "speaker": "刀疤脸",
+          "text": "大人明鉴，在下只是骑马来吃饭。马不吃草，这有何罪？",
+          "ttsText": "大人明鉴……在下只是骑马来吃饭。马不吃草，这有何罪？",
+          "voice": "zh-CN-YunyangNeural",
+          "rate": "-20%",
+          "pitch": "-12Hz",
+          "volume": "-12%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/truth-02-dlg-01.mp3",
+          "staticPath": "tiaocaoma/audio/voice/truth-02-dlg-01.mp3",
+          "actualSeconds": 6.52,
+          "error": null,
+          "startSeconds": 2.02,
+          "relativeStartFrame": 48,
+          "absoluteStartFrame": 10560,
+          "durationInFrames": 157
+        }
+      ],
+      "sfx": [
+        {
+          "name": "堂上安静",
+          "family": "silence",
+          "file": null
+        },
+        {
+          "name": "衣袍轻响",
+          "family": "cloth",
+          "file": "tiaocaoma/audio/sfx/cloth.wav"
+        }
+      ],
+      "actualSeconds": 8.54,
+      "slackSeconds": -0.54,
+      "overflow": true,
+      "compressedGaps": true
+    },
+    {
+      "index": 43,
+      "shotId": "truth-03",
+      "startFrame": 10704,
+      "endFrame": 10920,
+      "targetSeconds": 9,
+      "segments": [
+        {
+          "id": "truth-03-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "赵大人气得抽出长剑，挥向刀疤脸的右臂。刀疤脸抬手去挡——“喀嚓”一声！剑风一闪。",
+          "ttsText": "赵大人气得抽出长剑，挥向刀疤脸的右臂。刀疤脸抬手去挡——“喀嚓”一声！剑风一闪。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/truth-03-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/truth-03-narr.mp3",
+          "actualSeconds": 9.37,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 10704,
+          "durationInFrames": 225
+        }
+      ],
+      "sfx": [
+        {
+          "name": "拔剑",
+          "family": "sword",
+          "file": "tiaocaoma/audio/sfx/sword.wav"
+        },
+        {
+          "name": "破风",
+          "family": "sword",
+          "file": "tiaocaoma/audio/sfx/sword.wav"
+        },
+        {
+          "name": "纸幕撕裂",
+          "family": "paper",
+          "file": "tiaocaoma/audio/sfx/paper.wav"
+        }
+      ],
+      "actualSeconds": 9.37,
+      "slackSeconds": -0.37,
+      "overflow": true,
+      "compressedGaps": false
+    },
+    {
+      "index": 44,
+      "shotId": "truth-04",
+      "startFrame": 10920,
+      "endFrame": 11160,
+      "targetSeconds": 10,
+      "segments": [
+        {
+          "id": "truth-04-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "右臂应声而断，却不见半点鲜血。众人仔细一看：那竟是一条木头做的假肢！众人都愣住了。",
+          "ttsText": "右臂应声而断，却不见半点鲜血。众人仔细一看：那竟是一条木头做的假肢！众人都愣住了。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/truth-04-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/truth-04-narr.mp3",
+          "actualSeconds": 10.15,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 10920,
+          "durationInFrames": 244
+        }
+      ],
+      "sfx": [
+        {
+          "name": "木头滚地",
+          "family": "wood",
+          "file": "tiaocaoma/audio/sfx/wood.wav"
+        },
+        {
+          "name": "全场静默",
+          "family": "silence",
+          "file": null
+        }
+      ],
+      "actualSeconds": 10.15,
+      "slackSeconds": -0.15,
+      "overflow": true,
+      "compressedGaps": false
+    },
+    {
+      "index": 45,
+      "shotId": "truth-05",
+      "startFrame": 11160,
+      "endFrame": 11328,
+      "targetSeconds": 7,
+      "segments": [
+        {
+          "id": "truth-05-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "店小二吓得结巴。",
+          "ttsText": "店小二吓得结巴。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0.35,
+          "audio": "public/tiaocaoma/audio/voice/truth-05-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/truth-05-narr.mp3",
+          "actualSeconds": 1.86,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 11160,
+          "durationInFrames": 45
+        },
+        {
+          "id": "truth-05-dlg-01",
+          "kind": "dialogue",
+          "speaker": "店小二",
+          "text": "没……没胳膊啊……断臂人骑瘸腿马，倒是般配。",
+          "ttsText": "没……没胳膊啊……断臂人骑瘸腿马，倒是般配。",
+          "voice": "zh-CN-YunxiNeural",
+          "rate": "+9%",
+          "pitch": "+6Hz",
+          "volume": "+5%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/truth-05-dlg-01.mp3",
+          "staticPath": "tiaocaoma/audio/voice/truth-05-dlg-01.mp3",
+          "actualSeconds": 3.83,
+          "error": null,
+          "startSeconds": 2.21,
+          "relativeStartFrame": 53,
+          "absoluteStartFrame": 11213,
+          "durationInFrames": 92
+        }
+      ],
+      "sfx": [
+        {
+          "name": "牙齿打颤",
+          "family": "body",
+          "file": "tiaocaoma/audio/sfx/body.wav"
+        },
+        {
+          "name": "纸片窸窣",
+          "family": "paper",
+          "file": "tiaocaoma/audio/sfx/paper.wav"
+        }
+      ],
+      "actualSeconds": 6.04,
+      "slackSeconds": 0.96,
+      "overflow": false,
+      "compressedGaps": false
+    },
+    {
+      "index": 46,
+      "shotId": "truth-06",
+      "startFrame": 11328,
+      "endFrame": 11616,
+      "targetSeconds": 12,
+      "segments": [
+        {
+          "id": "truth-06-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "刀疤脸仰天长啸，笑声震得堂上众人面面相觑。这一问，问出了十几年的旧账。",
+          "ttsText": "刀疤脸仰天长啸，笑声震得堂上众人面面相觑。这一问，问出了十几年的旧账。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0.35,
+          "audio": "public/tiaocaoma/audio/voice/truth-06-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/truth-06-narr.mp3",
+          "actualSeconds": 8.25,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 11328,
+          "durationInFrames": 198
+        },
+        {
+          "id": "truth-06-dlg-01",
+          "kind": "dialogue",
+          "speaker": "赵大人",
+          "text": "你到底是谁？",
+          "ttsText": "你到底是谁？",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "+2%",
+          "pitch": "+2Hz",
+          "volume": "+5%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/truth-06-dlg-01.mp3",
+          "staticPath": "tiaocaoma/audio/voice/truth-06-dlg-01.mp3",
+          "actualSeconds": 1.34,
+          "error": null,
+          "startSeconds": 8.6,
+          "relativeStartFrame": 206,
+          "absoluteStartFrame": 11534,
+          "durationInFrames": 33
+        }
+      ],
+      "sfx": [
+        {
+          "name": "长啸",
+          "family": "body",
+          "file": "tiaocaoma/audio/sfx/body.wav"
+        },
+        {
+          "name": "灯焰抖动",
+          "family": "weather",
+          "file": "tiaocaoma/audio/sfx/weather.wav"
+        },
+        {
+          "name": "回声",
+          "family": "crowd",
+          "file": "tiaocaoma/audio/sfx/crowd.wav"
+        }
+      ],
+      "actualSeconds": 9.94,
+      "slackSeconds": 2.06,
+      "overflow": false,
+      "compressedGaps": false
+    },
+    {
+      "index": 47,
+      "shotId": "truth-07",
+      "startFrame": 11616,
+      "endFrame": 11904,
+      "targetSeconds": 12,
+      "segments": [
+        {
+          "id": "truth-07-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "十几年前，我为朝廷横戈跃马，把叛军杀得丢盔卸甲，生擒贼首。可一次激战，我中了毒箭，郎中只能砍去我的右臂。",
+          "ttsText": "十几年前，我为朝廷横戈跃马，把叛军杀得丢盔卸甲，生擒贼首。可一次激战，我中了毒箭，郎中只能砍去我的右臂。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/truth-07-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/truth-07-narr.mp3",
+          "actualSeconds": 11.96,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 11616,
+          "durationInFrames": 288
+        }
+      ],
+      "sfx": [
+        {
+          "name": "战鼓",
+          "family": "gong",
+          "file": "tiaocaoma/audio/sfx/gong.wav"
+        },
+        {
+          "name": "兵器碰撞",
+          "family": "metal",
+          "file": "tiaocaoma/audio/sfx/metal.wav"
+        },
+        {
+          "name": "箭矢破空",
+          "family": "sword",
+          "file": "tiaocaoma/audio/sfx/sword.wav"
+        }
+      ],
+      "actualSeconds": 11.96,
+      "slackSeconds": 0.04,
+      "overflow": false,
+      "compressedGaps": false
+    },
+    {
+      "index": 48,
+      "shotId": "truth-08",
+      "startFrame": 11904,
+      "endFrame": 12168,
+      "targetSeconds": 11,
+      "segments": [
+        {
+          "id": "truth-08-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "朝廷见我不能再上马，兔死狗烹，把我抛弃了。我的战马也中了地钩刀，从此瘸了。一将功成，万骨枯。",
+          "ttsText": "朝廷见我不能再上马，兔死狗烹，把我抛弃了。我的战马也中了地钩刀，从此瘸了。一将功成，万骨枯。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/truth-08-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/truth-08-narr.mp3",
+          "actualSeconds": 11.53,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 11904,
+          "durationInFrames": 277
+        }
+      ],
+      "sfx": [
+        {
+          "name": "宫门闷响",
+          "family": "door",
+          "file": "tiaocaoma/audio/sfx/door.wav"
+        },
+        {
+          "name": "马哀鸣",
+          "family": "horse",
+          "file": "tiaocaoma/audio/sfx/horse.wav"
+        },
+        {
+          "name": "雨声",
+          "family": "weather",
+          "file": "tiaocaoma/audio/sfx/weather.wav"
+        }
+      ],
+      "actualSeconds": 11.53,
+      "slackSeconds": -0.53,
+      "overflow": true,
+      "compressedGaps": false
+    },
+    {
+      "index": 49,
+      "shotId": "truth-09",
+      "startFrame": 12168,
+      "endFrame": 12456,
+      "targetSeconds": 12,
+      "segments": [
+        {
+          "id": "truth-09-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "赵大人明白了七八分。",
+          "ttsText": "赵大人明白了七八分。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0.35,
+          "audio": "public/tiaocaoma/audio/voice/truth-09-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/truth-09-narr.mp3",
+          "actualSeconds": 2.16,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 12168,
+          "durationInFrames": 52
+        },
+        {
+          "id": "truth-09-dlg-01",
+          "kind": "dialogue",
+          "speaker": "赵大人",
+          "text": "你……十几年前朝廷封过一位常胜将军，可就是你？",
+          "ttsText": "你……十几年前朝廷封过一位常胜将军，可就是你？",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "+2%",
+          "pitch": "+2Hz",
+          "volume": "+5%",
+          "gapAfterSeconds": 0.2,
+          "audio": "public/tiaocaoma/audio/voice/truth-09-dlg-01.mp3",
+          "staticPath": "tiaocaoma/audio/voice/truth-09-dlg-01.mp3",
+          "actualSeconds": 4.63,
+          "error": null,
+          "startSeconds": 2.435,
+          "relativeStartFrame": 58,
+          "absoluteStartFrame": 12226,
+          "durationInFrames": 112
+        },
+        {
+          "id": "truth-09-dlg-02",
+          "kind": "dialogue",
+          "speaker": "刀疤脸",
+          "text": "朝廷忘了我，我也不记得自己姓甚名谁。",
+          "ttsText": "朝廷忘了我……我也不记得自己姓甚名谁。",
+          "voice": "zh-CN-YunyangNeural",
+          "rate": "-20%",
+          "pitch": "-12Hz",
+          "volume": "-12%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/truth-09-dlg-02.mp3",
+          "staticPath": "tiaocaoma/audio/voice/truth-09-dlg-02.mp3",
+          "actualSeconds": 4.25,
+          "error": null,
+          "startSeconds": 7.34,
+          "relativeStartFrame": 176,
+          "absoluteStartFrame": 12344,
+          "durationInFrames": 102
+        }
+      ],
+      "sfx": [
+        {
+          "name": "堂上回声",
+          "family": "crowd",
+          "file": "tiaocaoma/audio/sfx/crowd.wav"
+        },
+        {
+          "name": "空袖摆动",
+          "family": "cloth",
+          "file": "tiaocaoma/audio/sfx/cloth.wav"
+        }
+      ],
+      "actualSeconds": 11.59,
+      "slackSeconds": 0.41,
+      "overflow": false,
+      "compressedGaps": false
+    },
+    {
+      "index": 50,
+      "shotId": "truth-10",
+      "startFrame": 12456,
+      "endFrame": 12792,
+      "targetSeconds": 14,
+      "segments": [
+        {
+          "id": "truth-10-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "奇的是，人会遗忘，畜生却不会。赛赤兔当年日行千里，人称马王。如今腿瘸了，威风犹在，凡马仍然怕它，这就是别的马不敢吃草的缘故。",
+          "ttsText": "奇的是，人会遗忘，畜生却不会。赛赤兔当年日行千里，人称马王。如今腿瘸了，威风犹在，凡马仍然怕它，这就是别的马不敢吃草的缘故。",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/truth-10-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/truth-10-narr.mp3",
+          "actualSeconds": 14.98,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 12456,
+          "durationInFrames": 360
+        }
+      ],
+      "sfx": [
+        {
+          "name": "铃铛",
+          "family": "bell",
+          "file": "tiaocaoma/audio/sfx/bell.wav"
+        },
+        {
+          "name": "马群低鸣",
+          "family": "horse",
+          "file": "tiaocaoma/audio/sfx/horse.wav"
+        },
+        {
+          "name": "音乐起",
+          "family": "gong",
+          "file": "tiaocaoma/audio/sfx/gong.wav"
+        }
+      ],
+      "actualSeconds": 14.98,
+      "slackSeconds": -0.98,
+      "overflow": true,
+      "compressedGaps": false
+    },
+    {
+      "index": 51,
+      "shotId": "truth-11",
+      "startFrame": 12792,
+      "endFrame": 12960,
+      "targetSeconds": 7,
+      "segments": [
+        {
+          "id": "truth-11-narr",
+          "kind": "narration",
+          "speaker": "旁白",
+          "text": "刀疤脸抚着马背，连声叹道：“人不如马，人不如马啊！”",
+          "ttsText": "刀疤脸抚着马背，连声叹道：“人不如马，人不如马啊！”",
+          "voice": "zh-CN-YunjianNeural",
+          "rate": "-8%",
+          "pitch": "-5Hz",
+          "volume": "0%",
+          "gapAfterSeconds": 0,
+          "audio": "public/tiaocaoma/audio/voice/truth-11-narr.mp3",
+          "staticPath": "tiaocaoma/audio/voice/truth-11-narr.mp3",
+          "actualSeconds": 5.78,
+          "error": null,
+          "startSeconds": 0,
+          "relativeStartFrame": 0,
+          "absoluteStartFrame": 12792,
+          "durationInFrames": 139
+        }
+      ],
+      "sfx": [
+        {
+          "name": "铃铛远去",
+          "family": "bell",
+          "file": "tiaocaoma/audio/sfx/bell.wav"
+        },
+        {
+          "name": "风声",
+          "family": "weather",
+          "file": "tiaocaoma/audio/sfx/weather.wav"
+        },
+        {
+          "name": "纸张合拢",
+          "family": "paper",
+          "file": "tiaocaoma/audio/sfx/paper.wav"
+        }
+      ],
+      "actualSeconds": 5.78,
+      "slackSeconds": 1.22,
+      "overflow": false,
+      "compressedGaps": false
+    }
+  ]
+}
