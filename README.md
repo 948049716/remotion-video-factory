@@ -11,10 +11,12 @@
 ```text
 remotion-video/
 ├── AGENTS.md                         # AI Agent 专属开发规范（Agent 进入仓库会自动读取）
+├── TODO.md                           # ★ 项目唯一待办清单（含待办规范与验收标准）
 ├── public/                           # 静态公共资产池（音频、字体、图标）
 │   └── showreel-music.mp3            # 120 BPM 定制电音 + 画面同步 SFX 音轨
 ├── scripts/
-│   └── generate_music.py             # 纯 Python 零依赖电子音乐与 SFX 音效合成器
+│   ├── generate_music.py             # 纯 Python 零依赖电子音乐与 SFX 音效合成器
+│   └── generate_tts.py               # ★ 统一 TTS 入口（调用 NAS 上的 edge-tts 服务）
 ├── src/
 │   ├── shared/                       # 跨视频复用的公共动效库
 │   │   ├── motion-presets.ts         # 大师级弹簧物理参数、Bezier 曲线与精选调色板
@@ -54,6 +56,45 @@ npx remotion render Showreel out/showreel.mp4
 # 导出其他指定 ID 的视频
 npx remotion render <CompositionId> out/<filename>.mp4
 ```
+
+---
+
+## 🗣️ 语音合成（TTS）统一规范
+
+本项目所有需要人声 / 旁白 / 配音的音频，**一律使用 NAS 上部署的 edge-tts 服务**（OpenAI 兼容接口），不引入其他 TTS 方案。
+
+| 场景 | Base URL | Swagger 文档 |
+| --- | --- | --- |
+| 局域网内电脑（推荐） | `http://192.168.0.2:5055/v1` | `http://192.168.0.2:5055/docs` |
+| 公网 / 远程电脑 | `https://tts.miong.dpdns.org:9481/v1` | `https://tts.miong.dpdns.org:9481/docs` |
+
+```bash
+# 自动探测：同局域网走内网，否则回退公网
+python3 scripts/generate_tts.py --text "欢迎来到 Remotion 视频工坊" --out public/voiceover.mp3
+
+# 指定音色 / 语速 / 端点
+python3 scripts/generate_tts.py --text "旁白" --voice zh-CN-YunxiNeural --speed 1.1 \
+    --out public/narration.mp3 --endpoint lan     # 或 --endpoint public
+
+# 查看音色
+python3 scripts/generate_tts.py --list-voices --lang zh
+```
+
+接口：`POST {BaseURL}/audio/speech`，请求体 `{"model":"tts-1","input":"...","voice":"zh-CN-XiaoxiaoNeural","response_format":"mp3","speed":1.0}`，返回音频二进制；音频写入 `public/` 后以 `staticFile("voiceover.mp3")` 引用。
+
+> ⚠️ 已知问题：公网端点当前不可达（内网端点正常），详见 [`TODO.md`](TODO.md) 中的 `TODO-001`。
+
+---
+
+## 📋 项目待办规范
+
+所有待办**统一登记在 [`TODO.md`](TODO.md)**，它是唯一可信来源，不允许另建平行待办文件。规范要点（完整版见 [`AGENTS.md`](AGENTS.md) 第 3 节）：
+
+- **编号**：`TODO-001` 起全局递增，永不复用。
+- **状态**：`[ ]` 待办 / `[~]` 进行中 / `[!]` 阻塞（须写阻塞原因与解除条件）/ `[x]` 已完成。
+- **必填字段**：登记日期、影响范围、现象、复现步骤、根因分析、期望结果、**验收标准**、临时绕过方案、相关文件。
+- **验收标准必须可命令判定**，它是标记完成与否的唯一依据。
+- **完成后归档不删除**，保留编号以便追溯；涉及待办的 commit 正文引用编号。
 
 ---
 

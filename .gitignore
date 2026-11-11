@@ -11,3 +11,7 @@ preview-*.png
 v2-act*.png
 test.png
 *.log
+
+# Python
+__pycache__/
+*.pyc
