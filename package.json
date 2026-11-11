@@ -33,7 +33,9 @@
     "lint": "eslint src && tsc",
     "tts": "python3 scripts/generate_tts.py",
     "check:assets": "python3 scripts/check-assets.py",
-    "check": "npm run check:assets && npx tsc --noEmit"
+    "check": "npm run check:assets && npx tsc --noEmit",
+    "compress": "python3 scripts/compress-assets.py",
+    "assets:scan": "python3 scripts/compress-assets.py --scan --suggest"
   },
   "allowScripts": {
     "esbuild": false

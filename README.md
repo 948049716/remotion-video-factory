@@ -25,7 +25,9 @@ remotion-video-factory/
 │       └── audio/ images/ fonts/ video/
 ├── output/                           # ③ 渲染成品（已 gitignore）
 ├── scripts/
-│   ├── check-assets.py               # ★ 静态资产规范校验（命名/体积/引用/清单）
+│   ├── asset_rules.py                # ★ 资产规范单一真源（阈值/类型/命名，两脚本共用）
+│   ├── check-assets.py               # ★ 静态资产校验门禁（命名/平铺/压缩/引用/清单）
+│   ├── compress-assets.py            # ★ 素材压缩与落位（图→WebP 音→MP3 视→H.264）
 │   ├── generate_music.py             # 纯 Python 零依赖电子音乐与 SFX 音效合成器
 │   └── generate_tts.py               # ★ 统一 TTS 入口（调用 NAS 上的 edge-tts 服务）
 ├── src/
@@ -63,46 +65,80 @@ npx remotion render <CompositionId> output/<filename>.mp4
 
 ---
 
-## 🗂️ 静态资产规范（三层分离）
+## 🗂️ 静态资产规范（三层分离 + 强制压缩）
 
 Remotion 的 `staticFile()` **只能读 `public/`**，所以「素材」和「成品运行时用的文件」必须物理分开，否则仓库会被原始大文件撑爆、代码也会误引用未加工素材。
 
 | 层 | 路径 | 放什么 | 入 git | 参与渲染 |
 | --- | --- | --- | --- | --- |
 | ① 素材库 | `assets/` | 原始拍摄、录屏、原始音乐、设计稿、参考图、字体源文件、授权文本 | **否**（只提交各 `<VideoName>/README.md` 清单） | 否 |
-| ② 运行时资产 | `public/` | 已裁剪 / 转码 / 优化、代码可直接读取的文件 | 是 | 是 |
+| ② 运行时资产 | `public/` | 已压缩 / 转码 / 优化、代码可直接读取的文件 | 是 | 是 |
 | ③ 渲染成品 | `output/` | `npx remotion render` 产出的 mp4 | 否 | — |
 
 **判断口诀**：给「人或 Agent 挑选用」→ `assets/`；给「代码 `staticFile()` 用」→ `public/`。
 
-```text
-assets/<VideoName>/           # 与 src/videos/<VideoName>/ 同名
-├── README.md                 # ★ 素材清单：来源 / 授权 / 尺寸 / 用途 / 加工去向
-└── video/ audio/ images/ fonts/ docs/
+### 1. 强制压缩门禁
 
-public/<video-name>/          # kebab-case，代码里带子目录前缀引用
-└── audio/ images/ fonts/ video/
-public/_shared/               # 跨视频共用
+**除用户明确要求保留原始质量外，任何素材进 `public/` 前都必须压缩。**
+
+| 类型 | 触发阈值 | 目标格式与参数 | 绝对上限 | 实测降幅 |
+| --- | --- | --- | --- | --- |
+| 图片 | > 500 KB | WebP `-quality 82` | 2 MB | 384 KB → 111 KB（**-71%**，SSIM 0.9983） |
+| 音频 | > 2 MB | MP3 `-b:a 192k -ar 44100` | 8 MB | 8.2 MB → 705 KB（**-92%**） |
+| 视频 | > 8 MB | H.264 `-crf 20 -preset slow`，≤1920 宽 / ≤30 fps | 32 MB | 19.7 MB → 1.3 MB（**-93%**，SSIM 0.9968） |
+
+低于阈值直接复制（保留原扩展名）。超阈值未压缩会被 `npm run check:assets` 判为 **ERROR**。
+
+```bash
+npm run compress -- --in assets/ProductLaunch --video ProductLaunch    # 批量压缩并落位
+npm run compress -- --in a.png --video Foo --force                    # 强制压缩
+npm run assets:scan                                                   # 体检 public/（只读）
+```
+
+> **为什么用本地 ffmpeg**：TinyPNG 免费 500 张/月（超量 $0.009/张）、Squoosh 已停更无 CLI、Cloudinary 需注册且素材上传第三方。本地 `ffmpeg` 零成本、零配额、不泄露素材，环境已内置。**禁止把未公开素材上传第三方压缩服务。**
+
+### 2. 运行时资产目录（禁止平铺）
+
+`public/` 根目录**不得直接放文件**，必须「视频 → 类型」两级分目录：
+
+```text
+public/
+├── _shared/                  # 跨视频共用
+│   └── audio/ images/ fonts/ video/
+└── <video-name>/             # 每支视频一个子目录，kebab-case
+    └── audio/ images/ fonts/ video/    # 只允许这 4 个类型目录
 ```
 
 ```tsx
 // ✅ 正确
 <Audio src={staticFile("product-launch/audio/voiceover.mp3")} />
 <Img src={staticFile("_shared/images/logo.webp")} />
+
+// ❌ 错误：平铺、无子目录前缀，会被校验判 ERROR
+<Audio src={staticFile("voiceover.mp3")} />
 ```
 
-**硬性约束**
+### 3. 素材库布局
 
-1. 素材**不得**被 `staticFile()` 直接引用，进 `public/` 前必须加工：视频 → H.264/`yuv420p`/`.mp4`；音频 → `.mp3` 192 kbps；图片 → `.webp`（或 `.jpg`）；字体 → `.woff2`。
-2. `public/` 单文件 ≤ **10 MB**，超出必须切片段或降码率。
-3. `public/` 文件名只用小写英文、数字、`-`、`_`、`.`，禁止中文 / 空格 / 大写。
-4. 每个 `assets/<VideoName>/README.md` 必须登记素材清单，模板见 `assets/_template/README.md`。
+```text
+assets/<VideoName>/           # 与 src/videos/<VideoName>/ 同名（PascalCase）
+├── README.md                 # ★ 素材清单：来源 / 授权 / 尺寸 / 用途 / 加工去向
+└── video/ audio/ images/ fonts/ docs/
+```
 
-**提交前自检**
+### 4. 硬性约束
+
+1. 素材**不得**被 `staticFile()` 直接引用，必须压缩加工后进 `public/`。
+2. 命名：只用小写英文、数字、`-`、`_`、`.`，禁止中文 / 空格 / 大写。
+3. 每个 `assets/<VideoName>/README.md` 必须登记素材清单，模板见 `assets/_template/README.md`。
+4. 删除视频时同步删除 `public/<video-name>/`，避免孤儿资产。
+
+### 5. 提交前自检
 
 ```bash
-npm run check:assets     # 命名 / 体积 / staticFile 引用缺失 / 孤儿资产 / 清单缺失 / 素材误入库
+npm run check:assets     # 命名/平铺/子目录/压缩门禁/绝对上限/引用/孤儿/清单/误入库
 npm run check            # check:assets + tsc --noEmit
+npm run assets:scan      # 体检 public/：平铺文件 + 超标文件
 ```
 
 详细规范见 [`assets/README.md`](assets/README.md) 与 [`AGENTS.md`](AGENTS.md) §1.4。

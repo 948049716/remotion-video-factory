@@ -5,9 +5,6 @@ out
 output
 build
 .remotion
-*.mp4
-*.webm
-*.wav
 preview-*.png
 v2-act*.png
 test.png
@@ -37,3 +34,12 @@ assets/**
 *.aiff
 *.psd
 *.ai
+
+# --- 运行时资产（public/）必须入库 ------------------------------------------
+# public/ 里的压缩后资产是渲染依赖，必须随仓库同步（见 AGENTS.md §1.4）。
+# 上面针对素材的忽略规则不得影响 public/，故在此重新放行。
+!public/**/*.mp4
+!public/**/*.webm
+!public/**/*.wav
+!public/**/*.webp
+!public/**/*.mp3

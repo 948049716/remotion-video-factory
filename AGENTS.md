@@ -23,45 +23,114 @@ When asked to create a new video (e.g., `ProductLaunch`, `TiktokAd`, `AnnualRepo
 3. **Register Your Composition in [`src/Root.tsx`](src/Root.tsx)**:
    Add your new `<Composition>` inside `<Folder name="Productions">` in `src/Root.tsx`. Keep all existing `<Composition>` entries intact.
 
-4. **静态资产三层分离（`assets/` / `public/` / `output/`）—— 必须遵守**:
+4. **静态资产三层分离 + 强制压缩（`assets/` / `public/` / `output/`）—— 必须遵守**:
 
    Remotion 的 `staticFile()` **只能读 `public/`**，因此「素材」与「运行时资产」必须物理分离，不可混放。
 
    | 层 | 路径 | 内容 | 入 git | 参与渲染 |
    | --- | --- | --- | --- | --- |
    | ① 素材库 | `assets/` | 原始拍摄、录屏、原始音乐、设计稿、参考图、字体源文件、授权文本 | **否**（只提交各 `<VideoName>/README.md` 清单） | 否 |
-   | ② 运行时资产 | `public/` | 已裁剪/转码/优化、代码可直接读取的文件 | 是 | 是 |
+   | ② 运行时资产 | `public/` | 已压缩/转码/优化、代码可直接读取的文件 | 是 | 是 |
    | ③ 渲染成品 | `output/` | `npx remotion render` 产出的 mp4 | 否 | — |
 
    **判断口诀**：这个文件是给「人或 Agent 挑选用」→ `assets/`；是给「代码 `staticFile()` 用」→ `public/`。
 
-   - **素材库布局**（与代码目录同名，见 [`assets/README.md`](assets/README.md)）：
-     ```text
-     assets/
-     ├── _inbox/                 # 临时投料区，归档后必须清空
-     └── <VideoName>/            # 与 src/videos/<VideoName>/ 同名
-         ├── README.md           # ★ 素材清单（必填、入库）
-         └── video/ audio/ images/ fonts/ docs/
-     ```
-   - **运行时资产布局**（`staticFile()` 路径必须带视频子目录前缀）：
-     ```text
-     public/
-     ├── _shared/                # 跨视频共用（如 BGM）
-     └── <video-name>/           # 每支视频一个子目录，kebab-case
-         └── audio/ images/ fonts/ video/
-     ```
-     示例：`staticFile("<video-name>/audio/bgm.mp3")`、`staticFile("_shared/audio/showreel-music.mp3")`。
-   - **素材不得被 `staticFile()` 直接引用**：进 `public/` 前必须加工 —— 视频 → H.264/`yuv420p`/`.mp4`；音频 → `.mp3` 192 kbps；图片 → `.webp`（或 `.jpg`）；字体 → `.woff2`（附授权文件）。
-   - **硬性约束**：
-     1. `public/` 单文件 ≤ **10 MB**；超出必须切片段或降码率。
-     2. `public/` 文件名**只用小写英文、数字、`-`、`_`、`.`**，禁止中文、空格、大写字母。
-     3. 每个 `assets/<VideoName>/README.md` 必须登记：文件、类型、来源、授权、时长/尺寸、体积、用途、**加工去向**（对应 `public/` 下的实际路径）。
-   - **机器校验**：提交前执行
-     ```bash
-     python3 scripts/check-assets.py        # 或 npm run check:assets
-     ```
-     校验项：`public/` 命名、体积、`staticFile()` 引用缺失、孤儿资产、素材清单缺失、素材误入库。**有 ERROR 不得提交**。
-   - **程序化音乐 / SFX**：见 [`scripts/generate_music.py`](scripts/generate_music.py)，产物同样输出到 `public/<video-name>/audio/`。
+   #### 4.1 强制压缩门禁（默认必须执行）
+
+   **除用户明确要求保留原始质量外，任何素材在进入 `public/` 之前都必须压缩。** 目的：运行时资产直接进 git 并参与渲染，未压缩的大文件会拖垮仓库体积、拉长渲染时间、增加内存占用。
+
+   | 类型 | 触发压缩阈值 | 目标格式与参数 | 绝对上限（硬门禁） |
+   | --- | --- | --- | --- |
+   | 图片 | > **500 KB** | WebP `-quality 82`、`-compression_level 6` | 2 MB |
+   | 音频 | > **2 MB** | MP3 `-b:a 192k -ar 44100` | 8 MB |
+   | 视频 | > **8 MB** | H.264 `-crf 20 -preset slow -pix_fmt yuv420p`，≤1920 宽、≤30 fps | 32 MB |
+
+   - **阈值来源单一**：`scripts/asset_rules.py`（`THRESHOLDS` / `HARD_CEILING`），校验脚本与压缩脚本共用，禁止在别处另写一套数字。
+   - **低于阈值**：直接复制进 `public/`，保留原扩展名（不强行改名，避免内容与扩展名不符）。
+   - **高于阈值**：必须压缩。压缩后仍超阈值 → 降参数（图片 `--quality 70` / 音频 `--bitrate 128k` / 视频 `--crf 23`）或缩短时长、降低分辨率。
+   - **压缩后不得大于原文件**：脚本会自动检测，无收益时删除输出并报错，此时保留原格式或换更小源文件。
+
+   **实测压缩效果**（`ffmpeg 8.1.1`，用于判断参数是否够用）：
+
+   | 素材 | 压缩前 | 压缩后 | 降幅 | 质量指标（SSIM，1.0 为无损） |
+   | --- | --- | --- | --- | --- |
+   | 4K/30fps 视频 3s → 1080p | 19.7 MB | 1.3 MB | **-93.3%** | **0.9968**（含缩放+CRF20） |
+   | 720p 视频（同分辨率，仅 CRF） | — | — | -67% | **0.9977** @ CRF20 / 0.9985 @ CRF18 |
+   | 48kHz 立体声 WAV 30s | 8.2 MB | 705 KB | **-91.6%** | 192 kbps MP3 |
+   | 2000×2000 PNG | 384 KB | 111 KB | **-71.0%** | **0.9983** @ q82 / 0.9971 @ q75 |
+
+   > 参数选择依据：WebP q82 的 SSIM 0.9983 明显高于 q75 的 0.9971，体积仅多 19%，肉眼不可辨；H.264 CRF20 的 SSIM 0.9977 与 CRF18（0.9985）差距极小但体积省 15%。这两档是「明显变小 + 质量不塌」的平衡点。
+   > 注意：视频若同时触发降分辨率（4K→1080p），SSIM 会略降到 0.9968，仍属肉眼无感；如对画质有硬要求，用 `--max-width 0` 关闭缩放。
+
+   #### 4.2 统一压缩入口
+
+   ```bash
+   # 单文件 / 整目录：自动按类型压缩并落位到 public/<kebab(video)>/<type>/
+   python3 scripts/compress-assets.py --in assets/ProductLaunch/images/hero.png --video ProductLaunch
+   python3 scripts/compress-assets.py --in assets/ProductLaunch --video ProductLaunch
+
+   # 指定输出路径
+   python3 scripts/compress-assets.py --in raw.mov --out public/product-launch/video/intro.mp4
+
+   # 强制压缩（忽略阈值，用于「必须瘦身」的场景）
+   python3 scripts/compress-assets.py --in a.png --video Foo --force
+
+   # 体检 public/：平铺文件 + 超标文件（只读不改）
+   npm run assets:scan
+   ```
+
+   常用参数：`--quality`（WebP 质量，默认 82）、`--bitrate`（MP3 码率，默认 192k）、`--crf`（视频 CRF，默认 20）、`--max-fps`（默认 30）、`--max-width`（默认 1920）、`--dry-run`（只打印计划）。
+
+   > **为什么用本地 ffmpeg 而不是在线压缩服务**：TinyPNG/Tinify 免费额度 500 张/月（超量 $0.009/张）、Squoosh 已停更且无 CLI、Cloudinary 免费额度需注册且素材要上传第三方。本地 `ffmpeg` 零成本、零配额、不泄露素材、可脚本化，且本仓库环境已内置（`ffmpeg 8.1.1` 含 libwebp/libx264/libmp3lame）。**禁止把未公开素材上传到第三方压缩服务。**
+
+   #### 4.3 运行时资产目录规范（禁止平铺）
+
+   `public/` 根目录**不得直接放任何文件**，必须按「视频 → 类型」两级分目录：
+
+   ```text
+   public/
+   ├── _shared/                 # 跨视频共用资产
+   │   └── audio/ images/ fonts/ video/
+   └── <video-name>/            # 每支视频一个子目录，kebab-case
+       └── audio/ images/ fonts/ video/     # 只允许这 4 个类型目录
+   ```
+
+   - **视频子目录名**：由 `src/videos/<VideoName>` 的 PascalCase 转 kebab-case 得到（`ProductLaunch` → `public/product-launch/`），转换由 `compress-assets.py --video ProductLaunch` 自动完成。
+   - **`<video-name>/` 下只允许** `audio/` `images/` `fonts/` `video/` 四个子目录；多一层分类（如 `images/icons/`）允许，但第一层必须是类型名。
+   - **`staticFile()` 路径必须带子目录前缀**：`staticFile("product-launch/audio/bgm.mp3")`；跨视频共用写 `staticFile("_shared/audio/showreel-music.mp3")`。写成 `staticFile("bgm.mp3")` 会被校验判为 ERROR。
+   - **删除视频时同步删除** `public/<video-name>/`，避免孤儿资产堆积。
+
+   #### 4.4 素材库布局
+
+   见 [`assets/README.md`](assets/README.md)：
+
+   ```text
+   assets/
+   ├── _inbox/                 # 临时投料区，归档后必须清空
+   └── <VideoName>/            # 与 src/videos/<VideoName>/ 同名（PascalCase）
+       ├── README.md           # ★ 素材清单（必填、入库）
+       └── video/ audio/ images/ fonts/ docs/
+   ```
+
+   每个 `assets/<VideoName>/README.md` 必须登记：文件、类型、来源、授权、时长/尺寸、体积、用途、**加工去向**（对应 `public/` 下的实际路径）。
+
+   #### 4.5 命名规范
+
+   `public/` 路径每段只用**小写英文、数字、`-`、`_`、`.`**；禁止中文、空格、大写字母。
+
+   #### 4.6 机器校验（提交前必须通过）
+
+   ```bash
+   npm run check:assets        # = python3 scripts/check-assets.py
+   npm run check               # = check:assets + tsc --noEmit
+   npm run assets:scan         # 体检 public/：平铺文件 + 超标文件
+   ```
+
+   校验项：命名规范、禁止平铺、子目录白名单、**压缩门禁（超阈值未压缩即 ERROR）**、绝对上限、`staticFile()` 引用缺失/无前缀、孤儿资产（告警）、素材清单缺失、素材误入库。**有 ERROR 不得提交。**
+
+   #### 4.7 程序化音乐 / SFX
+
+   见 [`scripts/generate_music.py`](scripts/generate_music.py)，产物同样输出到 `public/<video-name>/audio/`，并受上述压缩门禁约束。
 
 5. **语音合成（TTS）强制约束 —— 必须遵守**:
    凡是需要人声/旁白/配音/朗读等 **TTS 音频**，在没有被明确指定其他方案时，**一律使用 NAS 上部署的 edge-tts 服务**（OpenAI 兼容接口）。禁止改用其他在线 TTS 服务、浏览器 Web Speech API、本地 `edge-tts` pip 包或其他第三方 SDK。
@@ -87,7 +156,7 @@ When asked to create a new video (e.g., `ProductLaunch`, `TiktokAd`, `AnnualRepo
      也可通过环境变量覆盖：`EDGE_TTS_BASE_URL`（完整 Base URL，最高优先级）、`EDGE_TTS_ENDPOINT=lan|public|auto`。
    - **接口**：`POST {BaseURL}/audio/speech`，JSON 体 `{ "model": "tts-1", "input": "...", "voice": "zh-CN-XiaoxiaoNeural", "response_format": "mp3", "speed": 1.0 }`，返回音频二进制。另有 `GET {BaseURL}/audio/voices?lang=zh`（音色列表）、`GET {BaseURL}/models`。
    - **产物落位**：生成的音频写入 `public/<video-name>/audio/`（跨视频共用则 `public/_shared/audio/`），在组件中用 `staticFile("<video-name>/audio/voiceover.mp3")` 引用；需要对齐画面时用 `ffprobe` 读取时长。
-   - **不要提交**：生成的 mp3/wav 已由 `.gitignore` 忽略，请勿强行加入版本库。
+   - **产物必须提交**：TTS 产物是运行时资产，位于 `public/<video-name>/audio/`，**必须随仓库同步**（`.gitignore` 已显式放行 `public/**/*.mp3`）。未压缩的 `.wav` 不提交，统一用 `.mp3`。
    - **已知问题**：公网端点当前不可达，见 [`TODO.md`](TODO.md) `TODO-001`；与 NAS 同局域网的机器不受影响。
 
 ---
