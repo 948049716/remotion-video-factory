@@ -18,14 +18,50 @@ When asked to create a new video (e.g., `ProductLaunch`, `TiktokAd`, `AnnualRepo
 2. **Reuse Shared Motion Assets (`src/shared/`)**:
    - [`src/shared/motion-presets.ts`](src/shared/motion-presets.ts): Standard spring physics (`SPRING_CONFIGS`), cubic-bezier curves (`EASING_CURVES`), and curated color palettes (`PALETTES`).
    - [`src/shared/GlobalOverlay.tsx`](src/shared/GlobalOverlay.tsx): Configurable SMPTE timecode HUD and progress rail.
-   - Reference [`src/videos/Showreel/`](src/videos/Showreel/) as the gold-standard reference for 60 FPS motion craft (Squash & Stretch, SVG Gooey Metaballs, Swiss Bento Grids, Isometric 3D Voxels, and Vertex Morphing).
+   - **No gold-standard reference video currently exists** — `src/videos/` is empty (cleared in commit `a822fa0`). Until a reference production is rebuilt, take motion craft cues from [`src/shared/motion-presets.ts`](src/shared/motion-presets.ts) (spring/easing/palette) and [`src/shared/GlobalOverlay.tsx`](src/shared/GlobalOverlay.tsx) (HUD), and follow the Remotion best practices in §2.
 
 3. **Register Your Composition in [`src/Root.tsx`](src/Root.tsx)**:
    Add your new `<Composition>` inside `<Folder name="Productions">` in `src/Root.tsx`. Keep all existing `<Composition>` entries intact.
 
-4. **Static Assets (`public/`)**:
-   Place audio/font/image assets in `public/` and reference them with `staticFile("filename.ext")`.
-   If custom procedural audio/SFX is needed, see [`scripts/generate_music.py`](scripts/generate_music.py).
+4. **静态资产三层分离（`assets/` / `public/` / `output/`）—— 必须遵守**:
+
+   Remotion 的 `staticFile()` **只能读 `public/`**，因此「素材」与「运行时资产」必须物理分离，不可混放。
+
+   | 层 | 路径 | 内容 | 入 git | 参与渲染 |
+   | --- | --- | --- | --- | --- |
+   | ① 素材库 | `assets/` | 原始拍摄、录屏、原始音乐、设计稿、参考图、字体源文件、授权文本 | **否**（只提交各 `<VideoName>/README.md` 清单） | 否 |
+   | ② 运行时资产 | `public/` | 已裁剪/转码/优化、代码可直接读取的文件 | 是 | 是 |
+   | ③ 渲染成品 | `output/` | `npx remotion render` 产出的 mp4 | 否 | — |
+
+   **判断口诀**：这个文件是给「人或 Agent 挑选用」→ `assets/`；是给「代码 `staticFile()` 用」→ `public/`。
+
+   - **素材库布局**（与代码目录同名，见 [`assets/README.md`](assets/README.md)）：
+     ```text
+     assets/
+     ├── _inbox/                 # 临时投料区，归档后必须清空
+     └── <VideoName>/            # 与 src/videos/<VideoName>/ 同名
+         ├── README.md           # ★ 素材清单（必填、入库）
+         └── video/ audio/ images/ fonts/ docs/
+     ```
+   - **运行时资产布局**（`staticFile()` 路径必须带视频子目录前缀）：
+     ```text
+     public/
+     ├── _shared/                # 跨视频共用（如 BGM）
+     └── <video-name>/           # 每支视频一个子目录，kebab-case
+         └── audio/ images/ fonts/ video/
+     ```
+     示例：`staticFile("<video-name>/audio/bgm.mp3")`、`staticFile("_shared/audio/showreel-music.mp3")`。
+   - **素材不得被 `staticFile()` 直接引用**：进 `public/` 前必须加工 —— 视频 → H.264/`yuv420p`/`.mp4`；音频 → `.mp3` 192 kbps；图片 → `.webp`（或 `.jpg`）；字体 → `.woff2`（附授权文件）。
+   - **硬性约束**：
+     1. `public/` 单文件 ≤ **10 MB**；超出必须切片段或降码率。
+     2. `public/` 文件名**只用小写英文、数字、`-`、`_`、`.`**，禁止中文、空格、大写字母。
+     3. 每个 `assets/<VideoName>/README.md` 必须登记：文件、类型、来源、授权、时长/尺寸、体积、用途、**加工去向**（对应 `public/` 下的实际路径）。
+   - **机器校验**：提交前执行
+     ```bash
+     python3 scripts/check-assets.py        # 或 npm run check:assets
+     ```
+     校验项：`public/` 命名、体积、`staticFile()` 引用缺失、孤儿资产、素材清单缺失、素材误入库。**有 ERROR 不得提交**。
+   - **程序化音乐 / SFX**：见 [`scripts/generate_music.py`](scripts/generate_music.py)，产物同样输出到 `public/<video-name>/audio/`。
 
 5. **语音合成（TTS）强制约束 —— 必须遵守**:
    凡是需要人声/旁白/配音/朗读等 **TTS 音频**，在没有被明确指定其他方案时，**一律使用 NAS 上部署的 edge-tts 服务**（OpenAI 兼容接口）。禁止改用其他在线 TTS 服务、浏览器 Web Speech API、本地 `edge-tts` pip 包或其他第三方 SDK。
@@ -39,18 +75,18 @@ When asked to create a new video (e.g., `ProductLaunch`, `TiktokAd`, `AnnualRepo
    - **统一入口**：使用 [`scripts/generate_tts.py`](scripts/generate_tts.py)（零依赖，自动探测端点），不要手写一次性 curl 脚本。
      ```bash
      # 默认 auto：先试局域网，不可达自动回退公网
-     python3 scripts/generate_tts.py --text "旁白文本" --voice zh-CN-XiaoxiaoNeural --out public/voiceover.mp3
+     python3 scripts/generate_tts.py --text "旁白文本" --voice zh-CN-XiaoxiaoNeural --out public/<video-name>/audio/voiceover.mp3
 
      # 强制指定端点（远程电脑 / 排障时使用）
-     python3 scripts/generate_tts.py --text "旁白文本" --out public/voiceover.mp3 --endpoint public
-     python3 scripts/generate_tts.py --text "旁白文本" --out public/voiceover.mp3 --endpoint lan
+     python3 scripts/generate_tts.py --text "旁白文本" --out public/<video-name>/audio/voiceover.mp3 --endpoint public
+     python3 scripts/generate_tts.py --text "旁白文本" --out public/<video-name>/audio/voiceover.mp3 --endpoint lan
 
      # 查看可用音色
      python3 scripts/generate_tts.py --list-voices --lang zh
      ```
      也可通过环境变量覆盖：`EDGE_TTS_BASE_URL`（完整 Base URL，最高优先级）、`EDGE_TTS_ENDPOINT=lan|public|auto`。
    - **接口**：`POST {BaseURL}/audio/speech`，JSON 体 `{ "model": "tts-1", "input": "...", "voice": "zh-CN-XiaoxiaoNeural", "response_format": "mp3", "speed": 1.0 }`，返回音频二进制。另有 `GET {BaseURL}/audio/voices?lang=zh`（音色列表）、`GET {BaseURL}/models`。
-   - **产物落位**：生成的音频写入 `public/`，在组件中用 `staticFile("voiceover.mp3")` 引用；需要对齐画面时用 `ffprobe` 读取时长。
+   - **产物落位**：生成的音频写入 `public/<video-name>/audio/`（跨视频共用则 `public/_shared/audio/`），在组件中用 `staticFile("<video-name>/audio/voiceover.mp3")` 引用；需要对齐画面时用 `ffprobe` 读取时长。
    - **不要提交**：生成的 mp3/wav 已由 `.gitignore` 忽略，请勿强行加入版本库。
    - **已知问题**：公网端点当前不可达，见 [`TODO.md`](TODO.md) `TODO-001`；与 NAS 同局域网的机器不受影响。
 
@@ -63,7 +99,7 @@ When asked to create a new video (e.g., `ProductLaunch`, `TiktokAd`, `AnnualRepo
 - **Perceptual Scale**: When animating large camera zooms, pass `output: "perceptual-scale"` to `interpolate()`.
 - **Verification**: Always run `npx tsc --noEmit` to verify zero TypeScript errors, and test-render a still frame with:
   ```bash
-  npx remotion still <CompositionId> out/preview.png --frame=60
+  npx remotion still <CompositionId> output/preview.png --frame=60
   ```
 
 ---

@@ -31,7 +31,9 @@
     "build": "remotion bundle",
     "upgrade": "remotion upgrade",
     "lint": "eslint src && tsc",
-    "tts": "python3 scripts/generate_tts.py"
+    "tts": "python3 scripts/generate_tts.py",
+    "check:assets": "python3 scripts/check-assets.py",
+    "check": "npm run check:assets && npx tsc --noEmit"
   },
   "allowScripts": {
     "esbuild": false

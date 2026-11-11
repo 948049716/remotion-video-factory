@@ -13,26 +13,26 @@ edge-tts 服务，禁止使用其他在线 TTS、本地模型或第三方 SDK。
 电脑上）则自动回退到公网。
 
 用法示例:
-  # 最简单：合成一句中文旁白到 public/ 目录
-  python3 scripts/generate_tts.py --text "欢迎来到视频工坊" --out public/voiceover.mp3
+  # 最简单：合成一句中文旁白到某支视频的音频目录
+  python3 scripts/generate_tts.py --text "欢迎来到视频工坊" --out public/my-video/audio/voiceover.mp3
 
   # 指定音色与语速，并读取文本文件
   python3 scripts/generate_tts.py --text-file script.txt \
-      --voice zh-CN-YunxiNeural --speed 1.1 --out public/narration.mp3
+      --voice zh-CN-YunxiNeural --speed 1.1 --out public/my-video/audio/narration.mp3
 
   # 强制走公网端点 / 强制走局域网端点
-  python3 scripts/generate_tts.py --text "远程合成" --out public/a.mp3 --endpoint public
-  python3 scripts/generate_tts.py --text "本机合成" --out public/a.mp3 --endpoint lan
+  python3 scripts/generate_tts.py --text "远程合成" --out public/my-video/audio/a.mp3 --endpoint public
+  python3 scripts/generate_tts.py --text "本机合成" --out public/my-video/audio/a.mp3 --endpoint lan
 
   # 查看可用音色（可按语言过滤）
   python3 scripts/generate_tts.py --list-voices --lang zh
 
 在 Remotion 中引用生成的音频:
   import { Audio, staticFile } from "remotion";
-  <Audio src={staticFile("voiceover.mp3")} />
+  <Audio src={staticFile("my-video/audio/voiceover.mp3")} />
 
 生成后可读取音频时长用于对齐画面（需要 ffprobe / ffmpeg）:
-  ffprobe -v error -show_entries format=duration -of csv=p=0 public/voiceover.mp3
+  ffprobe -v error -show_entries format=duration -of csv=p=0 public/my-video/audio/voiceover.mp3
 """
 
 from __future__ import annotations
@@ -160,7 +160,7 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument("--text", help="要合成的文本")
     parser.add_argument("--text-file", help="从 UTF-8 文本文件读取要合成的内容")
-    parser.add_argument("--out", help="输出文件路径，例如 public/voiceover.mp3")
+    parser.add_argument("--out", help="输出文件路径，例如 public/my-video/audio/voiceover.mp3")
     parser.add_argument("--voice", default=DEFAULT_VOICE, help="音色 ID")
     parser.add_argument("--model", default=DEFAULT_MODEL, help="模型 ID（tts-1 / tts-1-hd）")
     parser.add_argument("--format", dest="fmt", default=DEFAULT_FORMAT, help="音频格式：mp3 / wav 等")
@@ -188,7 +188,7 @@ def main(argv: list[str] | None = None) -> int:
     if not text:
         raise SystemExit("文本为空，无法合成")
 
-    out_path = Path(args.out or f"public/tts-{args.voice}.{args.fmt}")
+    out_path = Path(args.out or f"public/_shared/audio/tts-{args.voice}.{args.fmt}")
     if out_path.suffix == "":
         out_path = out_path.with_suffix(f".{args.fmt}")
     out_path.parent.mkdir(parents=True, exist_ok=True)

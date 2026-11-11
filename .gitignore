@@ -2,6 +2,7 @@ node_modules
 .DS_Store
 dist
 out
+output
 build
 .remotion
 *.mp4
@@ -15,3 +16,24 @@ test.png
 # Python
 __pycache__/
 *.pyc
+
+# --- 素材库（Source Materials）---------------------------------------------
+# 见 assets/README.md 与 AGENTS.md §1.6：原始素材不入 git，仅素材清单与模板入库。
+assets/**
+!assets/README.md
+!assets/_template/
+!assets/_template/**
+!assets/_inbox/
+!assets/_inbox/.gitkeep
+# 素材清单必须入库：放行 <VideoName>/README.md，但目录内其他文件仍忽略
+!assets/*/
+!assets/*/README.md
+
+# 素材目录内的大体积媒体一律忽略（防止有人用 -f 强加）
+*.mov
+*.mkv
+*.avi
+*.flac
+*.aiff
+*.psd
+*.ai
