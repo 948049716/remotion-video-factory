@@ -111,7 +111,7 @@ TinyPNG/Tinify 免费额度 500 张/月（超量 $0.009/张）、Squoosh 已停�
 ## 5. 其他硬性约束
 
 1. **文件名只用小写英文、数字、`-`、`_`、`.`**，禁止中文、空格、大写字母。
-2. **运行时资产禁止平铺**：`public/` 根目录不得直接放文件，必须进 `<video-name>/<type>/`。
+2. **运行时资产禁止跨视频平铺**：`public/` 根目录不得直接放文件，必须进 `<video-name>/` 或 `_shared/`。**视频内部可平铺**（`bgm.mp3`、`hero.webp` 同级存放），也可按类型分子目录，两种都合法。
 3. **TTS 音频**必须由 `scripts/generate_tts.py` 生成，直接输出到 `public/<video-name>/audio/`（见 AGENTS.md §1.5）。
 4. **程序化音乐/SFX** 用 `scripts/generate_music.py` 生成，同样输出到 `public/<video-name>/audio/`。
 5. **提交前自检**：`npm run check:assets`（有 ERROR 不得提交）。

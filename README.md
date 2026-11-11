@@ -97,25 +97,38 @@ npm run assets:scan                                                   # 体检 p
 
 > **为什么用本地 ffmpeg**：TinyPNG 免费 500 张/月（超量 $0.009/张）、Squoosh 已停更无 CLI、Cloudinary 需注册且素材上传第三方。本地 `ffmpeg` 零成本、零配额、不泄露素材，环境已内置。**禁止把未公开素材上传第三方压缩服务。**
 
-### 2. 运行时资产目录（禁止平铺）
+### 2. 运行时资产归属（禁止跨视频平铺）
 
-`public/` 根目录**不得直接放文件**，必须「视频 → 类型」两级分目录：
+**禁止的是「不同视频之间平铺」**——多支视频的文件不能都丢在 `public/` 根目录，否则同名文件会互相覆盖。**每支视频一个独立目录**是唯一硬性要求：
 
 ```text
 public/
 ├── _shared/                  # 跨视频共用
-│   └── audio/ images/ fonts/ video/
-└── <video-name>/             # 每支视频一个子目录，kebab-case
-    └── audio/ images/ fonts/ video/    # 只允许这 4 个类型目录
+└── <video-name>/             # ★ 每支视频一个独立目录，kebab-case
 ```
 
+**视频内部不做层级要求**，两种写法都合法：
+
+```text
+# 写法 A：视频内平铺（文件少时更直观）
+public/product-launch/
+├── bgm.mp3  voiceover.mp3  hero.webp  intro.mp4
+
+# 写法 B：视频内按类型分类（文件多时更清晰）
+public/product-launch/
+├── audio/bgm.mp3  images/hero.webp  video/intro.mp4
+```
+
+也可自定义子目录（`sfx/`、`screenshots/`），不做限制。
+
 ```tsx
-// ✅ 正确
-<Audio src={staticFile("product-launch/audio/voiceover.mp3")} />
+// ✅ 都正确：带视频子目录前缀即可
+<Audio src={staticFile("product-launch/bgm.mp3")} />              // 写法 A
+<Audio src={staticFile("product-launch/audio/bgm.mp3")} />        // 写法 B
 <Img src={staticFile("_shared/images/logo.webp")} />
 
-// ❌ 错误：平铺、无子目录前缀，会被校验判 ERROR
-<Audio src={staticFile("voiceover.mp3")} />
+// ❌ 错误：无视频子目录前缀（会与其他视频冲突），校验判 ERROR
+<Audio src={staticFile("bgm.mp3")} />
 ```
 
 ### 3. 素材库布局
@@ -136,7 +149,7 @@ assets/<VideoName>/           # 与 src/videos/<VideoName>/ 同名（PascalCase�
 ### 5. 提交前自检
 
 ```bash
-npm run check:assets     # 命名/平铺/子目录/压缩门禁/绝对上限/引用/孤儿/清单/误入库
+npm run check:assets     # 命名/跨视频平铺/压缩门禁/绝对上限/引用/孤儿/清单/误入库
 npm run check            # check:assets + tsc --noEmit
 npm run assets:scan      # 体检 public/：平铺文件 + 超标文件
 ```

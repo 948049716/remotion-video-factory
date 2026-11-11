@@ -65,9 +65,13 @@ When asked to create a new video (e.g., `ProductLaunch`, `TiktokAd`, `AnnualRepo
    #### 4.2 统一压缩入口
 
    ```bash
-   # 单文件 / 整目录：自动按类型压缩并落位到 public/<kebab(video)>/<type>/
+   # 单文件 / 整目录：压缩后自动落位到 public/<kebab(video)>/<type>/
+   # （默认按类型分子目录；如需视频内平铺，用 --out 指定路径即可）
    python3 scripts/compress-assets.py --in assets/ProductLaunch/images/hero.png --video ProductLaunch
    python3 scripts/compress-assets.py --in assets/ProductLaunch --video ProductLaunch
+
+   # 视频内平铺：显式指定输出路径
+   python3 scripts/compress-assets.py --in assets/ProductLaunch/audio/bgm.wav --out public/product-launch/bgm.mp3
 
    # 指定输出路径
    python3 scripts/compress-assets.py --in raw.mov --out public/product-launch/video/intro.mp4
@@ -83,21 +87,46 @@ When asked to create a new video (e.g., `ProductLaunch`, `TiktokAd`, `AnnualRepo
 
    > **为什么用本地 ffmpeg 而不是在线压缩服务**：TinyPNG/Tinify 免费额度 500 张/月（超量 $0.009/张）、Squoosh 已停更且无 CLI、Cloudinary 免费额度需注册且素材要上传第三方。本地 `ffmpeg` 零成本、零配额、不泄露素材、可脚本化，且本仓库环境已内置（`ffmpeg 8.1.1` 含 libwebp/libx264/libmp3lame）。**禁止把未公开素材上传到第三方压缩服务。**
 
-   #### 4.3 运行时资产目录规范（禁止平铺）
+   #### 4.3 运行时资产归属规范（禁止跨视频平铺）
 
-   `public/` 根目录**不得直接放任何文件**，必须按「视频 → 类型」两级分目录：
+   **要禁止的是「不同视频之间平铺」**：多支视频的文件不能都丢在 `public/` 根目录，否则同名文件（`bgm.mp3`、`logo.png`）会互相覆盖，也无法判断某个文件属于哪支视频。
+
+   **每支视频必须有独立子目录**，这是唯一硬性要求：
 
    ```text
    public/
-   ├── _shared/                 # 跨视频共用资产
-   │   └── audio/ images/ fonts/ video/
-   └── <video-name>/            # 每支视频一个子目录，kebab-case
-       └── audio/ images/ fonts/ video/     # 只允许这 4 个类型目录
+   ├── _shared/                      # 跨视频共用资产（如全站 BGM）
+   └── <video-name>/                 # ★ 每支视频一个独立目录，kebab-case
    ```
 
-   - **视频子目录名**：由 `src/videos/<VideoName>` 的 PascalCase 转 kebab-case 得到（`ProductLaunch` → `public/product-launch/`），转换由 `compress-assets.py --video ProductLaunch` 自动完成。
-   - **`<video-name>/` 下只允许** `audio/` `images/` `fonts/` `video/` 四个子目录；多一层分类（如 `images/icons/`）允许，但第一层必须是类型名。
-   - **`staticFile()` 路径必须带子目录前缀**：`staticFile("product-launch/audio/bgm.mp3")`；跨视频共用写 `staticFile("_shared/audio/showreel-music.mp3")`。写成 `staticFile("bgm.mp3")` 会被校验判为 ERROR。
+   - **视频内部不做层级要求**，以下两种写法**都合法**，按方便程度任选：
+
+     ```text
+     # 写法 A：视频内平铺（文件少时更直观）
+     public/product-launch/
+     ├── bgm.mp3
+     ├── voiceover.mp3
+     ├── hero.webp
+     └── intro.mp4
+
+     # 写法 B：视频内按类型分类（文件多时更清晰）
+     public/product-launch/
+     ├── audio/bgm.mp3
+     ├── images/hero.webp
+     └── video/intro.mp4
+     ```
+
+     也可自定义子目录（如 `sfx/`、`screenshots/`），不做限制。
+
+   - **`public/` 根目录不得直接放任何文件**——这是唯一会被判 ERROR 的层级违规。
+   - **视频子目录名**：由 `src/videos/<VideoName>` 的 PascalCase 转 kebab-case 得到（`ProductLaunch` → `public/product-launch/`）。
+   - **`staticFile()` 路径必须带视频子目录前缀**（视频内部是否再分子目录，跟着实际文件走）：
+     ```tsx
+     staticFile("product-launch/bgm.mp3")                  // 写法 A
+     staticFile("product-launch/audio/bgm.mp3")            // 写法 B
+     staticFile("_shared/audio/showreel-music.mp3")        // 跨视频共用
+     ```
+     写成 `staticFile("bgm.mp3")` 会被校验判为 ERROR。
    - **删除视频时同步删除** `public/<video-name>/`，避免孤儿资产堆积。
 
    #### 4.4 素材库布局
@@ -126,7 +155,7 @@ When asked to create a new video (e.g., `ProductLaunch`, `TiktokAd`, `AnnualRepo
    npm run assets:scan         # 体检 public/：平铺文件 + 超标文件
    ```
 
-   校验项：命名规范、禁止平铺、子目录白名单、**压缩门禁（超阈值未压缩即 ERROR）**、绝对上限、`staticFile()` 引用缺失/无前缀、孤儿资产（告警）、素材清单缺失、素材误入库。**有 ERROR 不得提交。**
+   校验项：命名规范、**禁止跨视频平铺**（`public/` 根目录直接放文件即 ERROR）、**压缩门禁（超阈值未压缩即 ERROR）**、绝对上限、`staticFile()` 引用缺失/无前缀、孤儿资产（告警）、素材清单缺失、素材误入库。**有 ERROR 不得提交。**
 
    #### 4.7 程序化音乐 / SFX
 

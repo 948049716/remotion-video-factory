@@ -15,7 +15,7 @@ __pycache__/
 *.pyc
 
 # --- 素材库（Source Materials）---------------------------------------------
-# 见 assets/README.md 与 AGENTS.md §1.6：原始素材不入 git，仅素材清单与模板入库。
+# 见 assets/README.md 与 AGENTS.md §1.4：原始素材不入 git，仅素材清单与模板入库。
 assets/**
 !assets/README.md
 !assets/_template/

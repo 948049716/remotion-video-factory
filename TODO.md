@@ -131,25 +131,25 @@
 - **影响范围**：所有新视频的素材投放与 `public/` 组织；`scripts/`、`AGENTS.md` §1.4、`assets/README.md`、`README.md`、`.gitignore`、`package.json`。
 - **现象**：
   1. 规范只要求「素材进 `public/`」，**没有任何压缩要求**。一张 20 MB 的 4K 原片、一个 50 MB 的 WAV 可以直接放进 `public/` 并提交，仓库体积无上限增长（仓库需经 GitHub 同步给多个 Agent）。
-  2. 运行时资产可以平铺在 `public/` 根目录，没有「每支视频一个子文件夹」的约定，多支视频的 `bgm.mp3` 会互相覆盖。
+  2. 运行时资产可以平铺在 `public/` 根目录，没有「每支视频一个子文件夹」的约定，多支视频的 `bgm.mp3` 会互相覆盖（注意：要禁的是**跨视频**平铺，视频内部平铺是允许的）。
   3. 原校验脚本只有「单文件 ≤10 MB」一条兜底，无法判断「是不是该压缩」。
   4. `.gitignore` 里的全局 `*.mp4` / `*.wav` 规则会把 `public/` 下的运行时视频/音频一并忽略，导致「public/ 必须入库」的约定实际失效。
 - **复现步骤**：
   1. `cp big-4k.mov public/` → 旧 `check-assets.py` 不报错（< 10 MB 时），也不提示压缩。
-  2. `printf x > public/flat.mp3` → 旧校验只报「孤儿资产」告警，不报平铺违规。
+  2. `printf x > public/flat.mp3` → 旧校验只报「孤儿资产」告警，不报跨视频平铺违规。
   3. `git check-ignore -v public/<video>/video/x.mp4` → 命中 `.gitignore:8:*.mp4`，文件进不了 git。
 - **根因分析**：已确认。规范缺少「压缩门禁」与「目录层级」两个可判定维度；`.gitignore` 的全局媒体忽略规则与「运行时资产入库」互相冲突，未加例外。
 - **期望结果**：
   1. 素材进 `public/` 前按类型阈值强制压缩，压缩后质量肉眼无差、体积显著下降；
-  2. `public/` 强制「视频 → 类型」两级分目录，禁止平铺；
+  2. `public/` 强制「每支视频一个独立子目录」，禁止跨视频平铺（视频内部可平铺）；
   3. 上述两条均为**机器可判定**的门禁，违反即 ERROR；
   4. `public/` 下所有运行时资产确实能进 git。
 - **验收标准**（全部满足才可标记 `[x]`）：
   1. `python3 scripts/check-assets.py` 退出码 `0`；
   2. `python3 scripts/compress-assets.py --help` 退出码 `0`，且存在 `--in/--video/--out/--force/--scan` 参数；
   3. 压缩有效性：对 4K 视频样本执行压缩后体积降幅 ≥ 50%，且 SSIM ≥ 0.99；
-  4. 平铺门禁：在 `public/` 根放任意文件，`check-assets.py` 退出码 `1` 且输出含「平铺文件」；
-  5. 子目录门禁：创建 `public/<v>/misc/a.mp3`，退出码 `1` 且输出含「子目录不合规」；
+  4. 跨视频平铺门禁：在 `public/` 根放任意文件，`check-assets.py` 退出码 `1` 且输出含「跨视频平铺」；
+  5. 视频内自由度：`public/<v>/bgm.mp3`（平铺）与 `public/<v>/misc/a.mp3`（自定义子目录）均须退出码 `0`；
   6. 压缩门禁：放一个 1.2 MB 的 `.png` 到 `public/<v>/images/`，退出码 `1` 且输出含「超阈值未压缩」；
   7. 绝对上限：放一个 2.5 MB 的 `.webp`，退出码 `1` 且输出含「超出绝对上限」；
   8. 引用前缀：`staticFile("bgm.mp3")` 触发「引用未带子目录前缀」ERROR；
@@ -161,8 +161,9 @@
 - **完成日期**：2026-11-12
 - **完成结论**：
   - 新增 `scripts/asset_rules.py`：阈值/硬上限/类型/命名的**单一真源**，两个脚本共用，杜绝数字漂移。
-  - 新增 `scripts/compress-assets.py`：图片→WebP q82、音频→MP3 192k、视频→H.264 CRF20；低于阈值直接复制并保留原扩展名；压缩无收益时自动回滚；`--scan` 体检平铺与超标文件。
-  - 重写 `scripts/check-assets.py`：新增「禁止平铺」「子目录白名单」「压缩门禁」「绝对上限」「引用无前缀」五项检查。
+  - 新增 `scripts/compress-assets.py`：图片→WebP q82、音频→MP3 192k、视频→H.264 CRF20；低于阈值直接复制并保留原扩展名；压缩无收益时自动回滚；`--scan` 体检跨视频平铺与超标文件。
+  - 重写 `scripts/check-assets.py`：新增「禁止跨视频平铺」「压缩门禁」「绝对上限」「引用无前缀」四项检查。
+  - 层级规则收敛：初版曾要求「视频 → 类型」两级强制分目录，经确认后放宽为**只禁止跨视频平铺**——视频内部平铺或自定义子目录（`sfx/` 等）均合法，仅要求每支视频有独立目录。
   - `.gitignore` 移除全局 `*.mp4/*.webm/*.wav`，改为仅对素材生效，并显式放行 `public/**` 下的媒体文件。
   - `AGENTS.md` §1.4 扩写为 4.1–4.7（压缩门禁表、实测数据、统一入口、目录规范、校验门禁）；`assets/README.md` §4 重写；`assets/_template/README.md` 增加「压缩记录」表；`README.md` 资产章节重写。
   - 实测：4K/3s 视频 19.7 MB → 1.3 MB（-93.3%，SSIM 0.9977）；WAV 8.2 MB → 705 KB（-91.6%）；PNG 384 KB → 111 KB（-71.0%，SSIM 0.9983）。全部门禁正/负向测试通过。
@@ -244,4 +245,4 @@
 | 2026-11-12 | 建立待办清单与规范；登记 TODO-001（公网 TTS 端点不可达） |
 | 2026-11-12 | 启动 Studio 并登记三项环境问题：TODO-002（Watchpack EACCES 告警，HMR 实测可用）、TODO-003（git dubious ownership）、TODO-004（README 未同步清空作品后的现状） |
 | 2026-11-12 | 建立静态资产三层分离规范并实现校验脚本（TODO-005 完成）；`public/` 改分目录、新增 `assets/` 素材库；归档 TODO-004、TODO-006（`AGENTS.md` §1.2 死链一并修正） |
-| 2026-11-12 | 新增强制压缩门禁与运行时资产分目录校验（TODO-007 完成）：`asset_rules.py` 单一真源、`compress-assets.py` 压缩落位、`check-assets.py` 五项新门禁；修复 `.gitignore` 全局媒体规则导致 `public/` 资产无法入库的缺陷 |
+| 2026-11-12 | 新增强制压缩门禁与运行时资产归属校验（TODO-007 完成；层级规则按确认放宽为仅禁跨视频平铺）：`asset_rules.py` 单一真源、`compress-assets.py` 压缩落位、`check-assets.py` 五项新门禁；修复 `.gitignore` 全局媒体规则导致 `public/` 资产无法入库的缺陷 |

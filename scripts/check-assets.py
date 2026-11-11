@@ -2,11 +2,11 @@
 """
 check-assets.py — 静态资产规范校验（零依赖，Python 3.8+）
 
-校验 AGENTS.md §1.4「静态资产三层分离 + 运行时资源分目录 + 压缩门禁」是否被遵守：
+校验 AGENTS.md §1.4「静态资产三层分离 + 运行时资源归属 + 压缩门禁」是否被遵守：
 
   1. 命名规范：public/ 每段只用小写英文、数字、`-`、`_`、`.`，禁止中文/空格/大写
-  2. 禁止平铺：public/ 根下不得直接放文件，必须进 <video-name>/<type>/ 或 _shared/<type>/
-  3. 子目录白名单：public/<video-name>/ 下只允许 audio/ images/ fonts/ video/
+  2. 禁止跨视频平铺：public/ 根下不得直接放文件，必须进 <video-name>/ 或 _shared/
+     （视频内部可平铺，也可按类型分子目录，不做层级要求）
   4. 压缩门禁：超过类型阈值（图 500 KB / 音 2 MB / 视 8 MB）的文件必须是已压缩格式
   5. 绝对上限：任何单文件不得超过硬上限（图 2 MB / 音 8 MB / 视 32 MB）
   6. staticFile() 引用完整性：src 中引用的文件必须存在于 public/
@@ -88,35 +88,26 @@ def check_public_names(quiet: bool) -> None:
 
 
 # --------------------------------------------------------------------------- #
-# 2. 禁止平铺 + 3. 子目录白名单
+# 2. 禁止跨视频平铺（public/ 根目录不得直接放文件）
 # --------------------------------------------------------------------------- #
 def check_layout(quiet: bool) -> None:
-    log("→ 校验运行时资产分目录（禁止平铺）", quiet)
+    """只禁止「不同视频之间平铺」，即 public/ 根目录直接放文件。
+
+    视频**内部**不做层级要求：public/<video-name>/ 下既可平铺
+    （bgm.mp3、hero.webp），也可按类型分子目录（audio/bgm.mp3）。
+    两种都合法，仅要求归属清晰——每个文件必须能看出属于哪支视频。
+    """
+    log("→ 校验运行时资产归属（禁止跨视频平铺）", quiet)
     if not PUBLIC_DIR.is_dir():
         return
     for _path, rel_posix, parts in public_files():
         if R.is_flat(parts):
             err(
-                f"平铺文件：public/{rel_posix}\n"
+                f"跨视频平铺：public/{rel_posix}\n"
                 "   规则：public/ 根目录不得直接放文件，必须放进 "
-                "public/<video-name>/<type>/ 或 public/_shared/<type>/\n"
+                "public/<video-name>/ 或 public/_shared/，否则多支视频的同名文件会互相覆盖\n"
                 "   处理：python3 scripts/compress-assets.py "
-                f"--in public/{rel_posix} --video <VideoName> --force"
-            )
-            continue
-        group = parts[0]
-        if len(parts) >= 3:
-            subdir = parts[1]
-            if subdir not in R.ALLOWED_SUBDIRS:
-                err(
-                    f"子目录不合规：public/{rel_posix}\n"
-                    f"   {group}/ 下只允许 {' / '.join(sorted(R.ALLOWED_SUBDIRS))}，"
-                    f"实际是 {subdir}/"
-                )
-        elif len(parts) == 2 and group != R.SHARED_DIR:
-            warn(
-                f"建议分类型：public/{rel_posix} 直接放在 {group}/ 下\n"
-                f"   建议移到 {group}/{'images' if R.kind_of(Path(rel_posix)) == 'image' else 'audio'}/ 等子目录"
+                f"--in public/{rel_posix} --video <VideoName>"
             )
 
 

@@ -305,7 +305,10 @@ def process_one(
 # 体检模式
 # --------------------------------------------------------------------------- #
 def scan(quiet: bool, suggest: bool) -> int:
-    """扫描 public/ 是否存在平铺文件与超标文件。"""
+    """扫描 public/ 是否存在跨视频平铺与超标文件。
+
+    只检查 public/ 根目录是否直接放文件（跨视频平铺）；视频内部平铺或分子目录都合法。
+    """
     if not PUBLIC_DIR.is_dir():
         info("public/ 不存在，无需体检")
         return 0
@@ -326,7 +329,7 @@ def scan(quiet: bool, suggest: bool) -> int:
         kind = kind_of(path)
 
         if len(parts) == 1:
-            problems.append(f"平铺文件：public/{rel.as_posix()}（必须放进 <video-name>/<type>/ 子目录）")
+            problems.append(f"跨视频平铺：public/{rel.as_posix()}（必须放进 <video-name>/ 或 _shared/）")
             continue
 
         if kind is None:
@@ -355,7 +358,7 @@ def scan(quiet: bool, suggest: bool) -> int:
         info(f"✗ 体检失败：{len(problems)} 个问题")
         return 1
 
-    info("✓ 体检通过：无平铺文件，无超标文件")
+    info("✓ 体检通过：无跨视频平铺，无超标文件")
     return 0
 
 
@@ -392,7 +395,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--max-width", type=int, default=1920, help="视频宽度上限（0 = 不缩放）")
     parser.add_argument("--force", action="store_true", help="忽略阈值，强制压缩")
     parser.add_argument("--dry-run", action="store_true", help="只打印计划，不写文件")
-    parser.add_argument("--scan", action="store_true", help="体检 public/（平铺文件 + 超标文件）")
+    parser.add_argument("--scan", action="store_true", help="体检 public/（跨视频平铺 + 超标文件）")
     parser.add_argument("--suggest", action="store_true", help="体检时给出修复命令")
     args = parser.parse_args(argv)
 

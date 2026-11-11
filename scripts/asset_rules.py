@@ -51,11 +51,8 @@ RUNTIME_OK = {".webp", ".mp3", ".mp4"}
 # 压缩后的目标扩展名
 TARGET_EXT = {"image": ".webp", "audio": ".mp3", "video": ".mp4"}
 
-# 类型 → public/<video-name>/ 下的子目录
+# 类型 → 建议的分类子目录（仅用于 --video 自动落位；视频内部也可平铺）
 SUBDIR = {"image": "images", "audio": "audio", "video": "video", "font": "fonts"}
-
-# 允许出现在 public/<video-name>/ 下的子目录名
-ALLOWED_SUBDIRS = {"audio", "images", "fonts", "video"}
 
 # 共享资产目录名（不带视频前缀）
 SHARED_DIR = "_shared"
