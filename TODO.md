@@ -4,7 +4,7 @@
 > 任何 Agent / 开发者发现的遗留问题、待验证项、需人工确认事项，都必须登记在此，不得只写在聊天记录或代码注释里。
 > 制定与维护规范见 [`AGENTS.md`](AGENTS.md) 第 6 节「项目待办文件规范」。
 
-**最后更新**：2026-11-12（完成 TODO-007：强制压缩门禁 + 运行时资产分目录校验）
+**最后更新**：2026-11-12（新增 TODO-011：`check:assets` 对动态 `staticFile()` 路径误报孤儿资产；完成《小狐狸找到发光种子》动态分镜，12 张分镜图入库）
 **维护者**：AI Agent + 项目所有者
 
 ---
@@ -82,6 +82,102 @@
   3. 用 `ffprobe` 校验产物时长 > 0 秒。
 - **临时绕过方案**：与 NAS 同局域网的机器使用默认 `--endpoint lan`（`auto` 模式也会自动优先内网）；外网机器暂无法合成语音，需等待本项修复。
 - **相关文件 / 链接**：`scripts/generate_tts.py`、`AGENTS.md` §1.5、NAS 端口映射与反代配置（不在本仓库内）。
+- **复测记录（2026-11-12，Windows 本机 `D:\我的项目\remotion-video`，非 NAS 局域网）**：
+  - 局域网探测 `192.168.0.2:5055` 不可达，`generate_tts.py` 按设计自动回退公网。
+  - 公网端点用 Python 标准库（OpenSSL）访问**成功**：`GET /v1/audio/voices?lang=zh` 返回 14 个音色；`POST /v1/audio/speech` 两次均返回 `audio/mpeg`，产物经 `ffprobe` 校验时长 15.816 s / 7.752 s。
+  - 但 `curl.exe`（Schannel）对同一地址 TLS 握手被重置：`curl: (35) Recv failure: Connection was reset`，`http_code=000`；PowerShell `Invoke-WebRequest` 报「基础连接已经关闭」。详见 TODO-008。
+  - 结论：**原「公网端点完全不可达」的现象在本机已不成立**，但验收标准 #1（curl 返回 200）仍不满足，故本项维持 `[!]`，阻塞原因改写为「curl/Schannel 客户端握手被重置，待确认服务端 TLS 配置或链路中间设备」。
+
+### [!] TODO-008 · P2 · 公网 TTS 端点对 curl / PowerShell（Windows Schannel）TLS 握手被重置
+
+- **登记日期**：2026-11-12
+- **影响范围**：所有用 Windows 自带 `curl.exe`、PowerShell `Invoke-WebRequest`/`Invoke-RestMethod` 调用 `https://tts.miong.dpdns.org:9481` 的排障与自动化脚本；也影响 `TODO-001` 验收标准 #1 的可判定性。
+- **现象**：
+  - `curl.exe -s -m 15 -o NUL -w "%{http_code}" https://tts.miong.dpdns.org:9481/docs` → `000`，退出码 1。
+  - `curl.exe -sv` 详细输出：`Trying 112.74.85.74:9481...` → `ALPN: curl offers http/1.1` → `schannel: failed to receive handshake, SSL/TLS connection failed` / `Recv failure: Connection was reset`。
+  - 同一地址同一时刻用 Python `urllib`（OpenSSL）访问 `/docs` 返回 **HTTP 200**，`/v1/audio/speech` 正常合成音频。
+  - 无 `http_proxy` / `https_proxy` 等代理环境变量。
+- **复现步骤**：
+  1. 在 Windows 本机执行：`curl.exe -sv -m 15 -o NUL https://tts.miong.dpdns.org:9481/docs`
+  2. 观察 `schannel: failed to receive handshake` 与 `Connection was reset`。
+  3. 对照执行：`python -c "import urllib.request; print(urllib.request.urlopen('https://tts.miong.dpdns.org:9481/docs', timeout=15).status)"` 返回 `200`。
+- **根因分析**：待确认。已排除 DNS（解析到 `112.74.85.74` 正常）与本机代理（无代理变量）。假设按概率排序：
+  1. 反向代理仅提供 Schannel 不接受的 TLS 版本/密码套件组合（如仅 TLS 1.3 且特定套件，或证书链不完整导致 Schannel 直接断开）；
+  2. 链路上存在按 TLS 指纹拦截的中间设备，放行 OpenSSL 指纹而重置 Schannel 指纹；
+  3. 反向代理对 HTTP/1.1 + 无 SNI 扩展之外的握手参数处理异常。
+- **期望结果**：`curl.exe` 与 Python 客户端对 `https://tts.miong.dpdns.org:9481/docs` 均返回 `200`，TTS 合成在两类客户端下行为一致。
+- **验收标准**（全部满足才可标记 `[x]`）：
+  1. `curl.exe -s -m 15 -o NUL -w "%{http_code}" https://tts.miong.dpdns.org:9481/docs` 输出 `200` 且退出码 `0`；
+  2. `curl.exe -s -m 30 -o NUL -w "%{http_code}" -H "Content-Type: application/json" -d '{"model":"tts-1","input":"测试","voice":"zh-CN-XiaoxiaoNeural","response_format":"mp3"}' https://tts.miong.dpdns.org:9481/v1/audio/speech` 输出 `200`；
+  3. 同请求用 `python3 scripts/generate_tts.py --text "测试" --out /tmp/x.mp3 --endpoint public` 仍成功（回归不破坏现有可用路径）。
+- **临时绕过方案**：验证与调用一律用 Python 客户端（`scripts/generate_tts.py` 或 `urllib`），不用 `curl.exe` / `Invoke-WebRequest` 判断该端点可用性。
+- **相关文件 / 链接**：`scripts/generate_tts.py`、`AGENTS.md` §1.5、TODO-001、NAS 反代（NPM/Nginx/Caddy）TLS 配置（不在本仓库内）。
+
+### [!] TODO-009 · P1 · 公网 TTS 端点 `9481` 已改为明文 HTTP，原 `https://` 调用全部失败
+
+- **登记日期**：2026-11-12
+- **影响范围**：`scripts/generate_tts.py` 的 `PUBLIC_BASE_URL` 常量与 `AGENTS.md` §1.5 记录的地址；所有走公网端点的 TTS 调用。
+- **现象**：
+  - 同一日早先 `https://tts.miong.dpdns.org:9481/docs` 返回 200；稍后同样的请求全部报 `SSL: WRONG_VERSION_NUMBER`。
+  - 直接对 `9481` 端口发**明文** HTTP 请求，返回 `HTTP/1.1 200 OK`、`Server: nginx/1.29.3`，正文为 FastAPI 文档页。
+  - 用 `--base-url http://tts.miong.dpdns.org:9481/v1` 调用 `/v1/audio/voices?lang=zh` 返回 14 个音色；`/v1/audio/speech` 正常返回 `audio/mpeg`，14 段台词全部合成成功。
+  - 即：该端口现在**只提供 HTTP，不再提供 TLS**。
+- **复现步骤**：
+  1. `python scripts/generate_tts.py --text "测试" --out tmp.mp3 --endpoint public` → 报 `[SSL: WRONG_VERSION_NUMBER]`。
+  2. `curl -sv -m 10 -o NUL https://tts.miong.dpdns.org:9481/docs` → TLS 握手失败。
+  3. 明文请求 `http://tts.miong.dpdns.org:9481/docs` → 返回 200。
+- **根因分析**：待确认。已确认不是客户端问题（Python/OpenSSL 与 curl/Schannel 在同一端口都失败，而明文请求成功）。假设：反向代理在 `9481` 上的 TLS 监听被关闭或改成了纯 HTTP 监听（配置变更或证书过期后被人工降级）。
+- **期望结果**：公网端点恢复 HTTPS，`scripts/generate_tts.py` 默认 `public` 端点可直接使用；若长期只支持 HTTP，则明确记录并调整脚本常量与文档。
+- **验收标准**（二选一满足即可标记 `[x]`）：
+  1. **恢复 TLS**：`python scripts/generate_tts.py --text "连通性测试" --out tmp.mp3 --endpoint public` 退出码 `0`，且产物经 `ffprobe` 时长 > 0 秒；或
+  2. **确认长期明文**：`AGENTS.md` §1.5 与 `scripts/generate_tts.py` 的 `PUBLIC_BASE_URL` 同步改为 `http://`，且上述命令在**不带** `--base-url` 的情况下退出码 `0`。
+- **临时绕过方案**：显式指定明文地址，例如
+  `python scripts/generate_tts.py --text "..." --out x.mp3 --base-url http://tts.miong.dpdns.org:9481/v1`
+  或用环境变量 `EDGE_TTS_BASE_URL=http://tts.miong.dpdns.org:9481/v1`。
+- **相关文件 / 链接**：`scripts/generate_tts.py`（`PUBLIC_BASE_URL`）、`AGENTS.md` §1.5、TODO-001、TODO-008、NAS 反代 TLS 配置（不在本仓库内）。
+
+### [ ] TODO-010 · P2 · Windows 下 `compress-assets.py` 无法压缩图片（中文路径 + 缺少 webp 输出格式）
+
+- **登记日期**：2026-11-12
+- **影响范围**：`scripts/compress-assets.py` 在 Windows 中文目录环境下的图片压缩；影响素材入 `public/` 的标准流程。
+- **现象**：
+  1. 直接运行 `python scripts/compress-assets.py --in assets/FoxStarlightSeed/images/ref-style-v2.png --video FoxStarlightSeed`，ffmpeg 报 `Error initializing the muxer for .../ref-style-v2.webp: Invalid argument`，输出路径中的中文变成乱码（`鎴戠殑椤圭洰`）。
+  2. 把源文件复制到纯 ASCII 临时目录后重试，报 `Unable to choose an output format for 'out.webp'`——即该 ffmpeg 构建不含 webp muxer。
+  3. 最终改用内置 Pillow 转换成功：`Image.save(..., 'WEBP', quality=82, method=6)`，3.3 MB PNG → 183 KB WebP。
+- **复现步骤**：
+  1. 在路径含中文的仓库中执行上述压缩命令。
+  2. 观察 muxer 初始化失败与乱码路径。
+  3. 换 ASCII 路径后重试，观察「Unable to choose an output format」。
+- **根因分析**：已确认两部分。① Windows 下 subprocess 传参编码与 ffmpeg 的 UTF-8 路径处理不一致；② 项目自带的 `@remotion/compositor-win32-x64-msvc` 版 ffmpeg（n7.1）未编译 webp muxer。二者互相独立，都会导致失败。
+- **期望结果**：在 Windows 中文路径环境下，`compress-assets.py` 能把 PNG/JPG 正确压成 WebP 并落位到 `public/<video>/images/`。
+- **验收标准**（全部满足才可标记 `[x]`）：
+  1. 在路径含中文的仓库执行 `python scripts/compress-assets.py --in assets/FoxStarlightSeed/images/ref-style-v2.png --video FoxStarlightSeed`，退出码 `0`；
+  2. 产物 `public/fox-starlight-seed/images/ref-style-v2.webp` 存在且体积 < 500 KB；
+  3. 该产物可被 Pillow 正常打开，尺寸与原图一致（2048×1152）；
+  4. 音频压缩路径不受影响：对任一 >2 MB 的 wav 执行压缩仍成功（回归）。
+- **临时绕过方案**：用内置 Pillow 直接转 WebP，再手工复制到 `public/<video>/images/`；或改在 Linux/NAS 环境执行压缩脚本。
+- **相关文件 / 链接**：`scripts/compress-assets.py`、`scripts/asset_rules.py`、`docs/fox-starlight-seed/README.md` §6.2。
+
+### [ ] TODO-011 · P3 · `check:assets` 对动态拼接的 `staticFile()` 路径误报「孤儿资产」
+
+- **登记日期**：2026-11-12
+- **影响范围**：`scripts/check-assets.py` 的孤儿资产检查；所有把资源路径写进数据文件再传给 `staticFile()` 的视频（本仓库当前为 `FoxStarlightSeed`）。
+- **现象**：
+  - `src/videos/FoxStarlightSeed/shots.ts` 用模板字符串生成路径：`file: \`fox-starlight-seed/audio/temp/s01-narr.mp3\``，组件里 `staticFile(line.file)`。
+  - `python scripts/check-assets.py` 输出 30 条 `[WARN] 孤儿资产：public/fox-starlight-seed/... 未被任何 staticFile() 引用`，退出码仍为 `0`。
+  - 同类误报也会覆盖 `public/fox-starlight-seed/images/shot-01…12.webp`（由 `getStaticFiles()` 运行时匹配）。
+- **复现步骤**：
+  1. 执行 `python scripts/check-assets.py`。
+  2. 观察 `public/fox-starlight-seed/audio/temp/*.mp3`、`public/fox-starlight-seed/images/shot-*.webp` 全部被判为孤儿。
+  3. 用 `grep -n "staticFile" src/videos/FoxStarlightSeed/Animatic.tsx` 可确认这些路径确实经 `staticFile()` 播放。
+- **根因分析**：已确认。校验脚本用正则匹配源码里的 `staticFile("字面量")`，无法解析 `staticFile(variable)` 与 `getStaticFiles()` 扫描结果，因此把这批文件判成未被引用。脚本自身已在告警文案里提示「若为动态拼接路径可忽略」，但逐条刷屏会淹没真正有问题的告警。
+- **期望结果**：动态引用的资产不再逐条报警，同时保留对真正孤儿文件的检出能力。
+- **验收标准**（全部满足才可标记 `[x]`）：
+  1. 在 `FoxStarlightSeed` 现有代码不变的前提下执行 `python scripts/check-assets.py`，`[WARN] 孤儿资产` 计数为 `0`；
+  2. 放入一个真正无引用的 `public/fox-starlight-seed/images/orphan-test.webp` 后重跑，仍能命中该文件并报警（不能整体关掉检查）；
+  3. `npm run check` 退出码 `0`（含 `tsc --noEmit`）。
+- **临时绕过方案**：忽略这 30 条告警；退出码为 0 不影响提交。判断资产是否真被使用时改看代码里是否存在 `staticFile(` 与对应目录前缀。
+- **相关文件 / 链接**：`scripts/check-assets.py`、`src/videos/FoxStarlightSeed/shots.ts`、`src/videos/FoxStarlightSeed/Animatic.tsx`。
 
 ### [ ] TODO-002 · P3 · 启动 Studio 时 Watchpack 监听 `/vol2` 报 EACCES 权限告警
 
@@ -246,3 +342,7 @@
 | 2026-11-12 | 启动 Studio 并登记三项环境问题：TODO-002（Watchpack EACCES 告警，HMR 实测可用）、TODO-003（git dubious ownership）、TODO-004（README 未同步清空作品后的现状） |
 | 2026-11-12 | 建立静态资产三层分离规范并实现校验脚本（TODO-005 完成）；`public/` 改分目录、新增 `assets/` 素材库；归档 TODO-004、TODO-006（`AGENTS.md` §1.2 死链一并修正） |
 | 2026-11-12 | 新增强制压缩门禁与运行时资产归属校验（TODO-007 完成；层级规则按确认放宽为仅禁跨视频平铺）：`asset_rules.py` 单一真源、`compress-assets.py` 压缩落位、`check-assets.py` 五项新门禁；修复 `.gitignore` 全局媒体规则导致 `public/` 资产无法入库的缺陷 |
+| 2026-11-12 | 《小狐狸找到发光种子》试音生成；复测 TODO-001（本机公网端点经 Python 可用，curl/Schannel 握手被重置），新增 TODO-008 记录该客户端差异，TODO-001 阻塞原因改判 |
+| 2026-11-12 | 公网 TTS 端点由 HTTPS 改为明文 HTTP（HTTPS 报 `WRONG_VERSION_NUMBER`，明文 200 且合成成功），新增 TODO-009；动态分镜 `FoxStarlightSeed-Animatic` 落地（3297 帧 / 109.9 秒，含按镜头拆分的临时配音） |
+| 2026-11-12 | 新增交接文档 `docs/fox-starlight-seed/README.md` 与分镜提示词包 `prompts.md`；登记 TODO-010（Windows 中文路径 + 缺少 webp muxer 导致 `compress-assets.py` 失败）；`AGENTS.md` §1.5 同步端点现状 |
+| 2026-11-12 | 12 张分镜图入库并接入动态分镜（`animatic-v2`，真实画面 + 临时配音）；新增 TODO-011（`check:assets` 对动态 `staticFile()` 路径误报孤儿资产）；补全素材清单与审片记录 |

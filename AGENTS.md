@@ -170,6 +170,7 @@ When asked to create a new video (e.g., `ProductLaunch`, `TiktokAd`, `AnnualRepo
    | 公网 / 远程 | `https://tts.miong.dpdns.org:9481/v1` | `https://tts.miong.dpdns.org:9481/docs` |
 
    - **端点选择规则**：与 NAS 同局域网（NAS 上运行的 Agent 即属此类）走局域网地址；项目被拉取到**不在同一局域网**的电脑时走公网地址。**不要凭猜测**——先探测局域网是否可达，不可达再回退公网。
+   - **⚠️ 公网端点当前只提供明文 HTTP**（2026-11-12 实测：`https://` 握手报 `SSL: WRONG_VERSION_NUMBER`；`http://` 返回 200 且合成正常）。脚本内 `PUBLIC_BASE_URL` 仍是 https，失败时用 `--base-url http://tts.miong.dpdns.org:9481/v1` 或环境变量 `EDGE_TTS_BASE_URL` 覆盖，详见 [`TODO.md`](TODO.md) `TODO-009`。**排障不要用 `curl.exe` 判断该端点可用性**（Schannel 握手被重置，见 `TODO-008`），改用脚本入口或 Python 客户端。
    - **统一入口**：使用 [`scripts/generate_tts.py`](scripts/generate_tts.py)（零依赖，自动探测端点），不要手写一次性 curl 脚本。
      ```bash
      # 默认 auto：先试局域网，不可达自动回退公网
@@ -186,7 +187,7 @@ When asked to create a new video (e.g., `ProductLaunch`, `TiktokAd`, `AnnualRepo
    - **接口**：`POST {BaseURL}/audio/speech`，JSON 体 `{ "model": "tts-1", "input": "...", "voice": "zh-CN-XiaoxiaoNeural", "response_format": "mp3", "speed": 1.0 }`，返回音频二进制。另有 `GET {BaseURL}/audio/voices?lang=zh`（音色列表）、`GET {BaseURL}/models`。
    - **产物落位**：生成的音频写入 `public/<video-name>/audio/`（跨视频共用则 `public/_shared/audio/`），在组件中用 `staticFile("<video-name>/audio/voiceover.mp3")` 引用；需要对齐画面时用 `ffprobe` 读取时长。
    - **产物必须提交**：TTS 产物是运行时资产，位于 `public/<video-name>/audio/`，**必须随仓库同步**（`.gitignore` 已显式放行 `public/**/*.mp3`）。未压缩的 `.wav` 不提交，统一用 `.mp3`。
-   - **已知问题**：公网端点当前不可达，见 [`TODO.md`](TODO.md) `TODO-001`；与 NAS 同局域网的机器不受影响。
+   - **已知问题**：公网端点当前改为明文 HTTP（`TODO-009`）、`curl.exe` 客户端握手异常（`TODO-008`）；原「公网完全不可达」的记录见 `TODO-001`，其现象已在本机复测中改判。与 NAS 同局域网的机器不受影响。
 
 ---
 
