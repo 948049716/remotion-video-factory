@@ -196,6 +196,7 @@
   3. `curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/` 返回 `200`。
 - **临时绕过方案**：忽略该告警（已实测不影响 Bundle、页面访问与热更新）；或在宿主机为运行用户放通 `/vol2`、`/vol2/1000` 的读取与执行权限。
 - **相关文件 / 链接**：`package.json`（`dev` 脚本）、`remotion.config.ts`、宿主机 `/vol2` 挂载目录权限（不在本仓库内）。
+- **环境适用范围（2026-11-12 复测）**：当前 Windows 工作副本 `D:\我的项目\remotion-video` 位于本地磁盘，没有 `/vol2` 挂载，本告警不复现。本项仅对 NAS 上的 `/vol2` 工作副本有效。
 
 ### [ ] TODO-003 · P3 · git 因属主不一致拒绝执行（dubious ownership）
 
@@ -214,6 +215,7 @@
   3. 无需在命令中附加 `-c safe.directory=...`。
 - **临时绕过方案**：每条命令附加 `-c safe.directory=/vol2/1000/Project/remotion-video-factory`；或一次性执行 `git config --global --add safe.directory /vol2/1000/Project/remotion-video-factory`（会修改全局 git 配置，需用户确认后执行）。
 - **相关文件 / 链接**：仓库根 `.git/`、宿主机用户与文件属主配置（不在本仓库内）。
+- **环境适用范围（2026-11-12 复测）**：当前 Windows 工作副本执行 `git status --short`、`git log`、`git push` 均正常，未触发 `dubious ownership`。本项仅对属主混杂的 NAS 工作副本有效。
 
 ---
 
