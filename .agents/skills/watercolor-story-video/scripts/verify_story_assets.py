@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
 """
-verify_story_assets.py — 手绘水彩故事视频 素材与音频完整性门禁检查脚本
+verify_story_assets.py — 手绘水彩故事视频 素材（含分层图层）与音频完整性门禁检查脚本
 
 在进入 Remotion 动画组装及交付预览前执行，确保：
-  1. 所有分镜画面（shot-01.webp ~ shot-NN.webp）均已生成且文件非空、尺寸有效；
-  2. 所有角色台词与旁白音频（sXX-*.mp3）均已生成且文件非空；
-  3. 实测音频时长（ffprobe）与时间轴配置一致，镜头内无台词重叠、无尾音被截断；
-  4. public/<story-slug>/ 下所有资源命名符合规范（无中文、无空格、带子目录前缀）。
+  1. 所有分镜底图（shot-01.webp ~ shot-NN.webp）或分层图层（layers/...）均已生成且文件非空；
+  2. 若提供了 layers 清单（或镜头配置了 layers），核对背景层与所有可动部件透明图层均存在；
+  3. 所有角色台词与旁白音频（sXX-*.mp3）均已生成且文件非空；
+  4. 实测音频时长（ffprobe）与时间轴配置一致，镜头内无台词重叠、无尾音被截断；
+  5. public/<story-slug>/ 下所有资源命名符合规范（无中文、无空格、带子目录前缀）。
 
 用法示例：
-  python3 verify_story_assets.py --story-slug fox-starlight-seed --manifest docs/fox-starlight-seed/tts-manifest.json
-  python3 verify_story_assets.py --story-slug fox-starlight-seed --expected-shots 12
+  python3 verify_story_assets.py --story-slug old-chen-music-box \
+      --manifest docs/old-chen-music-box/tts-manifest.json --expected-shots 10
 """
 
 from __future__ import annotations
@@ -61,11 +62,12 @@ def find_shot_image(images_dir: Path, shot_id: str) -> Path | None:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
-        description="检查手绘水彩故事视频的分镜图片、角色配音与时间轴是否齐全合规"
+        description="检查手绘水彩故事视频的分镜图片、分层透明图层、角色配音与时间轴是否齐全合规"
     )
     parser.add_argument("--story-slug", required=True, help="public/ 下的故事子目录名（kebab-case）")
     parser.add_argument("--manifest", help="可选：tts-manifest.json 路径，用于逐镜核对台词与时长")
-    parser.add_argument("--expected-shots", type=int, help="可选：期望的分镜总数（如 12）")
+    parser.add_argument("--layers-manifest", help="可选：分层素材清单 JSON（检查所有分层文件）")
+    parser.add_argument("--expected-shots", type=int, help="可选：期望的分镜总数（如 10）")
     parser.add_argument("--public-dir", default="public", help="public 根目录路径（默认 public）")
     args = parser.parse_args(argv)
 
@@ -77,6 +79,7 @@ def main(argv: list[str] | None = None) -> int:
     errors: list[str] = []
     warnings: list[str] = []
     checked_shots = 0
+    checked_layers = 0
     checked_lines = 0
 
     if not story_dir.exists():
@@ -91,7 +94,7 @@ def main(argv: list[str] | None = None) -> int:
                 if bad:
                     errors.append(f"路径包含不合规字符（仅允许小写字母/数字/-/_/.）: public/{rel}")
 
-    # 2. 若提供了 manifest，按 manifest 逐镜核对图片、音频、时长与时间轴边界
+    # 2. 若提供了 manifest，按 manifest 逐镜核对图片、分层图层、音频与时间轴边界
     if args.manifest:
         manifest_path = Path(args.manifest)
         if not manifest_path.exists():
@@ -105,10 +108,28 @@ def main(argv: list[str] | None = None) -> int:
             for shot in shots:
                 shot_id = str(shot.get("id", "")).zfill(2)
                 checked_shots += 1
+                layers = shot.get("layers") or []
                 img = find_shot_image(images_dir, shot_id)
-                if not img:
+
+                if layers:
+                    for layer in layers:
+                        checked_layers += 1
+                        l_src = layer.get("src", "")
+                        l_path = public_root / l_src
+                        if not l_src or not l_path.exists() or l_path.stat().st_size == 0:
+                            errors.append(
+                                f"[镜头 {shot_id} / 图层 {layer.get('id', '?')}] 缺少分层文件或为空: {l_path}"
+                            )
+                        else:
+                            size_kb = l_path.stat().st_size / 1024.0
+                            if size_kb > 3072:
+                                errors.append(
+                                    f"[镜头 {shot_id} / 图层 {layer.get('id', '?')}] 图层超过 3MB 上限 ({size_kb:.1f} KB): {l_path}"
+                                )
+                elif not img:
                     errors.append(f"[镜头 {shot_id}] 缺少分镜图: {images_dir}/shot-{shot_id}.webp")
-                else:
+
+                if img:
                     size_kb = img.stat().st_size / 1024.0
                     if size_kb > 2048:
                         errors.append(f"[镜头 {shot_id}] 分镜图超过 2MB 硬上限 ({size_kb:.1f} KB): {img}")
@@ -152,14 +173,31 @@ def main(argv: list[str] | None = None) -> int:
                         f"[镜头 {shot_id}] 台词结束时间 ({prev_end:.2f}s) 超出镜头总时长 ({shot_dur:.2f}s)，会导致尾音被截断"
                     )
 
-    # 3. 若指定了 expected-shots（或未提供 manifest），按序号检查分镜图与音频目录
+    # 3. 若提供了独立的 layers-manifest，检查其中的分层文件
+    if args.layers_manifest:
+        lm_path = Path(args.layers_manifest)
+        if not lm_path.exists():
+            errors.append(f"找不到 layers-manifest 文件: {lm_path}")
+        else:
+            lm = json.loads(lm_path.read_text(encoding="utf-8"))
+            for shot_id, layer_list in (lm.get("shots") or {}).items():
+                for layer in layer_list:
+                    checked_layers += 1
+                    l_src = layer.get("src", "")
+                    l_path = public_root / l_src
+                    if not l_src or not l_path.exists() or l_path.stat().st_size == 0:
+                        errors.append(
+                            f"[分层清单 {shot_id} / {layer.get('id', '?')}] 缺少文件或为空: {l_path}"
+                        )
+
+    # 4. 若指定了 expected-shots，检查底图是否齐全
     if args.expected_shots:
         for i in range(1, args.expected_shots + 1):
             shot_id = f"{i:02d}"
             if not args.manifest:
                 checked_shots += 1
             if not find_shot_image(images_dir, shot_id):
-                errors.append(f"[镜头 {shot_id}] 缺少分镜图: {images_dir}/shot-{shot_id}.webp")
+                errors.append(f"[镜头 {shot_id}] 缺少分镜底图: {images_dir}/shot-{shot_id}.webp")
 
     if not args.manifest and audio_dir.exists():
         mp3_files = sorted(audio_dir.rglob("*.mp3"))
@@ -170,10 +208,10 @@ def main(argv: list[str] | None = None) -> int:
             if mp3.stat().st_size == 0:
                 errors.append(f"配音文件为空 (0 bytes): {mp3}")
 
-    # 输出汇总报告
     report = {
         "storySlug": args.story_slug,
         "checkedShots": checked_shots,
+        "checkedLayers": checked_layers,
         "checkedAudioLines": checked_lines,
         "errors": errors,
         "warnings": warnings,

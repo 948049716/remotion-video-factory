@@ -34,7 +34,25 @@
           "durSec": 11.952
         }
       ],
-      "durSec": 14.1
+      "durSec": 14.1,
+      "layers": [
+        {
+          "id": "bg",
+          "src": "old-chen-music-box/images/layers/shot-01/bg.webp"
+        },
+        {
+          "id": "chen-window",
+          "src": "old-chen-music-box/images/layers/shot-01/chen-window.webp"
+        },
+        {
+          "id": "sign",
+          "src": "old-chen-music-box/images/layers/shot-01/sign.webp"
+        },
+        {
+          "id": "window-glow",
+          "src": "old-chen-music-box/images/layers/shot-01/window-glow.webp"
+        }
+      ]
     },
     {
       "id": "02",
@@ -52,7 +70,37 @@
           "durSec": 24.624
         }
       ],
-      "durSec": 26.5
+      "durSec": 26.5,
+      "layers": [
+        {
+          "id": "bg",
+          "src": "old-chen-music-box/images/layers/shot-02/bg.webp"
+        },
+        {
+          "id": "pendulum-1",
+          "src": "old-chen-music-box/images/layers/shot-02/pendulum-1.webp"
+        },
+        {
+          "id": "pendulum-2",
+          "src": "old-chen-music-box/images/layers/shot-02/pendulum-2.webp"
+        },
+        {
+          "id": "chen-body",
+          "src": "old-chen-music-box/images/layers/shot-02/chen-body.webp"
+        },
+        {
+          "id": "chen-head",
+          "src": "old-chen-music-box/images/layers/shot-02/chen-head.webp"
+        },
+        {
+          "id": "chen-arm",
+          "src": "old-chen-music-box/images/layers/shot-02/chen-arm.webp"
+        },
+        {
+          "id": "lamp-glow",
+          "src": "old-chen-music-box/images/layers/shot-02/lamp-glow.webp"
+        }
+      ]
     },
     {
       "id": "03",
@@ -70,7 +118,29 @@
           "durSec": 14.04
         }
       ],
-      "durSec": 16.0
+      "durSec": 16.0,
+      "layers": [
+        {
+          "id": "bg",
+          "src": "old-chen-music-box/images/layers/shot-03/bg.webp"
+        },
+        {
+          "id": "curtain",
+          "src": "old-chen-music-box/images/layers/shot-03/curtain.webp"
+        },
+        {
+          "id": "girl-body",
+          "src": "old-chen-music-box/images/layers/shot-03/girl-body.webp"
+        },
+        {
+          "id": "girl-head",
+          "src": "old-chen-music-box/images/layers/shot-03/girl-head.webp"
+        },
+        {
+          "id": "sign",
+          "src": "old-chen-music-box/images/layers/shot-03/sign.webp"
+        }
+      ]
     },
     {
       "id": "04",
@@ -96,7 +166,29 @@
           "durSec": 20.232
         }
       ],
-      "durSec": 25.7
+      "durSec": 25.7,
+      "layers": [
+        {
+          "id": "bg",
+          "src": "old-chen-music-box/images/layers/shot-04/bg.webp"
+        },
+        {
+          "id": "curtain",
+          "src": "old-chen-music-box/images/layers/shot-04/curtain.webp"
+        },
+        {
+          "id": "girl-body",
+          "src": "old-chen-music-box/images/layers/shot-04/girl-body.webp"
+        },
+        {
+          "id": "girl-head",
+          "src": "old-chen-music-box/images/layers/shot-04/girl-head.webp"
+        },
+        {
+          "id": "warm-glow",
+          "src": "old-chen-music-box/images/layers/shot-04/warm-glow.webp"
+        }
+      ]
     },
     {
       "id": "05",
@@ -138,7 +230,33 @@
           "durSec": 11.184
         }
       ],
-      "durSec": 36.6
+      "durSec": 36.6,
+      "layers": [
+        {
+          "id": "bg",
+          "src": "old-chen-music-box/images/layers/shot-05/bg.webp"
+        },
+        {
+          "id": "pendulum-2",
+          "src": "old-chen-music-box/images/layers/shot-05/pendulum-2.webp"
+        },
+        {
+          "id": "chen-body",
+          "src": "old-chen-music-box/images/layers/shot-05/chen-body.webp"
+        },
+        {
+          "id": "chen-head",
+          "src": "old-chen-music-box/images/layers/shot-05/chen-head.webp"
+        },
+        {
+          "id": "chen-arm",
+          "src": "old-chen-music-box/images/layers/shot-05/chen-arm.webp"
+        },
+        {
+          "id": "lamp-glow",
+          "src": "old-chen-music-box/images/layers/shot-05/lamp-glow.webp"
+        }
+      ]
     },
     {
       "id": "06",
@@ -164,7 +282,25 @@
           "durSec": 11.712
         }
       ],
-      "durSec": 28.7
+      "durSec": 28.7,
+      "layers": [
+        {
+          "id": "bg",
+          "src": "old-chen-music-box/images/layers/shot-06/bg.webp"
+        },
+        {
+          "id": "chen-body",
+          "src": "old-chen-music-box/images/layers/shot-06/chen-body.webp"
+        },
+        {
+          "id": "chen-arm",
+          "src": "old-chen-music-box/images/layers/shot-06/chen-arm.webp"
+        },
+        {
+          "id": "lamp-glow",
+          "src": "old-chen-music-box/images/layers/shot-06/lamp-glow.webp"
+        }
+      ]
     },
     {
       "id": "07",
@@ -182,7 +318,33 @@
           "durSec": 19.056
         }
       ],
-      "durSec": 21.1
+      "durSec": 21.1,
+      "layers": [
+        {
+          "id": "bg",
+          "src": "old-chen-music-box/images/layers/shot-07/bg.webp"
+        },
+        {
+          "id": "curtain",
+          "src": "old-chen-music-box/images/layers/shot-07/curtain.webp"
+        },
+        {
+          "id": "girl-body",
+          "src": "old-chen-music-box/images/layers/shot-07/girl-body.webp"
+        },
+        {
+          "id": "girl-head",
+          "src": "old-chen-music-box/images/layers/shot-07/girl-head.webp"
+        },
+        {
+          "id": "sign",
+          "src": "old-chen-music-box/images/layers/shot-07/sign.webp"
+        },
+        {
+          "id": "lamp-glow",
+          "src": "old-chen-music-box/images/layers/shot-07/lamp-glow.webp"
+        }
+      ]
     },
     {
       "id": "08",
@@ -200,7 +362,25 @@
           "durSec": 25.32
         }
       ],
-      "durSec": 27.4
+      "durSec": 27.4,
+      "layers": [
+        {
+          "id": "bg",
+          "src": "old-chen-music-box/images/layers/shot-08/bg.webp"
+        },
+        {
+          "id": "music-box",
+          "src": "old-chen-music-box/images/layers/shot-08/music-box.webp"
+        },
+        {
+          "id": "ballerina",
+          "src": "old-chen-music-box/images/layers/shot-08/ballerina.webp"
+        },
+        {
+          "id": "box-glow",
+          "src": "old-chen-music-box/images/layers/shot-08/box-glow.webp"
+        }
+      ]
     },
     {
       "id": "09",
@@ -226,7 +406,33 @@
           "durSec": 4.272
         }
       ],
-      "durSec": 17.4
+      "durSec": 17.4,
+      "layers": [
+        {
+          "id": "bg",
+          "src": "old-chen-music-box/images/layers/shot-09/bg.webp"
+        },
+        {
+          "id": "curtain",
+          "src": "old-chen-music-box/images/layers/shot-09/curtain.webp"
+        },
+        {
+          "id": "girl-body",
+          "src": "old-chen-music-box/images/layers/shot-09/girl-body.webp"
+        },
+        {
+          "id": "girl-head",
+          "src": "old-chen-music-box/images/layers/shot-09/girl-head.webp"
+        },
+        {
+          "id": "sign",
+          "src": "old-chen-music-box/images/layers/shot-09/sign.webp"
+        },
+        {
+          "id": "lamp-glow",
+          "src": "old-chen-music-box/images/layers/shot-09/lamp-glow.webp"
+        }
+      ]
     },
     {
       "id": "10",
@@ -244,7 +450,25 @@
           "durSec": 24.264
         }
       ],
-      "durSec": 27.1
+      "durSec": 27.1,
+      "layers": [
+        {
+          "id": "bg",
+          "src": "old-chen-music-box/images/layers/shot-10/bg.webp"
+        },
+        {
+          "id": "chen-window",
+          "src": "old-chen-music-box/images/layers/shot-10/chen-window.webp"
+        },
+        {
+          "id": "sign",
+          "src": "old-chen-music-box/images/layers/shot-10/sign.webp"
+        },
+        {
+          "id": "window-glow",
+          "src": "old-chen-music-box/images/layers/shot-10/window-glow.webp"
+        }
+      ]
     }
   ]
 }

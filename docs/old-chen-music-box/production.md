@@ -11,7 +11,7 @@
 | **Composition ID** | `OldChenMusicBox` | 注册于 `src/Root.tsx` |
 | **资源子目录 (`STORY_SLUG`)** | `old-chen-music-box` | `public/old-chen-music-box/{images,audio}` |
 | **画幅与帧率** | `1920 × 1080` (16:9), `30 fps` | 横屏绘本电影画幅 |
-| **总时长** | **221.6 秒**（`6648 帧`） | 由 16 段实测配音 + 呼吸留白自动排算 |
+| **总时长** | **240.6 秒**（`7218 帧`） | 由 16 段实测配音 + 呼吸留白自动排算 |
 | **语音模型方案** | 默认 `edge-tts`（沙箱自动音色塑形回退） | 按 `narrator` / `chen` / `girl` 区分音色、音高与语速 |
 | **生图模型方案** | Agent 内置生图工具 + 手绘水彩合成管线 | 统一转存 `1920×1080` WebP (`q=85`) |
 
@@ -51,3 +51,21 @@
 | **08** | 银色勋章 | 微距特写 · `grow` | `warm` | `starlight` | `s08-narr` (`0.90s` / `25.320s`) | `27.4s` |
 | **09** | 五块手工费 | 中近景柜台 · `still` | `warm` | `petals` | `s09-narr` (`0.80s` / `10.800s`)<br>`s09-chen` (`12.10s` / `4.272s`) | `17.4s` |
 | **10** | 余音与新址 | 远景拉远 · `pull` | `warm` | `leaves` | `s10-narr` (`1.00s` / `24.264s`) | `27.1s` |
+
+---
+
+## 5. 混合 2D 分层关节动画规划（Tier A / Tier B）
+
+| 镜头 | 分层级别 | 独立图层与关节驱动（`zIndex` 由低到高） | 视觉效果说明 |
+| :---: | :---: | :--- | :--- |
+| **01** | Tier A | `bg.webp` + `chen-window.webp` (`breathe`, 窗内呼吸) → `sign.webp` (`sway`, `parallax: 1.08`) → `window-glow.webp` (`glow-pulse`) | 门脸木牌微晃前景视差与窗内暖光老陈剪影轻微呼吸 |
+| **02** | Tier B | `bg.webp` → `pendulum-1/2.webp` (`swing`, 双钟摆摇摆) → `chen-body.webp` (`breathe`) → `chen-head.webp` (`nod`) → `chen-arm.webp` (`swing`, 持黄铜螺丝刀劳作) → `lamp-glow.webp` (`glow-pulse`) | 挂钟摆动 + 老陈俯身呼吸与手臂细致拧螺丝动作 |
+| **03** | Tier B | `bg.webp` → `curtain.webp` (`sway`, `parallax: 1.02`) → `girl-body.webp` (`breathe`) → `girl-head.webp` (`nod`) → `sign.webp` (`sway`, `parallax: 1.07`) | 门外冷雨青灰街景、门帘与木牌视差摇曳与少女微喘动态 |
+| **04** | Tier B | `bg.webp` → `curtain.webp` (`sway`) → `girl-body.webp` (`breathe`) → `girl-head.webp` (`talk`, `activeSpeaker: "girl"`) → `warm-glow.webp` (`glow-pulse`) | 女孩说出“爷爷，这个……能修吗？”时头部与语音同步微动 |
+| **05** | Tier B | `bg.webp` → `pendulum-2.webp` (`swing`) → `chen-body.webp` (`breathe`) → `chen-head.webp` (`talk`, `activeSpeaker: "chen"`) → `chen-arm.webp` (`swing`) → `lamp-glow.webp` (`glow-pulse`) | 对话特写：老陈发言期间触发生动的说话点头律动，倾听时恢复待机呼吸 |
+| **06** | Tier B | `bg.webp` → `chen-body.webp` (`breathe`) → `chen-arm.webp` (`swing`, 细致拧动动作) → `lamp-glow.webp` (`glow-pulse`) | 聚焦老陈双手、工作台工具与零件铁盒，伴随星尘承诺粒子 |
+| **07** | Tier B | `bg.webp` → `curtain.webp` (`sway`) → `girl-body.webp` (`breathe`) → `girl-head.webp` (`nod`) → `sign.webp` (`sway`, `parallax: 1.06`) → `lamp-glow.webp` (`glow-pulse`) | 雨后夕阳金辉下女孩再次推门而入，门帘摇曳、落叶飘飞 |
+| **08** | Tier B | `bg.webp` (`parallax: 0.92`, 暖金夕阳木柜台浅景深) → `music-box.webp` (`breathe`, `parallax: 1.05`) → `ballerina.webp` (`spin-y`, `parallax: 1.05`) → `box-glow.webp` (`glow-pulse`) | 陶瓷小芭蕾舞者优雅 360° 原地连续旋转（小腿银色焊痕随舞姿流转），伴随金色星尘微光 |
+| **09** | Tier B | `bg.webp` → `curtain.webp` (`sway`) → `girl-body.webp` (`breathe`) → `girl-head.webp` (`nod`) → `sign.webp` (`sway`, `parallax: 1.05`) → `lamp-glow.webp` (`glow-pulse`) | 夕阳暖意中女孩眼里闪光交付五元手工费的微笑神情 |
+| **10** | Tier A | `bg.webp` + `chen-window.webp` (`breathe`) → `sign.webp` (`sway`, `parallax: 1.08`) → `window-glow.webp` (`glow-pulse`) | 金色夕阳下木牌轻摆视差与暖窗灯光渐融，为老街修理铺收束余韵 |
+

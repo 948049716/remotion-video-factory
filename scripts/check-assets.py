@@ -270,8 +270,10 @@ def check_assets_not_tracked(quiet: bool) -> None:
         if not tracked:
             continue
         parts = Path(tracked).parts
-        # 允许：assets/README.md、assets/_template/**、assets/_inbox/.gitkeep
+        # 允许：assets/README.md、assets/<VideoName>/README.md、assets/_template/**、assets/_inbox/.gitkeep
         if len(parts) >= 2 and parts[1] == "_template":
+            continue
+        if len(parts) == 3 and parts[2] == "README.md" and not parts[1].startswith("_"):
             continue
         if tracked in {"assets/README.md", "assets/_inbox/.gitkeep"}:
             continue

@@ -1,8 +1,13 @@
 /**
- * 《老陈的修理铺与八音盒》镜头与配音单一数据源（Single Source of Truth）
+ * 《老陈的修理铺与八音盒》镜头、2D 分层关节与配音单一数据源（Single Source of Truth）
  *
+ * 采用「混合 2D 分层动画（Hybrid 2D Layered Animation）」：
+ *   - 保留 100% 稳定柔和的手绘水彩绘本笔触
+ *   - 驱动环境摇曳、视差景深、角色呼吸/劳作摆臂、语音同步说话微动与八音盒舞者旋转
  * 所有音频时长 durSec 均来自 ffprobe 实测，TIMELINE 自动累加计算帧号。
  */
+
+import type React from "react";
 
 export type SpeakerId = "narrator" | "chen" | "girl";
 
@@ -55,6 +60,33 @@ export type ShotCue =
   | "still";
 export type ShotFx = "leaves" | "starlight" | "petals" | "mist" | "ripples" | "none";
 
+export type LayerMotion =
+  | "static"
+  | "breathe"
+  | "swing"
+  | "sway"
+  | "nod"
+  | "talk"
+  | "spin-y"
+  | "rotate"
+  | "float"
+  | "glow-pulse";
+
+export type LayerSpec = {
+  id: string;
+  src: string;
+  zIndex?: number;
+  origin?: [number, number];
+  parallax?: number;
+  motion?: LayerMotion;
+  amplitude?: number;
+  speed?: number;
+  phase?: number;
+  activeSpeaker?: SpeakerId;
+  opacity?: number;
+  blendMode?: React.CSSProperties["mixBlendMode"];
+};
+
 export type Shot = {
   id: string;
   label: string;
@@ -63,6 +95,7 @@ export type Shot = {
   tone: ShotTone;
   cue: ShotCue;
   fx: ShotFx;
+  layers?: LayerSpec[];
   lines: AudioLine[];
 };
 
@@ -73,11 +106,50 @@ export const SHOTS: Shot[] = [
   {
     id: "01",
     label: "老街修理铺",
-    note: "远景推进：阴雨江南老街尽头，褪色木牌与修理铺暖黄木窗内老陈的剪影",
+    note: "Tier A 视差远景推进：褪色木牌在微风细雨中轻摆，暖黄木窗内老陈伏案呼吸",
     durSec: 14.1,
     tone: "night",
     cue: "push",
     fx: "mist",
+    layers: [
+      {
+        id: "bg",
+        src: "old-chen-music-box/images/layers/shot-01/bg.webp",
+        zIndex: 1,
+        parallax: 1.0,
+        motion: "static",
+      },
+      {
+        id: "chen-window",
+        src: "old-chen-music-box/images/layers/shot-01/chen-window.webp",
+        zIndex: 2,
+        origin: [76.0, 63.8],
+        parallax: 1.0,
+        motion: "breathe",
+        amplitude: 0.75,
+        speed: 0.9,
+      },
+      {
+        id: "sign",
+        src: "old-chen-music-box/images/layers/shot-01/sign.webp",
+        zIndex: 4,
+        origin: [47.8, 21.8],
+        parallax: 1.08,
+        motion: "sway",
+        amplitude: 0.85,
+        speed: 0.95,
+      },
+      {
+        id: "window-glow",
+        src: "old-chen-music-box/images/layers/shot-01/window-glow.webp",
+        zIndex: 5,
+        origin: [75.5, 50.0],
+        parallax: 1.02,
+        motion: "glow-pulse",
+        opacity: 0.55,
+        blendMode: "screen",
+      },
+    ],
     lines: [
       {
         id: "s01-narr",
@@ -92,11 +164,80 @@ export const SHOTS: Shot[] = [
   {
     id: "02",
     label: "岁月老手艺",
-    note: "室内中景：厚底老花镜、耳后铅笔、黄铜螺丝刀，身后挂钟与旧收音机",
+    note: "Tier B 完整角色关节中景：双钟摆规律摇曳，老陈俯身呼吸、微点头、手臂持螺丝刀劳作",
     durSec: 26.5,
     tone: "glow",
     cue: "still",
     fx: "none",
+    layers: [
+      {
+        id: "bg",
+        src: "old-chen-music-box/images/layers/shot-02/bg.webp",
+        zIndex: 1,
+        parallax: 1.0,
+        motion: "static",
+      },
+      {
+        id: "pendulum-1",
+        src: "old-chen-music-box/images/layers/shot-02/pendulum-1.webp",
+        zIndex: 2,
+        origin: [16.0, 12.0],
+        parallax: 1.0,
+        motion: "swing",
+        amplitude: 1.15,
+        speed: 0.9,
+      },
+      {
+        id: "pendulum-2",
+        src: "old-chen-music-box/images/layers/shot-02/pendulum-2.webp",
+        zIndex: 2,
+        origin: [30.4, 12.0],
+        parallax: 1.0,
+        motion: "swing",
+        amplitude: 1.05,
+        speed: 1.15,
+        phase: 0.7,
+      },
+      {
+        id: "chen-body",
+        src: "old-chen-music-box/images/layers/shot-02/chen-body.webp",
+        zIndex: 3,
+        origin: [38.0, 92.0],
+        parallax: 1.0,
+        motion: "breathe",
+        amplitude: 0.9,
+      },
+      {
+        id: "chen-head",
+        src: "old-chen-music-box/images/layers/shot-02/chen-head.webp",
+        zIndex: 5,
+        origin: [45.5, 34.0],
+        parallax: 1.0,
+        motion: "nod",
+        amplitude: 0.75,
+        speed: 0.85,
+      },
+      {
+        id: "chen-arm",
+        src: "old-chen-music-box/images/layers/shot-02/chen-arm.webp",
+        zIndex: 6,
+        origin: [44.5, 61.5],
+        parallax: 1.0,
+        motion: "swing",
+        amplitude: 0.55,
+        speed: 0.85,
+      },
+      {
+        id: "lamp-glow",
+        src: "old-chen-music-box/images/layers/shot-02/lamp-glow.webp",
+        zIndex: 7,
+        origin: [72.5, 35.0],
+        parallax: 1.02,
+        motion: "glow-pulse",
+        opacity: 0.52,
+        blendMode: "screen",
+      },
+    ],
     lines: [
       {
         id: "s02-narr",
@@ -111,11 +252,59 @@ export const SHOTS: Shot[] = [
   {
     id: "03",
     label: "雨天来客",
-    note: "门口中全景：布帘掀开，穿蓝白校服的女孩怀抱塑料袋包裹的纸盒走进来",
+    note: "Tier B 门口中全景：雨水细雾中木牌与白布门帘轻摇，怀抱纸盒的女孩站定微喘",
     durSec: 16.0,
     tone: "night",
     cue: "push",
     fx: "mist",
+    layers: [
+      {
+        id: "bg",
+        src: "old-chen-music-box/images/layers/shot-03/bg.webp",
+        zIndex: 1,
+        parallax: 1.0,
+        motion: "static",
+      },
+      {
+        id: "curtain",
+        src: "old-chen-music-box/images/layers/shot-03/curtain.webp",
+        zIndex: 2,
+        origin: [66.0, 2.0],
+        parallax: 1.02,
+        motion: "sway",
+        amplitude: 0.5,
+        speed: 0.9,
+      },
+      {
+        id: "girl-body",
+        src: "old-chen-music-box/images/layers/shot-03/girl-body.webp",
+        zIndex: 3,
+        origin: [41.5, 92.0],
+        parallax: 1.0,
+        motion: "breathe",
+        amplitude: 0.85,
+      },
+      {
+        id: "girl-head",
+        src: "old-chen-music-box/images/layers/shot-03/girl-head.webp",
+        zIndex: 5,
+        origin: [43.0, 48.5],
+        parallax: 1.0,
+        motion: "nod",
+        amplitude: 0.75,
+        speed: 0.9,
+      },
+      {
+        id: "sign",
+        src: "old-chen-music-box/images/layers/shot-03/sign.webp",
+        zIndex: 6,
+        origin: [43.6, 20.5],
+        parallax: 1.07,
+        motion: "sway",
+        amplitude: 0.8,
+        phase: 0.4,
+      },
+    ],
     lines: [
       {
         id: "s03-narr",
@@ -130,11 +319,59 @@ export const SHOTS: Shot[] = [
   {
     id: "04",
     label: "折翼的舞者",
-    note: "桌面近景特写：剥开塑料袋，斑驳八音盒内断了一条腿的小芭蕾舞者歪倒在绒布上",
+    note: "Tier B 近景交互：女孩轻轻开口询问“爷爷，这个……能修吗？”，语音同步触发抬头说话微动",
     durSec: 25.7,
     tone: "glow",
     cue: "pulse",
     fx: "none",
+    layers: [
+      {
+        id: "bg",
+        src: "old-chen-music-box/images/layers/shot-04/bg.webp",
+        zIndex: 1,
+        parallax: 1.0,
+        motion: "static",
+      },
+      {
+        id: "curtain",
+        src: "old-chen-music-box/images/layers/shot-04/curtain.webp",
+        zIndex: 2,
+        origin: [62.11, -36.77],
+        parallax: 1.01,
+        motion: "sway",
+        amplitude: 0.45,
+        speed: 0.85,
+      },
+      {
+        id: "girl-body",
+        src: "old-chen-music-box/images/layers/shot-04/girl-body.webp",
+        zIndex: 3,
+        origin: [25.87, 96.38],
+        parallax: 1.0,
+        motion: "breathe",
+        amplitude: 0.9,
+      },
+      {
+        id: "girl-head",
+        src: "old-chen-music-box/images/layers/shot-04/girl-head.webp",
+        zIndex: 5,
+        origin: [28.09, 32.03],
+        parallax: 1.0,
+        motion: "talk",
+        activeSpeaker: "girl",
+        amplitude: 1.1,
+      },
+      {
+        id: "warm-glow",
+        src: "old-chen-music-box/images/layers/shot-04/warm-glow.webp",
+        zIndex: 7,
+        origin: [82.0, 38.0],
+        parallax: 1.02,
+        motion: "glow-pulse",
+        opacity: 0.5,
+        blendMode: "screen",
+      },
+    ],
     lines: [
       {
         id: "s04-girl",
@@ -157,11 +394,69 @@ export const SHOTS: Shot[] = [
   {
     id: "05",
     label: "奶奶的旧物",
-    note: "中近景对话：老陈推了推老花镜查看机芯，女孩低头诉说奶奶留下的回忆",
+    note: "Tier B 对话特写：老陈发言期间触发语音同步说话律动，停顿和倾听时恢复待机微喘",
     durSec: 36.6,
     tone: "glow",
     cue: "still",
     fx: "none",
+    layers: [
+      {
+        id: "bg",
+        src: "old-chen-music-box/images/layers/shot-05/bg.webp",
+        zIndex: 1,
+        parallax: 1.0,
+        motion: "static",
+      },
+      {
+        id: "pendulum-2",
+        src: "old-chen-music-box/images/layers/shot-05/pendulum-2.webp",
+        zIndex: 2,
+        origin: [19.21, 7.61],
+        parallax: 1.0,
+        motion: "swing",
+        amplitude: 0.95,
+        speed: 1.1,
+      },
+      {
+        id: "chen-body",
+        src: "old-chen-music-box/images/layers/shot-05/chen-body.webp",
+        zIndex: 3,
+        origin: [31.8, 133.5],
+        parallax: 1.0,
+        motion: "breathe",
+        amplitude: 0.85,
+      },
+      {
+        id: "chen-head",
+        src: "old-chen-music-box/images/layers/shot-05/chen-head.webp",
+        zIndex: 5,
+        origin: [44.23, 44.05],
+        parallax: 1.0,
+        motion: "talk",
+        activeSpeaker: "chen",
+        amplitude: 1.1,
+      },
+      {
+        id: "chen-arm",
+        src: "old-chen-music-box/images/layers/shot-05/chen-arm.webp",
+        zIndex: 6,
+        origin: [42.57, 89.6],
+        parallax: 1.0,
+        motion: "swing",
+        amplitude: 0.45,
+        speed: 0.8,
+      },
+      {
+        id: "lamp-glow",
+        src: "old-chen-music-box/images/layers/shot-05/lamp-glow.webp",
+        zIndex: 7,
+        origin: [72.5, 35.0],
+        parallax: 1.02,
+        motion: "glow-pulse",
+        opacity: 0.48,
+        blendMode: "screen",
+      },
+    ],
     lines: [
       {
         id: "s05-narr",
@@ -200,11 +495,49 @@ export const SHOTS: Shot[] = [
   {
     id: "06",
     label: "铁盒与承诺",
-    note: "工作台近景：摸出装满上百个废旧零件的小铁盒，低头拧开八音盒螺丝",
+    note: "Tier B 工作台手部近景：手臂执黄铜螺丝刀细腻拧动，绿台灯微光呼吸，星光粒子浮动",
     durSec: 28.7,
     tone: "glow",
     cue: "push",
     fx: "starlight",
+    layers: [
+      {
+        id: "bg",
+        src: "old-chen-music-box/images/layers/shot-06/bg.webp",
+        zIndex: 1,
+        parallax: 1.0,
+        motion: "static",
+      },
+      {
+        id: "chen-body",
+        src: "old-chen-music-box/images/layers/shot-06/chen-body.webp",
+        zIndex: 3,
+        origin: [-12.35, 87.14],
+        parallax: 1.0,
+        motion: "breathe",
+        amplitude: 0.8,
+      },
+      {
+        id: "chen-arm",
+        src: "old-chen-music-box/images/layers/shot-06/chen-arm.webp",
+        zIndex: 5,
+        origin: [-0.53, 31.68],
+        parallax: 1.0,
+        motion: "swing",
+        amplitude: 0.65,
+        speed: 0.95,
+      },
+      {
+        id: "lamp-glow",
+        src: "old-chen-music-box/images/layers/shot-06/lamp-glow.webp",
+        zIndex: 6,
+        origin: [40.0, 20.0],
+        parallax: 1.02,
+        motion: "glow-pulse",
+        opacity: 0.5,
+        blendMode: "screen",
+      },
+    ],
     lines: [
       {
         id: "s06-narr",
@@ -227,11 +560,68 @@ export const SHOTS: Shot[] = [
   {
     id: "07",
     label: "雨后夕阳",
-    note: "中全景横移：雨停后暖黄夕阳洒满老街与柜台，老陈轻轻拨动八音盒发条",
+    note: "Tier B 暖金夕阳横移：女孩微点头呼应暖光落叶，门帘与褪色木牌沐浴在金色暮风中",
     durSec: 21.1,
     tone: "warm",
     cue: "pan-right",
     fx: "leaves",
+    layers: [
+      {
+        id: "bg",
+        src: "old-chen-music-box/images/layers/shot-07/bg.webp",
+        zIndex: 1,
+        parallax: 1.0,
+        motion: "static",
+      },
+      {
+        id: "curtain",
+        src: "old-chen-music-box/images/layers/shot-07/curtain.webp",
+        zIndex: 2,
+        origin: [66.0, 2.0],
+        parallax: 1.02,
+        motion: "sway",
+        amplitude: 0.55,
+        speed: 0.85,
+      },
+      {
+        id: "girl-body",
+        src: "old-chen-music-box/images/layers/shot-07/girl-body.webp",
+        zIndex: 3,
+        origin: [41.5, 92.0],
+        parallax: 1.0,
+        motion: "breathe",
+        amplitude: 0.85,
+      },
+      {
+        id: "girl-head",
+        src: "old-chen-music-box/images/layers/shot-07/girl-head.webp",
+        zIndex: 5,
+        origin: [43.0, 48.5],
+        parallax: 1.0,
+        motion: "nod",
+        amplitude: 0.85,
+      },
+      {
+        id: "sign",
+        src: "old-chen-music-box/images/layers/shot-07/sign.webp",
+        zIndex: 6,
+        origin: [43.6, 20.5],
+        parallax: 1.06,
+        motion: "sway",
+        amplitude: 0.85,
+        phase: 0.5,
+      },
+      {
+        id: "lamp-glow",
+        src: "old-chen-music-box/images/layers/shot-07/lamp-glow.webp",
+        zIndex: 7,
+        origin: [82.5, 16.0],
+        parallax: 1.02,
+        motion: "glow-pulse",
+        opacity: 0.5,
+        blendMode: "screen",
+      },
+    ],
     lines: [
       {
         id: "s07-narr",
@@ -246,11 +636,50 @@ export const SHOTS: Shot[] = [
   {
     id: "08",
     label: "银色勋章",
-    note: "微距特写：清脆《致爱丽丝》流淌，小芭蕾舞者重新直立旋转，裙摆下留下一道细微银色焊痕",
+    note: "Tier B 道具高潮动画：浅景深老陈背景虚化，手绘胡桃木八音盒内陶瓷芭蕾舞者优雅 360° 原地连续旋转",
     durSec: 27.4,
     tone: "warm",
     cue: "grow",
     fx: "starlight",
+    layers: [
+      {
+        id: "bg",
+        src: "old-chen-music-box/images/layers/shot-08/bg.webp",
+        zIndex: 1,
+        parallax: 0.92,
+        motion: "static",
+      },
+      {
+        id: "music-box",
+        src: "old-chen-music-box/images/layers/shot-08/music-box.webp",
+        zIndex: 2,
+        origin: [50.0, 74.0],
+        parallax: 1.05,
+        motion: "breathe",
+        amplitude: 0.35,
+        speed: 0.7,
+      },
+      {
+        id: "ballerina",
+        src: "old-chen-music-box/images/layers/shot-08/ballerina.webp",
+        zIndex: 4,
+        origin: [50.0, 57.2],
+        parallax: 1.05,
+        motion: "spin-y",
+        speed: 1.0,
+        amplitude: 1.0,
+      },
+      {
+        id: "box-glow",
+        src: "old-chen-music-box/images/layers/shot-08/box-glow.webp",
+        zIndex: 6,
+        origin: [50.0, 44.0],
+        parallax: 1.05,
+        motion: "glow-pulse",
+        opacity: 0.6,
+        blendMode: "screen",
+      },
+    ],
     lines: [
       {
         id: "s08-narr",
@@ -265,11 +694,68 @@ export const SHOTS: Shot[] = [
   {
     id: "09",
     label: "五块手工费",
-    note: "中近景：女孩眼睛发亮递过零花钱，老陈温和摆手只收下一张五块",
+    note: "Tier B 暖光近景：女孩开心点头微笑，吊灯暖光晕染、花瓣飘落",
     durSec: 17.4,
     tone: "warm",
     cue: "still",
     fx: "petals",
+    layers: [
+      {
+        id: "bg",
+        src: "old-chen-music-box/images/layers/shot-09/bg.webp",
+        zIndex: 1,
+        parallax: 1.0,
+        motion: "static",
+      },
+      {
+        id: "curtain",
+        src: "old-chen-music-box/images/layers/shot-09/curtain.webp",
+        zIndex: 2,
+        origin: [82.27, -20.5],
+        parallax: 1.01,
+        motion: "sway",
+        amplitude: 0.45,
+        speed: 0.85,
+      },
+      {
+        id: "girl-body",
+        src: "old-chen-music-box/images/layers/shot-09/girl-body.webp",
+        zIndex: 3,
+        origin: [43.07, 123.5],
+        parallax: 1.0,
+        motion: "breathe",
+        amplitude: 0.9,
+      },
+      {
+        id: "girl-head",
+        src: "old-chen-music-box/images/layers/shot-09/girl-head.webp",
+        zIndex: 5,
+        origin: [45.47, 53.9],
+        parallax: 1.0,
+        motion: "nod",
+        amplitude: 1.05,
+        speed: 1.0,
+      },
+      {
+        id: "sign",
+        src: "old-chen-music-box/images/layers/shot-09/sign.webp",
+        zIndex: 6,
+        origin: [46.43, 9.1],
+        parallax: 1.05,
+        motion: "sway",
+        amplitude: 0.65,
+      },
+      {
+        id: "lamp-glow",
+        src: "old-chen-music-box/images/layers/shot-09/lamp-glow.webp",
+        zIndex: 7,
+        origin: [82.0, 16.0],
+        parallax: 1.02,
+        motion: "glow-pulse",
+        opacity: 0.52,
+        blendMode: "screen",
+      },
+    ],
     lines: [
       {
         id: "s09-narr",
@@ -292,11 +778,49 @@ export const SHOTS: Shot[] = [
   {
     id: "10",
     label: "余音与新址",
-    note: "远景拉远：女孩抱着八音盒跑进夕阳，老陈擦了擦老花镜，把门口木牌翻面写下新址",
+    note: "Tier A 暮色远景拉远：褪色木牌轻摇、老陈在暖黄木窗内静立呼吸，金叶飘舞收束全篇",
     durSec: 27.1,
     tone: "warm",
     cue: "pull",
     fx: "leaves",
+    layers: [
+      {
+        id: "bg",
+        src: "old-chen-music-box/images/layers/shot-10/bg.webp",
+        zIndex: 1,
+        parallax: 1.0,
+        motion: "static",
+      },
+      {
+        id: "chen-window",
+        src: "old-chen-music-box/images/layers/shot-10/chen-window.webp",
+        zIndex: 2,
+        origin: [76.0, 63.8],
+        parallax: 1.0,
+        motion: "breathe",
+        amplitude: 0.75,
+        speed: 0.9,
+      },
+      {
+        id: "sign",
+        src: "old-chen-music-box/images/layers/shot-10/sign.webp",
+        zIndex: 4,
+        origin: [47.8, 21.8],
+        parallax: 1.08,
+        motion: "sway",
+        amplitude: 0.85,
+      },
+      {
+        id: "window-glow",
+        src: "old-chen-music-box/images/layers/shot-10/window-glow.webp",
+        zIndex: 5,
+        origin: [75.5, 50.0],
+        parallax: 1.02,
+        motion: "glow-pulse",
+        opacity: 0.6,
+        blendMode: "screen",
+      },
+    ],
     lines: [
       {
         id: "s10-narr",

@@ -12,6 +12,7 @@ import {
 } from "remotion";
 import {
   FPS,
+  LayerSpec,
   SPEAKERS,
   STORY_SLUG,
   ShotCue,
@@ -74,6 +75,167 @@ const cameraTransform = (cue: ShotCue, frame: number, totalFrames: number) => {
     default:
       return { scale: 1 + 0.015 * eased, x: 0, y: 0 };
   }
+};
+
+/**
+ * 计算单个 2D 图层在当前帧的两级变换：
+ *  1) camStyle: 以画布中心 (50%, 50%) 为基准的相机运镜与景深视差
+ *  2) jointStyle: 以关节锚点 layer.origin 为基准的局部旋转/呼吸/摆动/说话微动
+ * （拆成两层可彻底防止运镜缩放时头部/手臂/钟摆相对背景发生坐标漂移）
+ */
+const computeLayerStyle = (
+  layer: LayerSpec,
+  localFrame: number,
+  fps: number,
+  cam: { scale: number; x: number; y: number },
+  currentSpeaker: SpeakerId | null,
+): { camStyle: React.CSSProperties; jointStyle: React.CSSProperties } => {
+  const t = localFrame / fps + (layer.phase ?? 0);
+  const spd = layer.speed ?? 1.0;
+  const amp = layer.amplitude ?? 1.0;
+  const parallax = layer.parallax ?? 1.0;
+  const motion = layer.motion ?? "static";
+
+  // 1. 相机视差映射（严格围绕画布中心缩放）
+  const camScale = 1 + (cam.scale - 1) * parallax;
+  const camX = cam.x * parallax;
+  const camY = cam.y * parallax;
+
+  // 2. 局部关节动效映射
+  let tx = 0;
+  let ty = 0;
+  let rot = 0;
+  let sx = 1;
+  let sy = 1;
+  let extraOpacity = layer.opacity ?? 1;
+
+  const isSpeaking =
+    Boolean(layer.activeSpeaker) && currentSpeaker === layer.activeSpeaker;
+
+  switch (motion) {
+    case "breathe": {
+      const b = Math.sin(t * 1.9 * spd);
+      sy = 1 + 0.008 * amp * b;
+      ty += -2.5 * amp * b;
+      break;
+    }
+    case "swing": {
+      rot = Math.sin(t * 2.6 * spd) * (3.5 * amp);
+      break;
+    }
+    case "sway": {
+      rot =
+        (Math.sin(t * 1.4 * spd) * 0.7 + Math.sin(t * 2.3 * spd) * 0.3) *
+        (2.2 * amp);
+      tx += Math.sin(t * 1.4 * spd) * (2.5 * amp);
+      break;
+    }
+    case "nod": {
+      const factor = isSpeaking ? 2.2 : 0.75;
+      rot = Math.sin(t * 2.4 * spd) * (1.5 * amp * factor);
+      ty += Math.sin(t * 4.8 * spd) * (1.2 * amp * factor);
+      break;
+    }
+    case "talk": {
+      if (isSpeaking) {
+        // 说话期间叠加多频柔和语调点头与呼吸弹性微动
+        const cadence =
+          Math.sin(t * 7.5 * spd) * 0.6 + Math.sin(t * 11.2 * spd) * 0.4;
+        rot = cadence * (1.8 * amp);
+        ty += -Math.abs(cadence) * (2.6 * amp);
+        sy = 1 + 0.009 * amp * Math.abs(cadence);
+      } else {
+        // 未说话时保持轻柔待机呼吸
+        const idle = Math.sin(t * 1.6);
+        ty += -1.2 * idle;
+        rot = idle * 0.38;
+      }
+      break;
+    }
+    case "spin-y": {
+      // 伪 3D 连续绕纵轴旋转（八音盒陶瓷芭蕾舞者优雅自转）
+      const angle = t * 1.75 * spd;
+      const cosA = Math.cos(angle);
+      const dir = cosA >= 0 ? 1 : -1;
+      sx = dir * Math.max(0.14, Math.abs(cosA));
+      ty += Math.sin(angle * 2) * (-4.0 * amp);
+      break;
+    }
+    case "rotate": {
+      rot = (t * 45 * spd) % 360;
+      break;
+    }
+    case "float": {
+      ty += Math.sin(t * 1.7 * spd) * (6 * amp);
+      tx += Math.cos(t * 1.1 * spd) * (4 * amp);
+      rot = Math.sin(t * 1.3 * spd) * (2 * amp);
+      break;
+    }
+    case "glow-pulse": {
+      const pulse = 0.5 + 0.5 * Math.sin(t * 2.1 * spd);
+      extraOpacity = (layer.opacity ?? 0.65) * (0.6 + 0.4 * pulse);
+      sx = 1 + 0.03 * amp * pulse;
+      sy = 1 + 0.03 * amp * pulse;
+      break;
+    }
+    case "static":
+    default:
+      break;
+  }
+
+  const origin = layer.origin ?? [50, 50];
+
+  return {
+    camStyle: {
+      zIndex: layer.zIndex ?? 1,
+      opacity: extraOpacity,
+      mixBlendMode: layer.blendMode,
+      transformOrigin: "50% 50%",
+      transform: `translate(${camX.toFixed(2)}px, ${camY.toFixed(2)}px) scale(${camScale.toFixed(4)})`,
+    },
+    jointStyle: {
+      transformOrigin: `${origin[0]}% ${origin[1]}%`,
+      transform: `translate(${tx.toFixed(2)}px, ${ty.toFixed(2)}px) rotate(${rot.toFixed(3)}deg) scale(${sx.toFixed(4)}, ${sy.toFixed(4)})`,
+    },
+  };
+};
+
+const LayeredShotStage: React.FC<{
+  layers: LayerSpec[];
+  cam: { scale: number; x: number; y: number };
+  currentSpeaker: SpeakerId | null;
+}> = ({ layers, cam, currentSpeaker }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+
+  const sorted = useMemo(
+    () => [...layers].sort((a, b) => (a.zIndex ?? 1) - (b.zIndex ?? 1)),
+    [layers],
+  );
+
+  return (
+    <AbsoluteFill style={{ isolation: "isolate", zIndex: 0 }}>
+      {sorted.map((layer) => {
+        const { camStyle, jointStyle } = computeLayerStyle(
+          layer,
+          frame,
+          fps,
+          cam,
+          currentSpeaker,
+        );
+        return (
+          <AbsoluteFill key={layer.id} style={camStyle}>
+            <AbsoluteFill style={jointStyle}>
+              <Img
+                src={staticFile(layer.src)}
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
+            </AbsoluteFill>
+          </AbsoluteFill>
+        );
+      })}
+    </AbsoluteFill>
+  );
 };
 
 /**
@@ -226,7 +388,8 @@ const ShotPanel: React.FC<{
   shot: ShotTiming;
   index: number;
   imageSrc?: string;
-}> = ({ shot, index, imageSrc }) => {
+  currentSpeaker: SpeakerId | null;
+}> = ({ shot, index, imageSrc, currentSpeaker }) => {
   const frame = useCurrentFrame();
   const tone = TONES[shot.tone] ?? TONES.glow;
   const cam = cameraTransform(shot.cue, frame, shot.durationInFrames);
@@ -242,59 +405,40 @@ const ShotPanel: React.FC<{
     { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
   );
 
+  const hasLayers = Boolean(shot.layers && shot.layers.length > 0);
+
   return (
     <AbsoluteFill
       style={{
         background: tone.bg,
         opacity: Math.min(fadeIn, fadeOut),
+        isolation: "isolate",
       }}
     >
-      <AbsoluteFill
-        style={{
-          transform: `scale(${cam.scale}) translate(${cam.x}px, ${cam.y}px)`,
-        }}
-      >
-        {imageSrc ? (
-          <Img
-            src={staticFile(imageSrc)}
-            style={{ width: "100%", height: "100%", objectFit: "cover" }}
-          />
-        ) : (
-          <AbsoluteFill
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-              padding: "10%",
-              color: tone.ink,
-              fontFamily:
-                '"Noto Serif SC", "Songti SC", "Microsoft YaHei", serif',
-            }}
-          >
-            <div style={{ fontSize: 26, opacity: 0.65, letterSpacing: 4 }}>
-              SHOT {shot.id}
-            </div>
-            <div style={{ fontSize: 64, fontWeight: 700, marginTop: 12 }}>
-              {shot.label}
-            </div>
-            <div
-              style={{
-                fontSize: 28,
-                opacity: 0.8,
-                marginTop: 20,
-                maxWidth: 1100,
-                textAlign: "center",
-                lineHeight: 1.6,
-              }}
-            >
-              {shot.note}
-            </div>
-          </AbsoluteFill>
-        )}
+      {hasLayers && shot.layers ? (
+        <LayeredShotStage
+          layers={shot.layers}
+          cam={cam}
+          currentSpeaker={currentSpeaker}
+        />
+      ) : (
+        <AbsoluteFill
+          style={{
+            transform: `scale(${cam.scale}) translate(${cam.x}px, ${cam.y}px)`,
+          }}
+        >
+          {imageSrc ? (
+            <Img
+              src={staticFile(imageSrc)}
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            />
+          ) : null}
+        </AbsoluteFill>
+      )}
 
-        <WatercolorFxLayer fx={shot.fx} glowColor={tone.glow} />
-      </AbsoluteFill>
+      <WatercolorFxLayer fx={shot.fx} glowColor={tone.glow} />
 
-      {/* 底部字幕柔化衬底渐变，提升水彩亮部画面的字幕可读性 */}
+      {/* 底部字幕柔化衬底渐变 */}
       <div
         style={{
           position: "absolute",
@@ -308,7 +452,7 @@ const ShotPanel: React.FC<{
         }}
       />
 
-      {/* 右上角轻量分镜水印，方便审片对表 */}
+      {/* 右上角轻量分镜水印 */}
       <div
         style={{
           position: "absolute",
@@ -413,6 +557,8 @@ export const OldChenMusicBoxVideo: React.FC = () => {
     }),
   ).find((item) => frame >= item.start && frame < item.end);
 
+  const currentSpeaker = activeLine ? activeLine.line.speaker : null;
+
   const subtitleOpacity = activeLine
     ? interpolate(
         frame,
@@ -440,6 +586,7 @@ export const OldChenMusicBoxVideo: React.FC = () => {
             shot={shot}
             index={idx}
             imageSrc={storyboard.get(shot.id)}
+            currentSpeaker={currentSpeaker}
           />
         </Sequence>
       ))}
@@ -458,7 +605,7 @@ export const OldChenMusicBoxVideo: React.FC = () => {
       )}
 
       {activeLine ? (
-        <AbsoluteFill style={{ opacity: subtitleOpacity }}>
+        <AbsoluteFill style={{ opacity: subtitleOpacity, zIndex: 20 }}>
           <StorybookSubtitle
             text={activeLine.line.text}
             speaker={activeLine.line.speaker}
