@@ -69,6 +69,56 @@ def probe_duration(audio_path: Path) -> float:
     return round(float(proc.stdout.strip()), 3)
 
 
+def extract_speech_envelope(audio_path: Path, fps: int = 24) -> list[float]:
+    """零第三方依赖提取逐帧归一化语音振幅包络 (0..1)，用于驱动真实口型张合 (Viseme Lip-Sync)。"""
+    import array
+    import math
+
+    ffmpeg = shutil.which("ffmpeg")
+    if not ffmpeg:
+        return []
+    samples_per_frame = 100
+    sample_rate = fps * samples_per_frame
+    cmd = [
+        ffmpeg,
+        "-v",
+        "error",
+        "-i",
+        str(audio_path),
+        "-ac",
+        "1",
+        "-ar",
+        str(sample_rate),
+        "-f",
+        "s16le",
+        "-",
+    ]
+    proc = subprocess.run(cmd, capture_output=True, check=False)
+    if proc.returncode != 0 or not proc.stdout:
+        return []
+    raw_len = (len(proc.stdout) // 2) * 2
+    pcm = array.array("h")
+    pcm.frombytes(proc.stdout[:raw_len])
+    if sys.byteorder != "little":
+        pcm.byteswap()
+
+    rms_vals: list[float] = []
+    total = len(pcm)
+    for start in range(0, total, samples_per_frame):
+        chunk = pcm[start : start + samples_per_frame]
+        if not chunk:
+            break
+        sq_sum = sum(int(s) * int(s) for s in chunk)
+        rms_vals.append(math.sqrt(sq_sum / len(chunk)))
+
+    if not rms_vals:
+        return []
+    peak = max(rms_vals)
+    if peak < 80.0:
+        return [0.0 for _ in rms_vals]
+    return [round(min(1.0, v / (peak * 0.88)), 3) for v in rms_vals]
+
+
 def _split_text_chunks(text: str, max_chars: int = 160) -> list[str]:
     """将长句按标点拆分为不超过 max_chars 的片段。"""
     text = text.strip()
@@ -304,6 +354,9 @@ def run_manifest(
     base_url: str | None,
     api_key: str | None,
     default_model: str,
+    with_envelope: bool = False,
+    envelope_fps: int = 24,
+    reprobe_only: bool = False,
 ) -> int:
     """批量处理分镜配音清单，自动测量每句时长并排算每个镜头的 atSec 与 durSec。"""
     data: dict[str, Any] = json.loads(manifest_path.read_text(encoding="utf-8"))
@@ -313,9 +366,9 @@ def run_manifest(
 
     total_lines = 0
     for shot in shots:
-        pre_pad = float(shot.get("prePadSec", 1.0))
-        post_pad = float(shot.get("postPadSec", 1.0))
-        line_gap = float(shot.get("lineGapSec", 0.5))
+        pre_pad = float(shot.get("prePadSec", 0.6))
+        post_pad = float(shot.get("postPadSec", 0.7))
+        line_gap = float(shot.get("lineGapSec", 0.45))
         cursor = pre_pad
         lines: list[dict[str, Any]] = shot.get("lines") or []
 
@@ -333,32 +386,36 @@ def run_manifest(
             rel_file = line.get("file") or f"{story_slug}/audio/{line_id}.mp3"
             out_path = Path("public") / rel_file
 
-            log(f"正在合成 [{shot.get('id')}/{line_id}] ({speaker} -> {voice}, speed={speed})...")
-            if mode == "custom":
-                if not base_url:
-                    raise SystemExit("custom 模式必须提供 --base-url 或环境变量 TTS_BASE_URL")
-                synthesize_custom_api(
-                    text=text,
-                    out_path=out_path,
-                    base_url=base_url,
-                    api_key=api_key,
-                    model=model,
-                    voice=voice,
-                    speed=speed,
-                )
-            else:
-                synthesize_edge_tts(
-                    text=text,
-                    out_path=out_path,
-                    voice=voice,
-                    speed=speed,
-                    pitch=pitch,
-                )
+            if not (reprobe_only and out_path.is_file()):
+                log(f"正在合成 [{shot.get('id')}/{line_id}] ({speaker} -> {voice}, speed={speed})...")
+                if mode == "custom":
+                    if not base_url:
+                        raise SystemExit("custom 模式必须提供 --base-url 或环境变量 TTS_BASE_URL")
+                    synthesize_custom_api(
+                        text=text,
+                        out_path=out_path,
+                        base_url=base_url,
+                        api_key=api_key,
+                        model=model,
+                        voice=voice,
+                        speed=speed,
+                    )
+                else:
+                    synthesize_edge_tts(
+                        text=text,
+                        out_path=out_path,
+                        voice=voice,
+                        speed=speed,
+                        pitch=pitch,
+                    )
 
             dur_sec = probe_duration(out_path)
             line["file"] = rel_file
             line["atSec"] = round(cursor, 2)
             line["durSec"] = dur_sec
+            if with_envelope and speaker != "narrator":
+                line["envelope"] = extract_speech_envelope(out_path, fps=envelope_fps)
+                line["envelopeFps"] = envelope_fps
             cursor += dur_sec
             if idx < len(lines) - 1:
                 cursor += line_gap
@@ -408,6 +465,9 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument("--model", default=DEFAULT_MODEL, help="custom 模式下的模型名")
     parser.add_argument("--manifest", help="批量合成的 JSON 清单路径（会自动测量并回写 atSec / durSec）")
+    parser.add_argument("--with-envelope", action="store_true", help="提取角色对白逐帧语音能量包络以驱动真口型")
+    parser.add_argument("--envelope-fps", type=int, default=24, help="语音包络采样帧率（默认 24）")
+    parser.add_argument("--reprobe-only", action="store_true", help="若音频已存在则跳过重合成，仅测量时长与提取包络")
     parser.add_argument("--text", help="单句合成的文本")
     parser.add_argument("--out", help="单句合成的输出文件路径（如 public/my-story/audio/s01-narr.mp3）")
     parser.add_argument("--voice", default=DEFAULT_VOICE, help="音色名称，如 zh-CN-XiaoxiaoNeural")
@@ -422,6 +482,9 @@ def main(argv: list[str] | None = None) -> int:
             base_url=args.base_url,
             api_key=args.api_key,
             default_model=args.model,
+            with_envelope=args.with_envelope,
+            envelope_fps=args.envelope_fps,
+            reprobe_only=args.reprobe_only,
         )
 
     if not args.text or not args.out:

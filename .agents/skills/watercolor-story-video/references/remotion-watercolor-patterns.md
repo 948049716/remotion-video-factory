@@ -8,13 +8,90 @@
 
 1. **严禁使用 CSS 动画**：所有位移、缩放、旋转、透明度、关节运动与粒子动画必须由 `useCurrentFrame()` + `useVideoConfig()` + `interpolate()` / `spring()` / 确定性三角函数驱动，严禁写 CSS `transition` 或 `@keyframes`。
 2. **所有 `interpolate()` 必须加 Clamp**：默认传入 `{ extrapolateLeft: "clamp", extrapolateRight: "clamp" }`。
-3. **单一数据源（Single Source of Truth）**：所有镜头时长（`durSec`）、台词起始秒数（`atSec`）、音频实测时长以及 2D 分层图层定义（`layers`）统一维护在 `src/videos/<StoryName>/shots.ts`，由 `TIMELINE` 自动累加计算 `fromFrame` 与 `durationInFrames`。
-4. **静态资源子目录隔离**：所有图片、分层图层与音频必须放在 `public/<story-slug>/images/`、`public/<story-slug>/images/layers/` 与 `public/<story-slug>/audio/` 下，通过 `staticFile("<story-slug>/...")` 引用。
-5. **严禁主动渲染 MP4**：除非用户明确要求导出 MP4 视频文件，否则制作完成后只做 `npx tsc --noEmit` 类型检查（及可选单帧 `remotion still` 校验），引导用户在 Remotion Studio 中预览。
+3. **单一数据源（Single Source of Truth）**：所有镜头时长（`durSec`）、台词起始秒数（`atSec`）、音频实测时长、视频切片配置（`clip`）及 2D 分层图层定义（`layers`）统一维护在 `src/videos/<StoryName>/shots.ts`。
+4. **静态资源子目录隔离**：所有视频切片、图片、分层图层与音频必须放在 `public/<story-slug>/video/`、`public/<story-slug>/images/` 与 `public/<story-slug>/audio/` 下，通过 `staticFile("<story-slug>/...")` 引用。
+5. **严禁主动渲染 MP4**：除非用户明确要求导出 MP4 视频文件，否则制作完成后只做 `npm run check` 与 `npm run lint` 类型/规范检查，引导用户在 Remotion Studio 中预览。
 
 ---
 
-## 2. 空仓库/新项目最小初始化模板（若项目尚未初始化）
+## 1.5 本仓库内置通用真动画引擎模板（`src/engine/` · 优先使用）
+
+在本仓库（`remotion-video-factory`）中，已内置开箱即用的 **`src/engine/` 真动画时间轴引擎**，原生支持：
+- **Google Flow `24fps` 真视频切片（`<OffthreadVideo>`）**：自动发现 `public/<story-slug>/video/shot-XX.mp4`，支持无感微变速对齐（`playbackRate`）与原生环境音自动闪避；
+- **制作前/制作中 Animatic 热替换（`mode: "auto"`）**：视频切片未就位前自动播放 `shot-XX-start.webp` → `shot-XX-end.webp` 首尾关键帧故事板预览配音节奏；视频入库后自动切换为真动画，无需改代码；
+- **2D 骨骼级联与真口型/眨眼序列帧（`Layered2DStage`）**：支持 `keyframes` 事件姿态、`visemes` 语音包络驱动口型、`blink` 自然眨眼与 `celLineBoil` 12fps 手绘沸腾线；
+- **多轨混音（`soundscape`）**：支持全局 BGM 人声自动闪避（Audio Ducking）与帧级动作拟音（SFX）。
+
+新建故事视频时只需两个精简文件：
+
+### `src/videos/<StoryName>/shots.ts`
+```ts
+import {
+  DEFAULT_FLOW_FPS,
+  StoryProjectConfig,
+  StoryShot,
+  buildStoryTimeline,
+} from "../../engine";
+
+export const STORY_SLUG = "my-story-slug";
+export const FPS = DEFAULT_FLOW_FPS; // 24fps 对齐 Google Flow 原生电影帧率
+
+export const SHOTS: StoryShot[] = [
+  {
+    id: "01",
+    label: "雨夜开场",
+    durSec: 5.4,
+    tone: "night",
+    cue: "push",
+    fx: "mist",
+    mode: "auto", // 若 public/my-story-slug/video/shot-01.mp4 存在则播真视频，否则播首尾帧 Animatic
+    clip: {
+      src: "my-story-slug/video/shot-01.mp4",
+      sourceDurSec: 6.0,
+      keepAmbientAudio: true, // 经审片确认环境雨声干净时保留，对白时自动压低音量
+    },
+    transitionIn: "dissolve",
+    lines: [
+      {
+        id: "s01-narr",
+        file: "my-story-slug/audio/s01-narr.mp3",
+        text: "老街尽头的木窗里，还亮着一盏温暖的旧台灯。",
+        speaker: "narrator",
+        atSec: 0.6,
+        durSec: 4.1,
+      },
+    ],
+  },
+];
+
+export const PROJECT_CONFIG: StoryProjectConfig = {
+  storySlug: STORY_SLUG,
+  fps: FPS,
+  speakers: {
+    narrator: { name: "旁白", accent: "rgba(255, 248, 231, 0.45)", showPrefix: false },
+  },
+  shots: SHOTS,
+  showAnimaticBadge: false,
+};
+
+export const { timeline: TIMELINE, totalFrames: TOTAL_FRAMES } =
+  buildStoryTimeline(SHOTS, FPS);
+```
+
+### `src/videos/<StoryName>/StoryVideo.tsx`
+```tsx
+import React from "react";
+import { StoryTimelinePlayer } from "../../engine";
+import { PROJECT_CONFIG } from "./shots";
+
+export const MyStoryVideo: React.FC = () => {
+  return <StoryTimelinePlayer config={PROJECT_CONFIG} />;
+};
+```
+
+---
+
+## 2. 空仓库/新项目最小初始化模板（若脱离本仓库独立使用）
 
 如果当前工作区没有 `package.json` 或 `src/Root.tsx`，按以下最小结构初始化：
 
