@@ -143,6 +143,18 @@ export type BlinkSpriteSpec = {
   intervalSec?: number;
 };
 
+/** 传统手绘逐帧序列（如 4 帧行走步态循环、掀帘/转身序列帧） */
+export type CelSequenceSpec = {
+  /** 循环播放的序列帧路径列表 */
+  frames: string[];
+  /** 序列切换帧率（默认 7fps） */
+  fps?: number;
+  /** 激活循环的时间窗 [startSec, endSec]；窗口外回退至 idleSrc 或 layer.src */
+  activeWindow?: [number, number];
+  /** 时间窗外的静止帧路径 */
+  idleSrc?: string;
+};
+
 export type LayerSpec = {
   id: string;
   src: string;
@@ -162,6 +174,8 @@ export type LayerSpec = {
   visemes?: VisemeSpriteSpec;
   /** 可选：周期性自然眨眼序列帧 */
   blink?: BlinkSpriteSpec;
+  /** 可选：传统逐帧动作循环序列（如行走步态） */
+  celSequence?: CelSequenceSpec;
   /** 可选：子图层（建立父子骨骼层级，如 躯干 -> 上臂 -> 前臂，子层自动继承父层关节变换） */
   children?: LayerSpec[];
 };

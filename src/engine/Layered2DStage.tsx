@@ -9,6 +9,7 @@ import {
 } from "remotion";
 import type {
   BlinkSpriteSpec,
+  CelSequenceSpec,
   LayerSpec,
   PoseKeyframe,
   SpeakerId,
@@ -218,9 +219,30 @@ const computeJointTransform = (
   };
 };
 
+const selectCelSequenceSrc = (
+  seq: CelSequenceSpec,
+  sec: number,
+  fallbackSrc: string,
+): string => {
+  if (seq.activeWindow) {
+    const [startSec, endSec] = seq.activeWindow;
+    if (sec < startSec || sec > endSec) {
+      return seq.idleSrc ?? fallbackSrc;
+    }
+  }
+  if (!seq.frames || seq.frames.length === 0) {
+    return fallbackSrc;
+  }
+  const seqFps = Math.max(1, seq.fps ?? 7);
+  const offsetSec = seq.activeWindow ? Math.max(0, sec - seq.activeWindow[0]) : sec;
+  const idx = Math.floor(offsetSec * seqFps) % seq.frames.length;
+  return seq.frames[idx] ?? fallbackSrc;
+};
+
 const LayerNode: React.FC<{
   layer: LayerSpec;
   effectiveFrame: number;
+  rawFrame: number;
   fps: number;
   currentSpeaker: SpeakerId | null;
   speechEnergy: number;
@@ -228,12 +250,13 @@ const LayerNode: React.FC<{
 }> = ({
   layer,
   effectiveFrame,
+  rawFrame,
   fps,
   currentSpeaker,
   speechEnergy,
   seedIndex,
 }) => {
-  const sec = effectiveFrame / fps;
+  const rawSec = rawFrame / fps;
   const isSpeaking =
     Boolean(layer.activeSpeaker) && currentSpeaker === layer.activeSpeaker;
 
@@ -246,10 +269,12 @@ const LayerNode: React.FC<{
   );
 
   let activeSrc = layer.src;
-  if (layer.visemes) {
-    activeSrc = selectVisemeSrc(layer.visemes, isSpeaking, speechEnergy, sec);
+  if (layer.celSequence) {
+    activeSrc = selectCelSequenceSrc(layer.celSequence, rawSec, layer.src);
+  } else if (layer.visemes) {
+    activeSrc = selectVisemeSrc(layer.visemes, isSpeaking, speechEnergy, rawSec);
   } else if (layer.blink) {
-    activeSrc = selectBlinkSrc(layer.blink, sec, seedIndex);
+    activeSrc = selectBlinkSrc(layer.blink, rawSec, seedIndex);
   }
 
   const sortedChildren = useMemo(
@@ -277,6 +302,7 @@ const LayerNode: React.FC<{
           key={child.id}
           layer={child}
           effectiveFrame={effectiveFrame}
+          rawFrame={rawFrame}
           fps={fps}
           currentSpeaker={currentSpeaker}
           speechEnergy={speechEnergy}
@@ -362,6 +388,7 @@ export const Layered2DStage: React.FC<{
             <LayerNode
               layer={layer}
               effectiveFrame={effectiveFrame}
+              rawFrame={frame}
               fps={fps}
               currentSpeaker={currentSpeaker}
               speechEnergy={speechEnergy}
