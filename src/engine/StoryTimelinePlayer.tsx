@@ -291,6 +291,7 @@ const StorybookSubtitle: React.FC<{
 };
 
 type DiscoveredAssets = {
+  allFiles: Set<string>;
   clips: Map<string, string>;
   startFrames: Map<string, string>;
   endFrames: Map<string, string>;
@@ -298,6 +299,7 @@ type DiscoveredAssets = {
 
 const useDiscoveredStoryAssets = (storySlug: string): DiscoveredAssets =>
   useMemo(() => {
+    const allFiles = new Set<string>();
     const clips = new Map<string, string>();
     const startFrames = new Map<string, string>();
     const endFrames = new Map<string, string>();
@@ -307,6 +309,7 @@ const useDiscoveredStoryAssets = (storySlug: string): DiscoveredAssets =>
 
     for (const file of getStaticFiles()) {
       const name = file.name.replace(/\\/g, "/");
+      allFiles.add(name);
       if (name.startsWith(videoPrefix)) {
         const base = name.slice(videoPrefix.length);
         const match = /^shot-(\d{2,3})\.(mp4|webm)$/i.exec(base);
@@ -332,7 +335,7 @@ const useDiscoveredStoryAssets = (storySlug: string): DiscoveredAssets =>
       }
     }
 
-    return { clips, startFrames, endFrames };
+    return { allFiles, clips, startFrames, endFrames };
   }, [storySlug]);
 
 const sampleLineEnvelope = (
@@ -401,10 +404,16 @@ const ShotContainer: React.FC<{
 
   const resolvedClip: VideoClipSpec | null = useMemo(() => {
     if (mode === "layered-2d" || mode === "animatic") return null;
-    if (shot.clip) return shot.clip;
+    if (shot.clip) {
+      if (mode === "flow-clip" || discovered.allFiles.has(shot.clip.src)) {
+        return shot.clip;
+      }
+      const fallbackAuto = discovered.clips.get(shot.id);
+      return fallbackAuto ? { ...shot.clip, src: fallbackAuto } : null;
+    }
     const autoClipSrc = discovered.clips.get(shot.id);
     return autoClipSrc ? { src: autoClipSrc } : null;
-  }, [mode, shot.clip, shot.id, discovered.clips]);
+  }, [mode, shot.clip, shot.id, discovered.allFiles, discovered.clips]);
 
   const resolvedAnimatic: KeyframeAnimaticSpec | null = useMemo(() => {
     if (shot.animatic) return shot.animatic;
